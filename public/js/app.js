@@ -9,6 +9,8 @@
   let allTitles = [];
   let activeGenre = '';
   let searchQuery = '';
+  let activeHoverId = null;
+  let hoverTimeout = null;
 
   async function init() {
     const titles = await fetchJSON('/api/titles');
@@ -24,7 +26,7 @@
     return res.json();
   }
 
-  // ── Supertop genre chips ──
+  // ── Genre chips ──
 
   function renderGenreChips() {
     const container = document.getElementById('supertopGenres');
@@ -38,7 +40,7 @@
     container.innerHTML = label + chips + expandBtn;
   }
 
-  // ── Supertop poster rails ──
+  // ── Poster rails ──
 
   function getFilteredTitles() {
     let filtered = [...allTitles];
@@ -81,6 +83,94 @@
       </div>
     `).join('');
   }
+
+  // ── Hover card ──
+
+  function buildHoverCard(t) {
+    return `
+      <div class="supertop-hover-card" data-hover-id="${t.id}">
+        <div class="hover-card-video">
+          <img src="${t.backdrop || t.image}" alt="${t.title}">
+          <button class="hover-card-play" aria-label="Play trailer">
+            <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+          </button>
+          <span class="hover-card-duration">${t.duration}</span>
+        </div>
+        <div class="hover-card-info">
+          <div class="hover-card-header">
+            <h3 class="hover-card-title">${t.title}</h3>
+            <div class="hover-card-subtitle">
+              <span class="hover-card-rating-badge">${t.rating}</span>
+              <span class="hover-card-meta">${t.year} · ${t.genre} · ${t.duration}</span>
+            </div>
+          </div>
+          <div class="hover-card-ratings">
+            <div class="hover-card-rating-item">
+              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
+              <span class="hover-card-rating-value">${t.rt}%</span>
+            </div>
+            <div class="hover-card-rating-item">
+              <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
+              <span class="hover-card-rating-value">${t.imdb}/10</span>
+            </div>
+            <div class="hover-card-rating-item">
+              <svg class="hover-card-rating-icon" viewBox="0 0 16 16" fill="#6001d2"><circle cx="8" cy="8" r="7"/><text x="8" y="11" text-anchor="middle" fill="white" font-size="7" font-weight="bold">Y!</text></svg>
+              <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
+            </div>
+          </div>
+          <p class="hover-card-desc">${t.description}</p>
+          <button class="hover-card-details-btn">
+            See full details
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function showHoverCard(posterEl) {
+    const id = parseInt(posterEl.dataset.id, 10);
+    if (activeHoverId === id) return;
+
+    removeHoverCard();
+    activeHoverId = id;
+
+    const item = allTitles.find(t => t.id === id);
+    if (!item) return;
+
+    const cardHTML = buildHoverCard(item);
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = cardHTML;
+    const cardEl = tempDiv.firstElementChild;
+
+    posterEl.style.display = 'none';
+    posterEl.insertAdjacentElement('afterend', cardEl);
+
+    cardEl.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimeout);
+    });
+
+    cardEl.addEventListener('mouseleave', () => {
+      hoverTimeout = setTimeout(() => removeHoverCard(), 200);
+    });
+  }
+
+  function removeHoverCard() {
+    if (activeHoverId === null) return;
+
+    const existing = document.querySelector('.supertop-hover-card');
+    if (existing) {
+      const track = existing.closest('.supertop-rail-track');
+      if (track) {
+        const hiddenPoster = track.querySelector(`.supertop-poster[data-id="${activeHoverId}"][style*="display: none"]`);
+        if (hiddenPoster) hiddenPoster.style.display = '';
+      }
+      existing.remove();
+    }
+    activeHoverId = null;
+  }
+
+  // ── Rail scroll buttons ──
 
   function initRailButtons() {
     document.querySelectorAll('.supertop-rail-btn').forEach(btn => {
@@ -127,6 +217,7 @@
         activeGenre = activeGenre === genre ? '' : genre;
         document.querySelectorAll('.supertop-genre-chip').forEach(c => c.classList.remove('active'));
         if (activeGenre) chip.classList.add('active');
+        removeHoverCard();
         renderSupertopRails();
       }
     });
@@ -139,7 +230,7 @@
       });
     });
 
-    // Search input + clear button
+    // Search
     const searchInput = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearBtn');
     let debounceTimer;
@@ -153,6 +244,7 @@
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         searchQuery = searchInput.value.trim();
+        removeHoverCard();
         renderSupertopRails();
       }, 300);
     });
@@ -162,19 +254,46 @@
       searchQuery = '';
       updateClearBtn();
       searchInput.focus();
+      removeHoverCard();
       renderSupertopRails();
     });
 
     document.getElementById('searchBtn').addEventListener('click', () => {
       searchQuery = searchInput.value.trim();
+      removeHoverCard();
       renderSupertopRails();
     });
 
     searchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         searchQuery = searchInput.value.trim();
+        removeHoverCard();
         renderSupertopRails();
       }
+    });
+
+    // Poster hover → expand card
+    document.addEventListener('mouseenter', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (poster) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => showHoverCard(poster), 300);
+      }
+    }, true);
+
+    document.addEventListener('mouseleave', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (poster) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => removeHoverCard(), 200);
+      }
+    }, true);
+
+    // Close hover card when scrolling rail
+    document.querySelectorAll('.supertop-rail-track').forEach(track => {
+      track.addEventListener('scroll', () => {
+        removeHoverCard();
+      });
     });
   }
 
