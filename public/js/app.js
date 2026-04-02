@@ -556,8 +556,32 @@
   // ── Events ──
 
   function bindEvents() {
+    const servicesDropdownBtn = document.getElementById('servicesDropdownBtn');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    if (servicesDropdownBtn && servicesDropdown) {
+      servicesDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        servicesDropdown.classList.toggle('is-open');
+      });
+    }
+
     // Genre expand toggle
     document.addEventListener('click', (e) => {
+      const dropdownItem = e.target.closest('.dropdown-item');
+      if (dropdownItem) {
+        e.stopPropagation();
+        const checkbox = dropdownItem.querySelector('.dropdown-checkbox');
+        if (checkbox) checkbox.classList.toggle('is-checked');
+        return;
+      }
+
+      const servicesDropdownEl = document.getElementById('servicesDropdown');
+      if (servicesDropdownEl && servicesDropdownEl.classList.contains('is-open')) {
+        if (!e.target.closest('.dropdown-wrap')) {
+          servicesDropdownEl.classList.remove('is-open');
+        }
+      }
+
       if (e.target.closest('#genreExpandBtn')) {
         genresExpanded = !genresExpanded;
         renderGenreChips();

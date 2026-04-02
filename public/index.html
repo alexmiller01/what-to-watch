@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/algo.css">
   <link rel="stylesheet" href="/css/y100.css">
   <link rel="stylesheet" href="/css/cards.css">
+  <link rel="stylesheet" href="/css/dropdown.css">
 </head>
 <body>
 
@@ -97,10 +98,91 @@
 
         <!-- Filter chips -->
         <div class="supertop-filters" id="supertopFilters">
-          <button class="supertop-service-dropdown">
-            All services
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-          </button>
+          <div class="dropdown-wrap">
+            <button class="supertop-service-dropdown" id="servicesDropdownBtn">
+              All services
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+            </button>
+            <div class="dropdown-menu" id="servicesDropdown">
+              <div class="dropdown-item" data-filter="movies">
+                <span class="dropdown-checkbox is-checked"></span>
+                <span>Show movies</span>
+              </div>
+              <div class="dropdown-item" data-filter="tv">
+                <span class="dropdown-checkbox is-checked"></span>
+                <span>Show TV</span>
+              </div>
+              <div class="dropdown-item" data-filter="rentals">
+                <span class="dropdown-checkbox is-checked"></span>
+                <span>Show rentals</span>
+              </div>
+              <hr class="dropdown-divider">
+              <div class="dropdown-item" data-service="netflix">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=netflix.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Netflix</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="hulu">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=hulu.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Hulu</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="max">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=max.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Max</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="prime">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=primevideo.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Prime Video</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="peacock">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=peacocktv.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Peacock</span>
+                  <span class="dropdown-service-price">Rental starting at $3.99</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="paramount">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=paramountplus.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Paramount+</span>
+                  <span class="dropdown-service-price">Rental starting at $3.99</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="appletv">
+                <span class="dropdown-checkbox is-checked"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=tv.apple.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Apple TV+</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+              <div class="dropdown-item" data-service="disney">
+                <span class="dropdown-checkbox"></span>
+                <img class="dropdown-service-icon" src="https://www.google.com/s2/favicons?domain=disneyplus.com&sz=64" alt="">
+                <div class="dropdown-service-info">
+                  <span class="dropdown-service-name">Disney+</span>
+                  <span class="dropdown-service-price">Subscription</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="supertop-genre-group" id="supertopGenres">
             <span class="supertop-genre-label">Genres:</span>
           </div>
