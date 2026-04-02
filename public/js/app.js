@@ -78,7 +78,7 @@
     }
 
     const posters = titles.map(t => `
-      <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}">
+      <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
         <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
         <div class="supertop-poster-trailer"></div>
       </div>
@@ -139,9 +139,27 @@
     const cardEl = tempDiv.firstElementChild;
 
     const trailerLayer = posterEl.querySelector('.supertop-poster-trailer');
+    const backdrop = posterEl.dataset.backdrop;
+    const duration = posterEl.dataset.duration;
     const trailerId = posterEl.dataset.trailer;
-    if (trailerLayer && trailerId && !trailerLayer.querySelector('iframe')) {
-      trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?modestbranding=1&rel=0&showinfo=0" allow="encrypted-media" allowfullscreen></iframe>`;
+
+    if (trailerLayer && !trailerLayer.classList.contains('is-playing')) {
+      trailerLayer.innerHTML = `
+        <img src="${backdrop}" alt="">
+        <button class="supertop-trailer-play" aria-label="Play trailer">
+          <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+        </button>
+        <span class="supertop-trailer-duration">${duration}</span>
+      `;
+
+      const playBtn = trailerLayer.querySelector('.supertop-trailer-play');
+      if (playBtn && trailerId) {
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          trailerLayer.classList.add('is-playing');
+          trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?autoplay=1&modestbranding=1&rel=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        });
+      }
     }
 
     posterEl.classList.add('is-active');
@@ -164,7 +182,10 @@
       activePoster.classList.remove('is-active');
       const trailerLayer = activePoster.querySelector('.supertop-poster-trailer');
       if (trailerLayer) {
-        setTimeout(() => { trailerLayer.innerHTML = ''; }, 400);
+        setTimeout(() => {
+          trailerLayer.innerHTML = '';
+          trailerLayer.classList.remove('is-playing');
+        }, 400);
       }
     }
 
