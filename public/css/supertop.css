@@ -660,3 +660,41 @@
     padding: 10px;
   }
 }
+
+/* ── Two-column layout: center rail + right rail ── */
+
+.main-layout {
+  display: flex;
+  gap: var(--uds-space-3xl);
+  padding-top: var(--uds-space-lg);
+}
+
+.center-rail {
+  width: 616px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.right-rail {
+  width: 442px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  .main-layout {
+    flex-direction: column;
+    gap: var(--uds-space-lg);
+  }
+
+  .center-rail,
+  .right-rail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-layout {
+    gap: var(--uds-space-md);
+  }
+}
