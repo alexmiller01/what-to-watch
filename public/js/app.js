@@ -350,43 +350,48 @@
     posterEl.classList.add('is-active');
 
     const track = posterEl.closest('.supertop-rail-track');
+    const expandedPosterWidth = 369;
+    const cardInfoWidth = 340;
+    const totalNeeded = expandedPosterWidth + cardInfoWidth + 12;
+
     if (track) {
       const trackRect = track.getBoundingClientRect();
       const posterRect = posterEl.getBoundingClientRect();
-      const spaceRight = trackRect.right - posterRect.right;
+      const spaceRight = trackRect.right - posterRect.left - expandedPosterWidth;
       const spaceLeft = posterRect.left - trackRect.left;
 
-      if (spaceRight < 350) {
-        if (spaceLeft < 350) {
-          const scrollNeeded = 350 - spaceLeft;
-          track.scrollBy({ left: -scrollNeeded, behavior: 'smooth' });
-          posterEl.insertAdjacentElement('beforebegin', cardEl);
-          cardEl.classList.add('is-flipped');
-        } else {
-          cardEl.classList.add('is-flipped');
-          posterEl.insertAdjacentElement('beforebegin', cardEl);
-        }
+      if (spaceRight >= cardInfoWidth) {
+        posterEl.insertAdjacentElement('afterend', cardEl);
+      } else if (spaceLeft >= cardInfoWidth) {
+        cardEl.classList.add('is-flipped');
+        posterEl.insertAdjacentElement('beforebegin', cardEl);
       } else {
         posterEl.insertAdjacentElement('afterend', cardEl);
+        const scrollAmount = cardInfoWidth - spaceRight + 40;
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           cardEl.classList.add('is-visible');
-
-          const updatedPosterRect = posterEl.getBoundingClientRect();
-          const updatedTrackRect = track.getBoundingClientRect();
-
-          if (updatedPosterRect.left < updatedTrackRect.left) {
-            track.scrollBy({ left: updatedPosterRect.left - updatedTrackRect.left - 20, behavior: 'smooth' });
-          }
-
-          const cardRect = cardEl.getBoundingClientRect();
-          if (cardRect.right > updatedTrackRect.right) {
-            track.scrollBy({ left: cardRect.right - updatedTrackRect.right + 20, behavior: 'smooth' });
-          }
         });
       });
+
+      setTimeout(() => {
+        if (!cardEl.parentNode) return;
+        const posterR = posterEl.getBoundingClientRect();
+        const cardR = cardEl.getBoundingClientRect();
+        const trackR = track.getBoundingClientRect();
+
+        const leftEdge = Math.min(posterR.left, cardR.left);
+        const rightEdge = Math.max(posterR.right, cardR.right);
+
+        if (rightEdge > trackR.right) {
+          track.scrollBy({ left: rightEdge - trackR.right + 20, behavior: 'smooth' });
+        } else if (leftEdge < trackR.left) {
+          track.scrollBy({ left: leftEdge - trackR.left - 20, behavior: 'smooth' });
+        }
+      }, 450);
     } else {
       posterEl.insertAdjacentElement('afterend', cardEl);
       requestAnimationFrame(() => {
