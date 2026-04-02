@@ -753,10 +753,7 @@
       });
     }
 
-    closeBtn.addEventListener('click', () => {
-      overlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-    });
+    closeBtn.addEventListener('click', closePicker);
 
     chipsContainer.addEventListener('click', (e) => {
       const chip = e.target.closest('.picker-chip');
@@ -771,27 +768,119 @@
       }
     });
 
+    const tagToGenre = {
+      'Action & adventure': 'Action', 'Comedy': 'Comedy', 'Drama': 'Drama',
+      'Horror': 'Horror', 'Sci-fi': 'Sci-Fi', 'Aliens': 'Sci-Fi',
+      'Animated': 'Animation', 'Romance': 'Drama', 'Robots': 'Sci-Fi',
+      'Magic': 'Animation', 'Thriller': 'Thriller',
+    };
+
     submitBtn.addEventListener('click', () => {
       const selected = [...chipsContainer.querySelectorAll('.picker-chip.is-selected')]
         .map(c => c.dataset.tag);
 
+      if (selected.length === 0) return;
+
+      const matchGenres = selected.map(s => tagToGenre[s]).filter(Boolean);
+      let candidates = allTitles.filter(t => t.type === 'movie' && t.trailer);
+
+      if (matchGenres.length > 0) {
+        const genreMatches = candidates.filter(t => matchGenres.includes(t.genre));
+        if (genreMatches.length > 0) candidates = genreMatches;
+      }
+
+      if (selected.includes('New releases')) {
+        const recent = candidates.filter(t => t.year >= 2024);
+        if (recent.length > 0) candidates = recent;
+      }
+      if (selected.includes('Timeless classics')) {
+        const classics = candidates.filter(t => t.year <= 2015);
+        if (classics.length > 0) candidates = classics;
+      }
+      if (selected.includes("80's")) {
+        const era = candidates.filter(t => t.year >= 1980 && t.year < 1990);
+        if (era.length > 0) candidates = era;
+      }
+      if (selected.includes("90's or 00's")) {
+        const era = candidates.filter(t => t.year >= 1990 && t.year < 2010);
+        if (era.length > 0) candidates = era;
+      }
+      if (selected.includes('Family friendly')) {
+        const fam = candidates.filter(t => t.rating === 'PG' || t.rating === 'PG-13');
+        if (fam.length > 0) candidates = fam;
+      }
+      if (selected.includes('90 min')) {
+        const short = candidates.filter(t => {
+          const m = t.duration.match(/(\d+)h\s*(\d+)/);
+          return m && (parseInt(m[1]) * 60 + parseInt(m[2])) <= 100;
+        });
+        if (short.length > 0) candidates = short;
+      }
+
+      const pick = candidates[Math.floor(Math.random() * candidates.length)];
+      if (!pick) return;
+
+      const card = document.querySelector('.picker-card');
+      card.innerHTML = `
+        <button class="picker-close" id="pickerCloseResult" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+        </button>
+        <div class="picker-result">
+          <div class="picker-result-video">
+            <iframe src="https://www.youtube.com/embed/${pick.trailer}?modestbranding=1&rel=0" allow="encrypted-media" allowfullscreen></iframe>
+          </div>
+          <h3 class="picker-result-title">${pick.title}</h3>
+          <div class="picker-result-meta">
+            <span class="hover-card-rating-badge">${pick.rating}</span>
+            <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
+          </div>
+          <div class="picker-result-ratings">
+            <div class="hover-card-rating-item">
+              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
+              <span class="hover-card-rating-value">${pick.rt}%</span>
+            </div>
+            <div class="hover-card-rating-item">
+              <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
+              <span class="hover-card-rating-value">${pick.imdb}/10</span>
+            </div>
+          </div>
+          <button class="picker-submit" id="pickerTryAgain">Pick again</button>
+        </div>
+      `;
+
+      document.getElementById('pickerCloseResult').addEventListener('click', closePicker);
+      document.getElementById('pickerTryAgain').addEventListener('click', () => {
+        resetPickerCard();
+      });
+    });
+
+    function resetPickerCard() {
+      const card = document.querySelector('.picker-card');
+      card.innerHTML = `
+        <button class="picker-close" id="pickerClose" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+        </button>
+        <h2 class="picker-title">Pick up to 3 to narrow down:</h2>
+        <div class="picker-chips" id="pickerChips">
+          ${['Timeless classics',"80\\'s","90\\'s or 00\\'s",'New releases','Action & adventure','Romance','Light-hearted','Family friendly','Animated','Live action','Oscar movie','Dad movie','Historical','B movie','Bee movie','High school drama','Foreign film','Magic','Robots','90 min','Comedy','Drama','Sci-fi','Aliens','Horror','Trilogy'].map(t =>
+            `<button class="picker-chip" data-tag="${t}">${t}</button>`
+          ).join('')}
+        </div>
+        <button class="picker-submit" id="pickerSubmit">Pick a movie</button>
+      `;
+      document.getElementById('pickerClose').addEventListener('click', closePicker);
+      initPicker();
+    }
+
+    function closePicker() {
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
-
-      if (selected.length > 0) {
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-          searchInput.value = selected.join(', ');
-          searchQuery = selected.join(' ');
-          renderAllRails();
-        }
-      }
-    });
+      setTimeout(resetPickerCard, 300);
+    }
 
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
-        overlay.classList.remove('is-open');
-        document.body.style.overflow = '';
+        closePicker();
       }
     });
   }
