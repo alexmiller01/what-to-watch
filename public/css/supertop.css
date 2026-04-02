@@ -496,10 +496,16 @@
   align-items: center;
 }
 
-.hover-card-rating-item {
+.hover-card-rating-item,
+.hover-card-rating-link {
   display: flex;
   align-items: center;
   gap: var(--uds-space-2xs);
+  text-decoration: none;
+}
+
+.hover-card-rating-link:hover .hover-card-rating-value {
+  text-decoration: underline;
 }
 
 .hover-card-rating-icon {

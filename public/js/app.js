@@ -100,14 +100,14 @@
             </div>
           </div>
           <div class="hover-card-ratings">
-            <div class="hover-card-rating-item">
+            <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
               <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
               <span class="hover-card-rating-value">${t.rt}%</span>
-            </div>
-            <div class="hover-card-rating-item">
+            </a>
+            <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
               <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
               <span class="hover-card-rating-value">${t.imdb}/10</span>
-            </div>
+            </a>
             <div class="hover-card-rating-item">
               <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
               <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
