@@ -871,6 +871,7 @@
     padding: var(--uds-space-sm) var(--uds-space-md);
     font-size: var(--uds-text-body2-size);
     font-weight: var(--uds-text-ui2-weight);
+    text-decoration: none;
   }
 
   .mobile-hover-details:hover {
