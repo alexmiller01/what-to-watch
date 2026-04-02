@@ -8,10 +8,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const T = 'https://media.themoviedb.org/t/p';
 
+function ytThumb(trailerId) {
+  return trailerId ? `https://img.youtube.com/vi/${trailerId}/hqdefault.jpg` : null;
+}
+
 function m(id, title, year, rating, genre, duration, poster, rt, imdb, yahoo, trailer, rtSlug, imdbId) {
   return {
     id, title, year, rating, genre, type: 'movie', duration,
-    image: `${T}/w342${poster}`, backdrop: `${T}/w780${poster}`,
+    image: `${T}/w342${poster}`,
+    backdrop: ytThumb(trailer) || `${T}/w780${poster}`,
     rt, imdb, yahoo, trailer,
     rtUrl: `https://www.rottentomatoes.com/m/${rtSlug}`,
     imdbUrl: `https://www.imdb.com/title/${imdbId}/`,
@@ -22,7 +27,8 @@ function m(id, title, year, rating, genre, duration, poster, rt, imdb, yahoo, tr
 function s(id, title, year, rating, genre, duration, poster, rt, imdb, yahoo, trailer, rtSlug, imdbId) {
   return {
     id, title, year, rating, genre, type: 'series', duration,
-    image: `${T}/w342${poster}`, backdrop: `${T}/w780${poster}`,
+    image: `${T}/w342${poster}`,
+    backdrop: ytThumb(trailer) || `${T}/w780${poster}`,
     rt, imdb, yahoo, trailer,
     rtUrl: `https://www.rottentomatoes.com/tv/${rtSlug}`,
     imdbUrl: `https://www.imdb.com/title/${imdbId}/`,

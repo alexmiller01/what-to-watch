@@ -120,7 +120,7 @@
 
   function renderRightRail() {
     const y100 = [
-      { rank: 1, title: 'Project Hail Mary', rt: 96, imdb: 8.1, rating: 'PG-13', year: 2026, genre: 'Science fiction', duration: '2h 36m', score: 93.5, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
+      { rank: 1, title: 'Project Hail Mary', rt: 96, imdb: 8.1, rating: 'PG-13', year: 2026, genre: 'Science fiction', duration: '2h 36m', score: 93.5, image: 'https://media.themoviedb.org/t/p/w342/kjMbDciooTbJPofVXgAoFjfX8Of.jpg' },
       { rank: 2, title: 'Sinners', rt: 97, imdb: 7.5, rating: 'R', year: 2025, genre: 'Horror', duration: '2h 17m', score: 90.2, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
       { rank: 3, title: 'The Wild Robot', rt: 98, imdb: 8.2, rating: 'PG', year: 2024, genre: 'Animation', duration: '1h 42m', score: 88.7, image: 'https://media.themoviedb.org/t/p/w342/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg' },
       { rank: 4, title: 'Conclave', rt: 93, imdb: 7.6, rating: 'PG', year: 2024, genre: 'Thriller', duration: '2h 0m', score: 86.4, image: 'https://media.themoviedb.org/t/p/w342/jf3YO8hOqGHCupsREf5qymYq1n.jpg' },
