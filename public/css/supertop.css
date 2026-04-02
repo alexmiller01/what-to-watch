@@ -329,7 +329,6 @@
   height: 207px;
   background: var(--uds-background-primary);
   border-radius: var(--uds-radius-xl);
-  box-shadow: var(--uds-elevation-3-shadow);
   padding: 0;
   opacity: 0;
   transform: translateY(4px);
