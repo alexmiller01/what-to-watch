@@ -6,306 +6,175 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const TMDB = 'https://media.themoviedb.org/t/p';
+const T = 'https://media.themoviedb.org/t/p';
+
+function m(id, title, year, rating, genre, duration, poster, rt, imdb, yahoo, trailer, rtSlug, imdbId) {
+  return {
+    id, title, year, rating, genre, type: 'movie', duration,
+    image: `${T}/w342${poster}`, backdrop: `${T}/w780${poster}`,
+    rt, imdb, yahoo, trailer,
+    rtUrl: `https://www.rottentomatoes.com/m/${rtSlug}`,
+    imdbUrl: `https://www.imdb.com/title/${imdbId}/`,
+    description: '', streaming: []
+  };
+}
+
+function s(id, title, year, rating, genre, duration, poster, rt, imdb, yahoo, trailer, rtSlug, imdbId) {
+  return {
+    id, title, year, rating, genre, type: 'series', duration,
+    image: `${T}/w342${poster}`, backdrop: `${T}/w780${poster}`,
+    rt, imdb, yahoo, trailer,
+    rtUrl: `https://www.rottentomatoes.com/tv/${rtSlug}`,
+    imdbUrl: `https://www.imdb.com/title/${imdbId}/`,
+    description: '', streaming: []
+  };
+}
+
+const DESC = {
+  1: 'Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.',
+  2: 'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II.',
+  3: 'Paul Atreides unites with the Fremen while on a warpath of revenge against the conspirators who destroyed his family.',
+  4: 'Set in the early 1960s, a 19-year-old Bob Dylan arrives in New York City with his guitar and revolutionary talent.',
+  5: 'After a family tragedy, three generations of the Deetz family return home to Winter River, where Beetlejuice is unleashed once again.',
+  6: 'While scavenging a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.',
+  7: 'Following the unexpected death of the Pope, Cardinal Lawrence is tasked with managing the conclave to elect a new pope.',
+  8: 'When their late police captain is framed, Lowrey and Burnett go rogue to investigate the conspiracy and clear his name.',
+  9: 'The origin story of the mighty warrior Furiosa, snatched from the Green Place and falling into the hands of Warlord Dementus.',
+  10: 'After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island and must learn to adapt.',
+  11: 'A solitary cat, displaced by a great flood, finds refuge on a boat with a group of diverse animals.',
+  12: 'Many years after the reign of Caesar, a young ape goes on a journey that will lead him to question everything.',
+  13: 'Po must train a new Dragon Warrior before he can take over as the Spiritual Leader of the Valley of Peace.',
+  14: 'Two soulmates are brutally murdered. Given a second chance at life, Eric sets out on a path of revenge.',
+  15: 'Eddie and Venom, on the run from both of their worlds, face a devastating choice as the net closes in.',
+  16: 'A couple travels to Sweden for a midsummer festival that turns into an increasingly violent and bizarre pagan ritual.',
+  17: 'The legendary superhero-attorney Spider-Man is finally unmasked and must deal with the fallout.',
+  18: 'John Wick uncovers a path to defeating The High Table but must face a new enemy with powerful alliances.',
+  19: 'Barbie and Ken leave Barbieland to explore the real world and discover the joys and perils of living among humans.',
+  20: 'Members of the Osage Nation are murdered under mysterious circumstances in 1920s Oklahoma, sparking a major FBI investigation.',
+  21: 'Riley enters puberty, and new emotions join the headquarters — Anxiety, Envy, Ennui, and Embarrassment.',
+  22: 'In a city where fire, water, earth, and air residents live together, a fiery young woman and a go-with-the-flow guy discover something elemental.',
+  23: 'A family of ducks persuades their overprotective father to go on the vacation of a lifetime.',
+  24: 'Art the Clown returns to terrorize the residents of Miles County on Christmas Eve.',
+  25: 'A fading celebrity decides to use a black-market drug, a cell-replicating substance that temporarily creates a younger version of herself.',
+  26: 'Godzilla and Kong must team up against a colossal undiscovered threat hidden within our world.',
+  27: 'When a mysterious force alters the orbit of the moon, NASA sends a team on an impossible mission into space.',
+  28: 'Five Nights at Freddy\'s follows a troubled security guard as he begins working at a deserted pizza restaurant.',
+  29: 'A garfield movie adventure with the beloved cat and his owner Jon.',
+  30: 'Moana sets sail on a new voyage with a crew of unlikely seafarers, journeying to far-flung waters of Oceania.',
+  101: 'A young chef from the fine dining world returns to Chicago to run his deceased brother\'s Italian beef sandwich shop.',
+  102: 'Mark leads a team at Lumon Industries where employees have their memories surgically divided between work and personal lives.',
+  103: 'An internal succession war within House Targaryen at the height of its power, 172 years before Daenerys Targaryen.',
+  104: 'Hundreds of cash-strapped players accept an invitation to compete in children\'s games for a tempting prize, with deadly stakes.',
+  105: 'Joel, a hardened survivor, is hired to smuggle Ellie, a 14-year-old girl, across a post-apocalyptic United States.',
+  106: 'A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers for fame and profit.',
+  107: 'A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing crystal meth to secure his family\'s future.',
+  108: 'Epic drama set thousands of years before The Hobbit and The Lord of the Rings.',
+  109: 'Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns.',
+  110: 'A wildly talented high school girls soccer team survives a plane crash deep in the Ontario wilderness.',
+  111: 'A covert CIA agent is ordered to abandon his undercover identity and return to London Station.',
+  112: 'Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandons his throne to retire in Los Angeles.',
+  113: 'Stranger Things follows a group of kids in the 1980s who encounter supernatural forces and secret government exploits.',
+  114: 'A bounty hunter travels the galaxy in the aftermath of the fall of the Galactic Empire.',
+  115: 'Rick and Morty follows the misadventures of a cynical mad scientist and his good-hearted grandson.',
+  116: 'A visionary mathematician and a warrior join forces to save galactic civilization from collapse.',
+  117: 'Set in a dystopian future, a woman is forced into servitude as a handmaid under a totalitarian regime.',
+  118: 'A monster hunter struggles to find his place in a world where humans and magical creatures coexist.',
+  119: 'Vikings follows legendary Norse hero Ragnar Lothbrok as he rises from farmer to fearless warrior.',
+  120: 'Better Call Saul follows small-time lawyer Jimmy McGill\'s transformation into the morally challenged Saul Goodman.',
+  121: 'Former bouncer-turned-mobster Oz Cobb rises through the Gotham underworld.',
+  122: 'An international crew of thieves pull off the biggest heist in recorded history.',
+};
 
 const TITLES = [
-  // ── Movies ──
-  {
-    id: 1, title: 'Sinners', year: 2025, rating: 'R',
-    genre: 'Thriller', type: 'movie', duration: '2h 17m',
-    image: `${TMDB}/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg`,
-    backdrop: `${TMDB}/w780/705nQHqe4JGdEisrQmVYmXyjs1U.jpg`,
-    rt: 97, imdb: 7.5, yahoo: 94, trailer: '7joulECTx_U',
-    rtUrl: 'https://www.rottentomatoes.com/m/sinners_2025', imdbUrl: 'https://www.imdb.com/title/tt31193180/',
-    description: 'Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.',
-    streaming: ['Max']
-  },
-  {
-    id: 2, title: 'Oppenheimer', year: 2023, rating: 'R',
-    genre: 'Drama', type: 'movie', duration: '3h 0m',
-    image: `${TMDB}/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg`,
-    backdrop: `${TMDB}/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg`,
-    rt: 93, imdb: 8.2, yahoo: 91, trailer: 'bK6ldnjE3Y0',
-    rtUrl: 'https://www.rottentomatoes.com/m/oppenheimer_2023', imdbUrl: 'https://www.imdb.com/title/tt15398776/',
-    description: 'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II.',
-    streaming: ['Peacock']
-  },
-  {
-    id: 3, title: 'Dune: Part Two', year: 2024, rating: 'PG-13',
-    genre: 'Sci-Fi', type: 'movie', duration: '2h 46m',
-    image: `${TMDB}/w342/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg`,
-    backdrop: `${TMDB}/w780/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg`,
-    rt: 92, imdb: 8.4, yahoo: 90, trailer: 'Way9Dexny3w',
-    rtUrl: 'https://www.rottentomatoes.com/m/dune_part_two', imdbUrl: 'https://www.imdb.com/title/tt15239678/',
-    description: 'Paul Atreides unites with the Fremen while on a warpath of revenge against the conspirators who destroyed his family, facing a choice between love and the fate of the universe.',
-    streaming: ['Max']
-  },
-  {
-    id: 4, title: 'A Complete Unknown', year: 2024, rating: 'R',
-    genre: 'Drama', type: 'movie', duration: '2h 21m',
-    image: `${TMDB}/w342/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg`,
-    backdrop: `${TMDB}/w780/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg`,
-    rt: 79, imdb: 7.3, yahoo: 82, trailer: 'FdV-Cs5o8mc',
-    rtUrl: 'https://www.rottentomatoes.com/m/a_complete_unknown', imdbUrl: 'https://www.imdb.com/title/tt11563598/',
-    description: 'Set in the early 1960s, a 19-year-old Bob Dylan arrives in New York City with his guitar and revolutionary talent, destined to change the course of American music.',
-    streaming: ['Hulu']
-  },
-  {
-    id: 5, title: 'Beetlejuice Beetlejuice', year: 2024, rating: 'PG-13',
-    genre: 'Comedy', type: 'movie', duration: '1h 44m',
-    image: `${TMDB}/w342/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg`,
-    backdrop: `${TMDB}/w780/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg`,
-    rt: 77, imdb: 6.6, yahoo: 78, trailer: 'CoZqL9N6Rx4',
-    rtUrl: 'https://www.rottentomatoes.com/m/beetlejuice_beetlejuice', imdbUrl: 'https://www.imdb.com/title/tt2049403/',
-    description: 'After a family tragedy, three generations of the Deetz family return home to Winter River, where Beetlejuice is unleashed once again.',
-    streaming: ['Max']
-  },
-  {
-    id: 6, title: 'Alien: Romulus', year: 2024, rating: 'R',
-    genre: 'Horror', type: 'movie', duration: '1h 59m',
-    image: `${TMDB}/w342/2uSWRTtCG336nuBiG8jOTEUKSy8.jpg`,
-    backdrop: `${TMDB}/w780/2uSWRTtCG336nuBiG8jOTEUKSy8.jpg`,
-    rt: 80, imdb: 7.3, yahoo: 81, trailer: 'OzY2r2JXsDM',
-    rtUrl: 'https://www.rottentomatoes.com/m/alien_romulus', imdbUrl: 'https://www.imdb.com/title/tt18412256/',
-    description: 'While scavenging the deep reaches of a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.',
-    streaming: ['Hulu']
-  },
-  {
-    id: 7, title: 'Conclave', year: 2024, rating: 'PG',
-    genre: 'Thriller', type: 'movie', duration: '2h 0m',
-    image: `${TMDB}/w342/jf3YO8hOqGHCupsREf5qymYq1n.jpg`,
-    backdrop: `${TMDB}/w780/jf3YO8hOqGHCupsREf5qymYq1n.jpg`,
-    rt: 93, imdb: 7.6, yahoo: 89, trailer: 'JX9jasdi3ic',
-    rtUrl: 'https://www.rottentomatoes.com/m/conclave', imdbUrl: 'https://www.imdb.com/title/tt20215234/',
-    description: 'Following the unexpected death of the Pope, Cardinal Lawrence is tasked with managing the conclave to elect a new pope, uncovering secrets that could shake the Church.',
-    streaming: ['Peacock']
-  },
-  {
-    id: 8, title: 'Bad Boys: Ride or Die', year: 2024, rating: 'R',
-    genre: 'Action', type: 'movie', duration: '1h 55m',
-    image: `${TMDB}/w342/oGythE98MYleE6mZlGs5oBGkux1.jpg`,
-    backdrop: `${TMDB}/w780/oGythE98MYleE6mZlGs5oBGkux1.jpg`,
-    rt: 72, imdb: 6.5, yahoo: 75, trailer: 'hRFY_Fesa9Q',
-    rtUrl: 'https://www.rottentomatoes.com/m/bad_boys_ride_or_die', imdbUrl: 'https://www.imdb.com/title/tt4919268/',
-    description: 'When their late police captain is framed, Lowrey and Burnett go rogue to investigate the conspiracy and clear his name.',
-    streaming: ['Netflix']
-  },
-  {
-    id: 9, title: 'Furiosa: A Mad Max Saga', year: 2024, rating: 'R',
-    genre: 'Action', type: 'movie', duration: '2h 28m',
-    image: `${TMDB}/w342/iADOJ8Zymht2JPMoy3R7xceZprc.jpg`,
-    backdrop: `${TMDB}/w780/iADOJ8Zymht2JPMoy3R7xceZprc.jpg`,
-    rt: 90, imdb: 7.6, yahoo: 88, trailer: 'XJMuhwVlca4',
-    rtUrl: 'https://www.rottentomatoes.com/m/furiosa_a_mad_max_saga', imdbUrl: 'https://www.imdb.com/title/tt12037194/',
-    description: 'The origin story of the mighty warrior Furiosa, snatched from the Green Place and falling into the hands of Warlord Dementus before crossing paths with the Citadel.',
-    streaming: ['Max']
-  },
-  {
-    id: 10, title: 'The Wild Robot', year: 2024, rating: 'PG',
-    genre: 'Animation', type: 'movie', duration: '1h 42m',
-    image: `${TMDB}/w342/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg`,
-    backdrop: `${TMDB}/w780/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg`,
-    rt: 98, imdb: 8.2, yahoo: 95, trailer: '67vbA5ZJdKQ',
-    rtUrl: 'https://www.rottentomatoes.com/m/the_wild_robot', imdbUrl: 'https://www.imdb.com/title/tt29623480/',
-    description: 'After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island and must learn to adapt, eventually adopting an orphaned gosling.',
-    streaming: ['Peacock']
-  },
-  {
-    id: 11, title: 'Flow', year: 2024, rating: 'PG',
-    genre: 'Animation', type: 'movie', duration: '1h 25m',
-    image: `${TMDB}/w342/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg`,
-    backdrop: `${TMDB}/w780/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg`,
-    rt: 95, imdb: 8.3, yahoo: 93, trailer: 'ZgZccxuj2RY',
-    rtUrl: 'https://www.rottentomatoes.com/m/flow_2024', imdbUrl: 'https://www.imdb.com/title/tt4539740/',
-    description: 'A solitary cat, displaced by a great flood, finds refuge on a boat with a group of diverse animals and must overcome its differences to survive.',
-    streaming: ['Prime Video']
-  },
-  {
-    id: 12, title: 'Kingdom of the Planet of the Apes', year: 2024, rating: 'PG-13',
-    genre: 'Sci-Fi', type: 'movie', duration: '2h 25m',
-    image: `${TMDB}/w342/gKkl37BQuKTanygYQG1pyYgLVgf.jpg`,
-    backdrop: `${TMDB}/w780/gKkl37BQuKTanygYQG1pyYgLVgf.jpg`,
-    rt: 80, imdb: 7.0, yahoo: 79, trailer: 'Kdr5oedn7q8',
-    rtUrl: 'https://www.rottentomatoes.com/m/kingdom_of_the_planet_of_the_apes', imdbUrl: 'https://www.imdb.com/title/tt11389872/',
-    description: 'Many years after the reign of Caesar, a young ape goes on a journey that will lead him to question everything he\'s been taught about the past.',
-    streaming: ['Hulu']
-  },
-  {
-    id: 13, title: 'Kung Fu Panda 4', year: 2024, rating: 'PG',
-    genre: 'Animation', type: 'movie', duration: '1h 34m',
-    image: `${TMDB}/w342/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg`,
-    backdrop: `${TMDB}/w780/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg`,
-    rt: 71, imdb: 6.4, yahoo: 74, trailer: '_inKs4eeHiI',
-    rtUrl: 'https://www.rottentomatoes.com/m/kung_fu_panda_4', imdbUrl: 'https://www.imdb.com/title/tt21692408/',
-    description: 'Po must train a new Dragon Warrior before he can take over as the Spiritual Leader of the Valley of Peace.',
-    streaming: ['Peacock']
-  },
-  {
-    id: 14, title: 'The Crow', year: 2024, rating: 'R',
-    genre: 'Action', type: 'movie', duration: '1h 51m',
-    image: `${TMDB}/w342/g8TbOXrNMuqq7AaKqdvqS2oG4ob.jpg`,
-    backdrop: `${TMDB}/w780/g8TbOXrNMuqq7AaKqdvqS2oG4ob.jpg`,
-    rt: 23, imdb: 5.3, yahoo: 42, trailer: 'HKC2AG14M8A',
-    rtUrl: 'https://www.rottentomatoes.com/m/the_crow_2024', imdbUrl: 'https://www.imdb.com/title/tt1922936/',
-    description: 'Two soulmates are brutally murdered. Given a second chance at life, Eric sets out on a path of revenge, becoming an unstoppable force.',
-    streaming: ['Prime Video']
-  },
-  {
-    id: 15, title: 'Venom: The Last Dance', year: 2024, rating: 'PG-13',
-    genre: 'Action', type: 'movie', duration: '1h 49m',
-    image: `${TMDB}/w342/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg`,
-    backdrop: `${TMDB}/w780/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg`,
-    rt: 41, imdb: 6.1, yahoo: 55, trailer: 'STScKOUpXR8',
-    rtUrl: 'https://www.rottentomatoes.com/m/venom_the_last_dance', imdbUrl: 'https://www.imdb.com/title/tt16366836/',
-    description: 'Eddie and Venom, on the run from both of their worlds, face a devastating choice as the net closes in.',
-    streaming: ['Netflix']
-  },
+  // ── Thriller movies ──
+  m(1,'Sinners',2025,'R','Thriller','2h 17m','/705nQHqe4JGdEisrQmVYmXyjs1U.jpg',97,7.5,94,'7joulECTx_U','sinners_2025','tt31193180'),
+  m(7,'Conclave',2024,'PG','Thriller','2h 0m','/jf3YO8hOqGHCupsREf5qymYq1n.jpg',93,7.6,89,'JX9jasdi3ic','conclave','tt20215234'),
+  m(25,'The Substance',2024,'R','Thriller','2h 20m','/lqoMzCcZYEFK729d6qzt349fB4o.jpg',89,7.3,87,'','the_substance','tt17526714'),
+  m(16,'Midsommar',2019,'R','Thriller','2h 28m','/9bXHaLlsFYpJUutg4E6WXAjaxDi.jpg',83,7.1,80,'','midsommar','tt8772262'),
+  m(28,'Five Nights at Freddy\'s',2023,'PG-13','Thriller','1h 50m','/7BpNtNfxuocYEVREzVMO75hso1l.jpg',32,5.4,45,'',  'five_nights_at_freddys','tt3513498'),
+  m(20,'Killers of the Flower Moon',2023,'R','Thriller','3h 26m','/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg',93,7.7,91,'','killers_of_the_flower_moon','tt5906664'),
+
+  // ── Drama movies ──
+  m(2,'Oppenheimer',2023,'R','Drama','3h 0m','/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',93,8.2,91,'bK6ldnjE3Y0','oppenheimer_2023','tt15398776'),
+  m(4,'A Complete Unknown',2024,'R','Drama','2h 21m','/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg',79,7.3,82,'FdV-Cs5o8mc','a_complete_unknown','tt11563598'),
+  m(19,'Barbie',2023,'PG-13','Drama','1h 54m','/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg',88,6.8,85,'','barbie','tt1517268'),
+  m(27,'Interstellar',2014,'PG-13','Drama','2h 49m','/7fR3KxswtY8OHHZuOUB9td58CRX.jpg',73,8.7,88,'','interstellar_2014','tt0816692'),
+  m(31,'Dune',2021,'PG-13','Drama','2h 35m','/gDzOcq0pfeCeqMBwKIJlSmQpjkZ.jpg',83,8.0,84,'','dune_2021','tt1160419'),
+
+  // ── Action movies ──
+  m(8,'Bad Boys: Ride or Die',2024,'R','Action','1h 55m','/oGythE98MYleE6mZlGs5oBGkux1.jpg',72,6.5,75,'hRFY_Fesa9Q','bad_boys_ride_or_die','tt4919268'),
+  m(9,'Furiosa: A Mad Max Saga',2024,'R','Action','2h 28m','/iADOJ8Zymht2JPMoy3R7xceZprc.jpg',90,7.6,88,'XJMuhwVlca4','furiosa_a_mad_max_saga','tt12037194'),
+  m(14,'The Crow',2024,'R','Action','1h 51m','/g8TbOXrNMuqq7AaKqdvqS2oG4ob.jpg',23,5.3,42,'HKC2AG14M8A','the_crow_2024','tt1922936'),
+  m(15,'Venom: The Last Dance',2024,'PG-13','Action','1h 49m','/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg',41,6.1,55,'STScKOUpXR8','venom_the_last_dance','tt16366836'),
+  m(17,'Spider-Man: No Way Home',2021,'PG-13','Action','2h 28m','/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',93,8.2,92,'','spider_man_no_way_home','tt10872600'),
+  m(18,'John Wick: Chapter 4',2023,'R','Action','2h 49m','/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',94,7.7,91,'','john_wick_chapter_4','tt10366206'),
+  m(26,'Godzilla x Kong',2024,'PG-13','Action','1h 55m','/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg',55,6.3,62,'','godzilla_x_kong_the_new_empire','tt14539740'),
+  m(32,'Red One',2024,'PG-13','Action','2h 3m','/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg',31,6.2,48,'','red_one','tt14948432'),
+
+  // ── Comedy movies ──
+  m(5,'Beetlejuice Beetlejuice',2024,'PG-13','Comedy','1h 44m','/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg',77,6.6,78,'CoZqL9N6Rx4','beetlejuice_beetlejuice','tt2049403'),
+  m(29,'The Garfield Movie',2024,'PG','Comedy','1h 41m','/xYduFGuch9OwbCOEUiamml18ZoB.jpg',36,5.7,45,'','the_garfield_movie','tt5779228'),
+
+  // ── Sci-Fi movies ──
+  m(3,'Dune: Part Two',2024,'PG-13','Sci-Fi','2h 46m','/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg',92,8.4,90,'Way9Dexny3w','dune_part_two','tt15239678'),
+  m(12,'Kingdom of the Planet of the Apes',2024,'PG-13','Sci-Fi','2h 25m','/gKkl37BQuKTanygYQG1pyYgLVgf.jpg',80,7.0,79,'Kdr5oedn7q8','kingdom_of_the_planet_of_the_apes','tt11389872'),
+
+  // ── Horror movies ──
+  m(6,'Alien: Romulus',2024,'R','Horror','1h 59m','/2uSWRTtCG336nuBiG8jOTEUKSy8.jpg',80,7.3,81,'OzY2r2JXsDM','alien_romulus','tt18412256'),
+  m(24,'Terrifier 3',2024,'R','Horror','2h 5m','/ju10W5gl3PPK3b7TjEmVOZap51I.jpg',76,6.5,70,'','terrifier_3','tt27911000'),
+
+  // ── Animation movies ──
+  m(10,'The Wild Robot',2024,'PG','Animation','1h 42m','/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg',98,8.2,95,'67vbA5ZJdKQ','the_wild_robot','tt29623480'),
+  m(11,'Flow',2024,'PG','Animation','1h 25m','/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg',95,8.3,93,'ZgZccxuj2RY','flow_2024','tt4539740'),
+  m(13,'Kung Fu Panda 4',2024,'PG','Animation','1h 34m','/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',71,6.4,74,'_inKs4eeHiI','kung_fu_panda_4','tt21692408'),
+  m(21,'Inside Out 2',2024,'PG','Animation','1h 40m','/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',91,7.6,89,'','inside_out_2','tt22022452'),
+  m(22,'Elemental',2023,'PG','Animation','1h 41m','/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg',74,7.0,75,'','elemental_2023','tt15789038'),
+  m(23,'Migration',2023,'PG','Animation','1h 23m','/ldfCF9RhR40mppkzmftxapaHeTo.jpg',56,6.6,62,'','migration_2023','tt6495056'),
+  m(30,'Moana 2',2024,'PG','Animation','1h 40m','/gUREuXCnJLVHsvKXDH9fgIcfM6e.jpg',63,5.8,65,'','moana_2','tt13622970'),
+
+  // ── Romance movies ──
 
   // ── TV Shows ──
-  {
-    id: 101, title: 'The Bear', year: 2024, rating: 'TV-MA',
-    genre: 'Drama', type: 'series', duration: '3 Seasons',
-    image: `${TMDB}/w342/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg`,
-    backdrop: `${TMDB}/w780/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg`,
-    rt: 93, imdb: 8.5, yahoo: 92, trailer: 'gBmkI4jlaIo',
-    rtUrl: 'https://www.rottentomatoes.com/tv/the_bear', imdbUrl: 'https://www.imdb.com/title/tt14452776/',
-    description: 'A young chef from the fine dining world returns to Chicago to run his deceased brother\'s Italian beef sandwich shop.',
-    streaming: ['Hulu']
-  },
-  {
-    id: 102, title: 'Severance', year: 2025, rating: 'TV-MA',
-    genre: 'Thriller', type: 'series', duration: '2 Seasons',
-    image: `${TMDB}/w342/2JP6NSmBwxg75uTcIHiv5R8PpPi.jpg`,
-    backdrop: `${TMDB}/w780/2JP6NSmBwxg75uTcIHiv5R8PpPi.jpg`,
-    rt: 97, imdb: 8.5, yahoo: 95, trailer: '_UXKlYvLGJY',
-    rtUrl: 'https://www.rottentomatoes.com/tv/severance', imdbUrl: 'https://www.imdb.com/title/tt11280740/',
-    description: 'Mark leads a team at Lumon Industries where employees have their memories surgically divided between work and personal lives.',
-    streaming: ['Apple TV+']
-  },
-  {
-    id: 103, title: 'House of the Dragon', year: 2024, rating: 'TV-MA',
-    genre: 'Drama', type: 'series', duration: '2 Seasons',
-    image: `${TMDB}/w342/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg`,
-    backdrop: `${TMDB}/w780/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg`,
-    rt: 87, imdb: 8.3, yahoo: 85, trailer: 'DTB8lATvXkw',
-    rtUrl: 'https://www.rottentomatoes.com/tv/house_of_the_dragon', imdbUrl: 'https://www.imdb.com/title/tt11198330/',
-    description: 'An internal succession war within House Targaryen at the height of its power, 172 years before the birth of Daenerys Targaryen.',
-    streaming: ['Max']
-  },
-  {
-    id: 104, title: 'Squid Game', year: 2024, rating: 'TV-MA',
-    genre: 'Thriller', type: 'series', duration: '2 Seasons',
-    image: `${TMDB}/w342/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg`,
-    backdrop: `${TMDB}/w780/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg`,
-    rt: 85, imdb: 8.0, yahoo: 84, trailer: 'lQBmZBJCYcY',
-    rtUrl: 'https://www.rottentomatoes.com/tv/squid_game', imdbUrl: 'https://www.imdb.com/title/tt10919420/',
-    description: 'Hundreds of cash-strapped players accept an invitation to compete in children\'s games for a tempting prize, with deadly stakes.',
-    streaming: ['Netflix']
-  },
-  {
-    id: 105, title: 'The Last of Us', year: 2025, rating: 'TV-MA',
-    genre: 'Drama', type: 'series', duration: '2 Seasons',
-    image: `${TMDB}/w342/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg`,
-    backdrop: `${TMDB}/w780/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg`,
-    rt: 92, imdb: 8.8, yahoo: 90, trailer: '_zHPsmXCjB0',
-    rtUrl: 'https://www.rottentomatoes.com/tv/the_last_of_us', imdbUrl: 'https://www.imdb.com/title/tt3581920/',
-    description: 'Joel, a hardened survivor, is hired to smuggle Ellie, a 14-year-old girl, out of an oppressive quarantine zone across a post-apocalyptic United States.',
-    streaming: ['Max']
-  },
-  {
-    id: 106, title: 'The Boys', year: 2024, rating: 'TV-MA',
-    genre: 'Action', type: 'series', duration: '4 Seasons',
-    image: `${TMDB}/w342/in1R2dDc421JxsoRWaIIAqVI2KE.jpg`,
-    backdrop: `${TMDB}/w780/in1R2dDc421JxsoRWaIIAqVI2KE.jpg`,
-    rt: 93, imdb: 8.7, yahoo: 91, trailer: 'EzFXDvC-EwM',
-    rtUrl: 'https://www.rottentomatoes.com/tv/the_boys', imdbUrl: 'https://www.imdb.com/title/tt1190634/',
-    description: 'A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers for fame and profit.',
-    streaming: ['Prime Video']
-  },
-  {
-    id: 107, title: 'Breaking Bad', year: 2013, rating: 'TV-MA',
-    genre: 'Drama', type: 'series', duration: '5 Seasons',
-    image: `${TMDB}/w342/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg`,
-    backdrop: `${TMDB}/w780/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg`,
-    rt: 96, imdb: 9.5, yahoo: 97, trailer: 'HhesaQXLuRY',
-    rtUrl: 'https://www.rottentomatoes.com/tv/breaking_bad', imdbUrl: 'https://www.imdb.com/title/tt0903747/',
-    description: 'A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing crystal meth to secure his family\'s future.',
-    streaming: ['Netflix']
-  },
-  {
-    id: 108, title: 'The Rings of Power', year: 2024, rating: 'TV-14',
-    genre: 'Sci-Fi', type: 'series', duration: '2 Seasons',
-    image: `${TMDB}/w342/kf5Hz70tjNAHg4swGDzOr9BfoZ1.jpg`,
-    backdrop: `${TMDB}/w780/kf5Hz70tjNAHg4swGDzOr9BfoZ1.jpg`,
-    rt: 76, imdb: 6.9, yahoo: 72, trailer: 'gUwboXm0t3U',
-    rtUrl: 'https://www.rottentomatoes.com/tv/the_lord_of_the_rings_the_rings_of_power', imdbUrl: 'https://www.imdb.com/title/tt7631058/',
-    description: 'Epic drama set thousands of years before the events of The Hobbit and The Lord of the Rings, following an ensemble cast of characters.',
-    streaming: ['Prime Video']
-  },
-  {
-    id: 109, title: 'Game of Thrones', year: 2019, rating: 'TV-MA',
-    genre: 'Drama', type: 'series', duration: '8 Seasons',
-    image: `${TMDB}/w342/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg`,
-    backdrop: `${TMDB}/w780/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg`,
-    rt: 89, imdb: 9.2, yahoo: 90, trailer: 'bjqEWgDVPe0',
-    rtUrl: 'https://www.rottentomatoes.com/tv/game_of_thrones', imdbUrl: 'https://www.imdb.com/title/tt0944947/',
-    description: 'Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for millennia.',
-    streaming: ['Max']
-  },
-  {
-    id: 110, title: 'Yellowjackets', year: 2025, rating: 'TV-MA',
-    genre: 'Thriller', type: 'series', duration: '3 Seasons',
-    image: `${TMDB}/w342/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg`,
-    backdrop: `${TMDB}/w780/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg`,
-    rt: 88, imdb: 7.8, yahoo: 86, trailer: 'x8FUUxj6yOA',
-    rtUrl: 'https://www.rottentomatoes.com/tv/yellowjackets', imdbUrl: 'https://www.imdb.com/title/tt11041332/',
-    description: 'A wildly talented high school girls soccer team survives a plane crash deep in the Ontario wilderness, leading to a descent into savagery.',
-    streaming: ['Paramount+']
-  },
-  {
-    id: 111, title: 'The Agency', year: 2024, rating: 'TV-MA',
-    genre: 'Thriller', type: 'series', duration: '1 Season',
-    image: `${TMDB}/w342/ltG0kMlDcy84AxYekX7Cqr0JCAT.jpg`,
-    backdrop: `${TMDB}/w780/ltG0kMlDcy84AxYekX7Cqr0JCAT.jpg`,
-    rt: 72, imdb: 6.8, yahoo: 70, trailer: 'pAxMy31nffA',
-    rtUrl: 'https://www.rottentomatoes.com/tv/the_agency_2024', imdbUrl: 'https://www.imdb.com/title/tt27995594/',
-    description: 'A covert CIA agent is ordered to abandon his undercover identity and return to London Station, reigniting a past love.',
-    streaming: ['Paramount+']
-  },
-  {
-    id: 112, title: 'Lucifer', year: 2021, rating: 'TV-14',
-    genre: 'Comedy', type: 'series', duration: '6 Seasons',
-    image: `${TMDB}/w342/ekZobS8isE6mA53RAiGDG93hBxL.jpg`,
-    backdrop: `${TMDB}/w780/ekZobS8isE6mA53RAiGDG93hBxL.jpg`,
-    rt: 85, imdb: 8.1, yahoo: 83, trailer: 'ueMwVGBwqRo',
-    rtUrl: 'https://www.rottentomatoes.com/tv/lucifer', imdbUrl: 'https://www.imdb.com/title/tt4052886/',
-    description: 'Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandons his throne to retire in Los Angeles, where he helps the LAPD punish criminals.',
-    streaming: ['Netflix']
-  }
+  // Drama
+  s(101,'The Bear',2024,'TV-MA','Drama','3 Seasons','/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg',93,8.5,92,'gBmkI4jlaIo','the_bear','tt14452776'),
+  s(103,'House of the Dragon',2024,'TV-MA','Drama','2 Seasons','/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg',87,8.3,85,'DTB8lATvXkw','house_of_the_dragon','tt11198330'),
+  s(105,'The Last of Us',2025,'TV-MA','Drama','2 Seasons','/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg',92,8.8,90,'_zHPsmXCjB0','the_last_of_us','tt3581920'),
+  s(107,'Breaking Bad',2013,'TV-MA','Drama','5 Seasons','/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg',96,9.5,97,'HhesaQXLuRY','breaking_bad','tt0903747'),
+  s(109,'Game of Thrones',2019,'TV-MA','Drama','8 Seasons','/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg',89,9.2,90,'bjqEWgDVPe0','game_of_thrones','tt0944947'),
+  s(119,'Vikings',2020,'TV-MA','Drama','6 Seasons','/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg',93,8.5,88,'','vikings','tt2306299'),
+  s(120,'Better Call Saul',2022,'TV-MA','Drama','6 Seasons','/zjg4jpK1Wp2kiRvtt5ND0kznako.jpg',99,9.0,96,'','better_call_saul','tt3032476'),
+  s(117,'The Handmaid\'s Tale',2024,'TV-MA','Drama','5 Seasons','/eGUT7j3n3rn5yGihlCgwUnD70HV.jpg',83,8.4,82,'','the_handmaids_tale','tt5834204'),
+
+  // Thriller
+  s(102,'Severance',2025,'TV-MA','Thriller','2 Seasons','/2JP6NSmBwxg75uTcIHiv5R8PpPi.jpg',97,8.5,95,'_UXKlYvLGJY','severance','tt11280740'),
+  s(104,'Squid Game',2024,'TV-MA','Thriller','2 Seasons','/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg',85,8.0,84,'lQBmZBJCYcY','squid_game','tt10919420'),
+  s(110,'Yellowjackets',2025,'TV-MA','Thriller','3 Seasons','/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg',88,7.8,86,'x8FUUxj6yOA','yellowjackets','tt11041332'),
+  s(111,'The Agency',2024,'TV-MA','Thriller','1 Season','/ltG0kMlDcy84AxYekX7Cqr0JCAT.jpg',72,6.8,70,'pAxMy31nffA','the_agency_2024','tt27995594'),
+  s(121,'The Penguin',2024,'TV-MA','Thriller','1 Season','/6HanIV2hTLE2w7A5bI1KJb3bTL7.jpg',94,8.5,92,'','the_penguin','tt15435876'),
+  s(122,'Money Heist',2021,'TV-MA','Thriller','5 Seasons','/QWbPaDxiB6LW2LjASknzYBvjMj.jpg',83,8.2,81,'','money_heist','tt6468322'),
+  s(113,'Stranger Things',2025,'TV-14','Thriller','4 Seasons','/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg',92,8.7,90,'','stranger_things','tt4574334'),
+
+  // Action
+  s(106,'The Boys',2024,'TV-MA','Action','4 Seasons','/in1R2dDc421JxsoRWaIIAqVI2KE.jpg',93,8.7,91,'EzFXDvC-EwM','the_boys','tt1190634'),
+  s(114,'The Mandalorian',2023,'TV-PG','Action','3 Seasons','/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg',89,8.7,88,'','the_mandalorian','tt8111088'),
+  s(118,'The Witcher',2023,'TV-MA','Action','3 Seasons','/AoGsDM02UVt0npBA8OvpDcZbaMi.jpg',70,8.0,74,'','the_witcher','tt5180504'),
+
+  // Sci-Fi
+  s(108,'The Rings of Power',2024,'TV-14','Sci-Fi','2 Seasons','/kf5Hz70tjNAHg4swGDzOr9BfoZ1.jpg',76,6.9,72,'gUwboXm0t3U','the_lord_of_the_rings_the_rings_of_power','tt7631058'),
+  s(116,'Foundation',2024,'TV-14','Sci-Fi','2 Seasons','/tg9I5pOY4M9CKj8U0cxVBTsm5eh.jpg',72,7.3,74,'','foundation','tt0804484'),
+
+  // Comedy
+  s(112,'Lucifer',2021,'TV-14','Comedy','6 Seasons','/ekZobS8isE6mA53RAiGDG93hBxL.jpg',85,8.1,83,'ueMwVGBwqRo','lucifer','tt4052886'),
+  s(115,'Rick and Morty',2024,'TV-MA','Comedy','7 Seasons','/WGRQ8FpjkDTzivQJ43t94bOuY0.jpg',93,9.1,92,'','rick_and_morty','tt2861424'),
+
+  // Horror
+  s(123,'The Walking Dead',2022,'TV-MA','Horror','11 Seasons','/s3OIDrCErUjthsnPPreY7XktQXB.jpg',80,8.1,78,'','the_walking_dead','tt1520211'),
 ];
 
+TITLES.forEach(t => { if (DESC[t.id]) t.description = DESC[t.id]; });
+
 app.get('/api/titles', (req, res) => {
-  const genre = req.query.genre;
-  const type = req.query.type;
-  const q = (req.query.q || '').toLowerCase().trim();
-
-  let results = [...TITLES];
-
-  if (genre && genre !== 'Trending') {
-    results = results.filter(t => t.genre === genre);
-  }
-  if (type) {
-    results = results.filter(t => t.type === type);
-  }
-  if (q) {
-    results = results.filter(t =>
-      t.title.toLowerCase().includes(q) ||
-      t.description.toLowerCase().includes(q) ||
-      t.genre.toLowerCase().includes(q)
-    );
-  }
-
-  res.json(results);
+  res.json(TITLES);
 });
 
 app.get('*', (req, res) => {

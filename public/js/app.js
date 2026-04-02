@@ -107,14 +107,18 @@
     railCounter++;
     const railId = 'rail-' + railCounter;
 
-    const posters = titles.length
-      ? titles.map(t => `
-          <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
-            <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
-            <div class="supertop-poster-trailer"></div>
-          </div>
-        `).join('').repeat(3)
-      : '<p style="color:var(--uds-foreground-tertiary);font-size:14px;padding:32px 0;">No titles found</p>';
+    if (!titles.length) {
+      return '';
+    }
+
+    const posterHTML = titles.map(t => `
+      <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
+        <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
+        <div class="supertop-poster-trailer"></div>
+      </div>
+    `).join('');
+    const repeatCount = Math.max(3, Math.ceil(30 / titles.length));
+    const posters = posterHTML.repeat(repeatCount);
 
     return `
       <div class="supertop-rail">
