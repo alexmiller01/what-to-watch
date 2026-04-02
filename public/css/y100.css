@@ -133,10 +133,11 @@
 }
 
 /* Large Yahoo score on the right */
+/* display2/base: 24px, medium, 32px line-height, -0.36px tracking */
 .y100-score {
   font-family: var(--uds-font-sans);
   font-size: 24px;
-  font-weight: var(--uds-text-ui2-weight);
+  font-weight: 500;
   line-height: 32px;
   letter-spacing: -0.36px;
   color: var(--uds-foreground-primary);
