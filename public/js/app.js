@@ -139,13 +139,26 @@
     const item = allTitles.find(t => t.id === id);
     if (!item) return;
 
+    const rail = posterEl.closest('.supertop-rail');
+    const wrapper = posterEl.closest('.supertop-rail-track-wrapper');
+    if (!rail || !wrapper) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const posterRect = posterEl.getBoundingClientRect();
+    let left = posterRect.left - wrapperRect.left;
+    const maxLeft = wrapperRect.width - 700;
+    if (left > maxLeft) left = Math.max(0, maxLeft);
+
     const cardHTML = buildHoverCard(item);
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
 
-    posterEl.classList.add('is-fading');
-    posterEl.insertAdjacentElement('afterend', cardEl);
+    cardEl.style.left = left + 'px';
+    cardEl.style.top = wrapper.offsetTop + 'px';
+
+    posterEl.classList.add('is-active');
+    rail.appendChild(cardEl);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -158,28 +171,21 @@
     if (activeHoverId === null) return;
 
     const existing = document.querySelector('.supertop-hover-card');
-    const fadedPoster = document.querySelector(`.supertop-poster.is-fading[data-id="${activeHoverId}"]`);
+    const activePoster = document.querySelector('.supertop-poster.is-active');
+
+    if (activePoster) activePoster.classList.remove('is-active');
 
     if (existing) {
       if (instant) {
-        if (fadedPoster) fadedPoster.classList.remove('is-fading');
         existing.remove();
       } else {
-        existing.classList.add('is-collapsing');
         existing.classList.remove('is-visible');
-        if (fadedPoster) fadedPoster.classList.remove('is-fading');
-
-        existing.addEventListener('transitionend', function handler(e) {
-          if (e.propertyName === 'max-width') {
-            existing.removeEventListener('transitionend', handler);
-            existing.remove();
-          }
+        existing.addEventListener('transitionend', function handler() {
+          existing.removeEventListener('transitionend', handler);
+          existing.remove();
         });
-
-        setTimeout(() => { if (existing.parentNode) existing.remove(); }, 500);
+        setTimeout(() => { if (existing.parentNode) existing.remove(); }, 400);
       }
-    } else {
-      if (fadedPoster) fadedPoster.classList.remove('is-fading');
     }
 
     activeHoverId = null;
@@ -287,10 +293,16 @@
       }
     });
 
-    // Poster hover → expand card (mouseover/mouseout bubble, unlike mouseenter/mouseleave)
+    // Poster hover → expand card
     document.addEventListener('mouseover', (e) => {
+      const hoverCard = e.target.closest('.supertop-hover-card');
+      if (hoverCard) {
+        clearTimeout(hoverTimeout);
+        return;
+      }
+
       const poster = e.target.closest('.supertop-poster');
-      if (poster && !poster.classList.contains('is-fading')) {
+      if (poster) {
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => showHoverCard(poster), 300);
       }
@@ -299,15 +311,16 @@
     document.addEventListener('mouseout', (e) => {
       const poster = e.target.closest('.supertop-poster');
       const hoverCard = e.target.closest('.supertop-hover-card');
-      const related = e.relatedTarget;
 
       if (poster || hoverCard) {
-        const movingToCard = related && related.closest('.supertop-hover-card');
-        const movingToPoster = related && related.closest('.supertop-poster');
-        if (movingToCard || movingToPoster) return;
+        const related = e.relatedTarget;
+        if (related) {
+          if (related.closest('.supertop-hover-card')) return;
+          if (related.closest('.supertop-poster.is-active')) return;
+        }
 
         clearTimeout(hoverTimeout);
-        hoverTimeout = setTimeout(() => removeHoverCard(), 200);
+        hoverTimeout = setTimeout(() => removeHoverCard(), 150);
       }
     });
 

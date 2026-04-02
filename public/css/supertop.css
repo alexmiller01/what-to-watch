@@ -310,41 +310,37 @@
 
 /* ── Hover card – Figma 18913:163569 ── */
 
-.supertop-poster {
-  transition: opacity 0.2s ease, flex-basis 0.3s ease, width 0.3s ease;
+.supertop-rail {
+  position: relative;
 }
 
-.supertop-poster.is-fading {
-  opacity: 0;
-  flex-basis: 0;
-  width: 0;
-  min-width: 0;
-  overflow: hidden;
-  pointer-events: none;
+.supertop-poster.is-active {
+  outline: var(--uds-border-medium) solid var(--uds-foreground-brand);
+  outline-offset: -2px;
+  border-radius: var(--uds-radius-xl);
 }
 
 .supertop-hover-card {
+  position: absolute;
+  top: 0;
+  z-index: 20;
   display: flex;
   gap: var(--uds-space-sm);
   height: 207px;
-  flex-shrink: 0;
+  background: var(--uds-background-primary);
+  border-radius: var(--uds-radius-xl);
+  box-shadow: var(--uds-elevation-3-shadow);
+  padding: 0;
   opacity: 0;
-  max-width: 0;
-  overflow: hidden;
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
 }
 
 .supertop-hover-card.is-visible {
   opacity: 1;
-  max-width: 720px;
-}
-
-.supertop-hover-card.is-collapsing {
-  opacity: 0;
-  max-width: 0;
-  transition: opacity 0.2s ease,
-              max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* Left: video embed / backdrop */
