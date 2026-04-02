@@ -119,7 +119,7 @@
               <span class="hover-card-rating-value">${t.imdb}/10</span>
             </div>
             <div class="hover-card-rating-item">
-              <img class="hover-card-rating-icon" src="/assets/yep.svg" alt="Yahoo">
+              <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
               <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
             </div>
           </div>
