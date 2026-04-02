@@ -319,12 +319,17 @@
 
       const poster = e.target.closest('.supertop-poster');
       if (poster) {
+        const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+        if (playing) return;
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => showHoverCard(poster), 300);
       }
     });
 
     document.addEventListener('mouseout', (e) => {
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (playing) return;
+
       const poster = e.target.closest('.supertop-poster');
       const hoverCard = e.target.closest('.supertop-hover-card');
 
@@ -340,11 +345,21 @@
       }
     });
 
-    // Close hover card when scrolling rail
+    // Close hover card when scrolling rail (unless trailer is playing)
     document.querySelectorAll('.supertop-rail-track').forEach(track => {
       track.addEventListener('scroll', () => {
-        removeHoverCard(true);
+        const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+        if (!playing) removeHoverCard(true);
       });
+    });
+
+    // Click outside dismisses a locked (playing) card
+    document.addEventListener('click', (e) => {
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (!playing) return;
+      if (e.target.closest('.supertop-poster.is-active')) return;
+      if (e.target.closest('.supertop-hover-card')) return;
+      removeHoverCard();
     });
   }
 
