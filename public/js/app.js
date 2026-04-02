@@ -882,43 +882,18 @@
       `;
       overlay.appendChild(wtw);
 
-      const detail = document.createElement('div');
-      detail.className = 'picker-detail';
-      detail.innerHTML = `
-        <h3 class="picker-detail-title">${pick.title}</h3>
-        <div class="picker-detail-meta">
-          <span class="hover-card-rating-badge">${pick.rating}</span>
-          <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
-        </div>
-        <div class="picker-detail-poster">
-          <img src="${pick.backdrop}" alt="${pick.title}">
-          <span class="supertop-trailer-duration">${pick.duration}</span>
-        </div>
-        <div class="picker-detail-scores">
-          <div class="picker-detail-score-box">
-            <span class="picker-detail-score-label">IMDb</span>
-            <span class="picker-detail-score-value">${pick.imdb}/10</span>
-          </div>
-          <div class="picker-detail-score-box">
-            <span class="picker-detail-score-label">Rotten Tomatoes</span>
-            <span class="picker-detail-score-value">${pick.rt}%</span>
-          </div>
-        </div>
-        <div class="picker-detail-overview">
-          <h4>Overview</h4>
-          <p>${pick.description || 'No description available.'}</p>
-        </div>
-        <button class="picker-submit" id="pickerTryAgain">Pick again</button>
-      `;
-      overlay.appendChild(detail);
-
       document.getElementById('pickerCloseResult').addEventListener('click', closePicker);
-      document.getElementById('pickerTryAgain').addEventListener('click', () => {
-        const extra = overlay.querySelectorAll('.picker-wtw, .picker-detail');
-        extra.forEach(el => el.remove());
-        card.classList.remove('is-result');
-        resetPickerCard();
-      });
+
+      const tryAgainBtn = wtw.querySelector('.picker-wtw-more');
+      if (tryAgainBtn) {
+        tryAgainBtn.outerHTML = `<button class="picker-submit" id="pickerTryAgain" style="align-self:center;margin-top:var(--uds-space-xs);">Pick again</button>`;
+        document.getElementById('pickerTryAgain').addEventListener('click', () => {
+          const extra = overlay.querySelectorAll('.picker-wtw');
+          extra.forEach(el => el.remove());
+          card.classList.remove('is-result');
+          resetPickerCard();
+        });
+      }
     });
 
     function resetPickerCard() {
@@ -943,7 +918,7 @@
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
       setTimeout(() => {
-        const extra = overlay.querySelectorAll('.picker-wtw, .picker-detail');
+        const extra = overlay.querySelectorAll('.picker-wtw');
         extra.forEach(el => el.remove());
         const card = document.querySelector('.picker-card');
         if (card) card.classList.remove('is-result');

@@ -169,14 +169,14 @@
   height: 100%;
 }
 
-/* Where to watch section */
+/* Where to watch section — anchored at bottom, peeks up */
 .picker-wtw {
   background: var(--uds-background-primary);
-  border-radius: var(--uds-radius-xl);
+  border-radius: var(--uds-radius-xl) var(--uds-radius-xl) 0 0;
   padding: var(--uds-space-xl);
-  max-width: 680px;
-  width: calc(100% - 48px);
-  margin-top: calc(-1 * var(--uds-space-xl));
+  padding-bottom: var(--uds-space-3xl);
+  width: 100%;
+  margin-top: auto;
   z-index: 2;
   position: relative;
   display: flex;
@@ -383,7 +383,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
-  padding-bottom: var(--uds-space-3xl);
+  padding-bottom: 0;
 }
 
 /* Result state */
