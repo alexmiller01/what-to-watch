@@ -792,22 +792,29 @@
   }
 
   .mobile-hover-close {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
     border: none;
-    background: none;
+    background: var(--uds-spectrum-carbon-2);
+    border-radius: var(--uds-radius-full);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: var(--uds-space-xs);
     flex-shrink: 0;
-    color: var(--uds-foreground-tertiary);
+    color: var(--uds-foreground-primary);
+    transition: background-color 0.15s ease;
+  }
+
+  .mobile-hover-close:hover {
+    background: var(--uds-line-secondary);
   }
 
   .mobile-hover-close svg {
-    width: 16px;
-    height: 16px;
+    width: var(--uds-space-md);
+    height: var(--uds-space-md);
   }
 
   /* Backdrop image */
