@@ -1,0 +1,43 @@
+/**
+ * 1146px content grid – centered, UDS spacing
+ */
+html {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  min-width: 0;
+  padding-top: var(--nav-height, 72px);
+  font-family: var(--uds-font-sans);
+  color: var(--uds-foreground-primary);
+  background: var(--uds-background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.grid {
+  max-width: 1146px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--uds-space-lg);
+  padding-right: var(--uds-space-lg);
+}
+
+@media (max-width: 767px) {
+  .grid {
+    padding-left: var(--uds-space-md);
+    padding-right: var(--uds-space-md);
+    max-width: 100%;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}

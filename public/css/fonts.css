@@ -1,0 +1,11 @@
+/**
+ * UDS font-face declarations – Yahoo Product Sans
+ * Falls back to system fonts when woff2 files are not available.
+ */
+@font-face {
+  font-family: 'Yahoo Product Sans';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Yahoo Product Sans'), local('YahooProductSans');
+}
