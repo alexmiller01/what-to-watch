@@ -83,6 +83,25 @@ const DESC = {
   120: 'Better Call Saul follows small-time lawyer Jimmy McGill\'s transformation into the morally challenged Saul Goodman.',
   121: 'Former bouncer-turned-mobster Oz Cobb rises through the Gotham underworld.',
   122: 'An international crew of thieves pull off the biggest heist in recorded history.',
+  33: 'Stranded on Mars, an astronaut must use his wits and science to survive until rescue is possible.',
+  34: 'When mysterious spacecraft touch down across the globe, a linguist races to decipher their intent before conflict erupts.',
+  35: 'A young blade runner uncovers a secret that threatens to destabilize what remains of society in a dystopian future.',
+  36: 'A computer hacker learns from rebels that the reality he knows is a simulated world controlled by machines.',
+  37: 'A paraplegic Marine is sent to infiltrate the Na\'vi people of Pandora but begins to question his mission.',
+  38: 'A young programmer is selected to evaluate a humanoid AI in a remote estate, with unsettling consequences.',
+  39: 'A secret agent armed with time-inversion technology fights to prevent a future attack that could end the world.',
+  40: 'An overwhelmed laundromat owner is swept into a wild multiverse adventure to save her family and existence itself.',
+  41: 'Siblings running a California horse ranch witness something unexplainable in the sky and set out to capture proof.',
+  42: 'A renowned detective investigates the death of a crime novelist at a gathering of his dysfunctional, wealthy family.',
+  43: 'Benoit Blanc travels to a tech billionaire\'s private island where a murder disrupts an elaborate murder-mystery party.',
+  44: 'The adventures of a legendary concierge at a famous European hotel between the wars and his loyal lobby boy.',
+  45: 'The lives of two families intertwine in a darkly comic thriller about class, deception, and survival in modern Seoul.',
+  46: 'A young Black man uncovers increasingly disturbing secrets when he meets his white girlfriend\'s family.',
+  47: 'When his wife vanishes on their anniversary, a husband becomes the prime suspect in a media-circus investigation.',
+  48: 'A couple travels to a remote island for an exclusive chef\'s tasting menu where the evening takes a shocking turn.',
+  49: 'A family must live in near-total silence to hide from creatures that hunt by sound in a post-apocalyptic world.',
+  50: 'After the death of their secretive grandmother, a family unravels as sinister forces close in on them.',
+  51: 'A vacationing family is terrorized by their uncanny doppelgängers during a home invasion at their beach house.',
 };
 
 const TITLES = [
@@ -169,6 +188,114 @@ const TITLES = [
 
   // Horror
   s(123,'The Walking Dead',2022,'TV-MA','Horror','11 Seasons','/s3OIDrCErUjthsnPPreY7XktQXB.jpg',80,8.1,78,'','the_walking_dead','tt1520211'),
+
+  // ── Additional Sci-Fi movies ──
+  m(33,'The Martian',2015,'PG-13','Sci-Fi','2h 24m','/fASz8A0yFE3QB6LgGoOfwvFSseV.jpg',91,8.0,88,'','the_martian','tt3659388'),
+  m(34,'Arrival',2016,'PG-13','Sci-Fi','1h 56m','/pEzNVQfdzYDzVK0XqxERIw2x2se.jpg',94,7.9,90,'','arrival_2016','tt2543164'),
+  m(35,'Blade Runner 2049',2017,'R','Sci-Fi','2h 44m','/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg',88,8.0,86,'','blade_runner_2049','tt1856101'),
+  m(36,'The Matrix',1999,'R','Sci-Fi','2h 16m','/aOIuZAjPaRIE6CMzbazvcHuHXDc.jpg',83,8.7,88,'','the_matrix','tt0133093'),
+  m(37,'Avatar',2009,'PG-13','Sci-Fi','2h 42m','/gKY6q7SjCkAU6FqvqWybDYgUKIF.jpg',81,7.9,82,'','avatar','tt0499549'),
+  m(38,'Ex Machina',2014,'R','Sci-Fi','1h 48m','/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg',92,7.7,89,'','ex_machina_2015','tt0470752'),
+  m(39,'Tenet',2020,'PG-13','Sci-Fi','2h 30m','/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg',69,7.3,72,'','tenet','tt6723592'),
+  m(40,'Everything Everywhere All at Once',2022,'R','Sci-Fi','2h 19m','/u68AjlvlutfEIcpmbYpKcdi09ut.jpg',94,7.8,93,'','everything_everywhere_all_at_once','tt6710474'),
+  m(41,'Nope',2022,'R','Sci-Fi','2h 10m','/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg',83,6.8,80,'','nope','tt10954984'),
+
+  // ── Additional Comedy movies ──
+  m(42,'Knives Out',2019,'PG-13','Comedy','2h 11m','/pThyQovXQrw2m0s9x82twj48Jq4.jpg',97,7.9,94,'','knives_out','tt8946378'),
+  m(43,'Glass Onion',2022,'PG-13','Comedy','2h 19m','/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg',93,7.1,90,'','glass_onion_a_knives_out_mystery','tt11564570'),
+  m(44,'The Grand Budapest Hotel',2014,'R','Comedy','1h 39m','/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg',92,8.1,90,'','the_grand_budapest_hotel','tt2278388'),
+  m(45,'Parasite',2019,'R','Comedy','2h 12m','/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',99,8.5,97,'','parasite_2019','tt6751668'),
+  m(46,'Get Out',2017,'R','Comedy','1h 44m','/mE24wUCfjK8AoBBjaMjho7Rczr7.jpg',98,7.7,95,'','get_out','tt5052448'),
+  m(47,'Gone Girl',2014,'R','Comedy','2h 29m','/ts996lKsxvjkO2yiYG0ht4qAicO.jpg',87,8.1,86,'','gone_girl','tt2267998'),
+  m(48,'The Menu',2022,'R','Comedy','1h 47m','/fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg',88,7.2,85,'','the_menu','tt9764362'),
+
+  // ── Additional Horror movies ──
+  m(49,'A Quiet Place',2018,'PG-13','Horror','1h 30m','/nAU74GmpUk7t5iklEp3bufwDq4n.jpg',96,7.5,90,'','a_quiet_place','tt6644200'),
+  m(50,'Hereditary',2018,'R','Horror','2h 7m','/hjlZSXM86wJrfCv5VKfR5DI2VeU.jpg',89,7.3,86,'','hereditary','tt7784604'),
+  m(51,'Us',2019,'R','Horror','1h 56m','/ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg',93,6.8,85,'','us_2019','tt6857112'),
+  m(52,'Midsommar',2019,'R','Horror','2h 28m','/9bXHaLlsFYpJUutg4E6WXAjaxDi.jpg',83,7.1,80,'','midsommar','tt8772262'),
+  m(53,'Parasite',2019,'R','Horror','2h 12m','/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',99,8.5,97,'','parasite_2019','tt6751668'),
+  m(54,'Get Out',2017,'R','Horror','1h 44m','/mE24wUCfjK8AoBBjaMjho7Rczr7.jpg',98,7.7,95,'','get_out','tt5052448'),
+  m(55,'Gone Girl',2014,'R','Horror','2h 29m','/ts996lKsxvjkO2yiYG0ht4qAicO.jpg',87,8.1,86,'','gone_girl','tt2267998'),
+  m(56,'The Menu',2022,'R','Horror','1h 47m','/fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg',88,7.2,85,'','the_menu','tt9764362'),
+
+  // ── Additional Action movie ──
+  m(66,'Mission: Impossible - Dead Reckoning',2023,'PG-13','Action','2h 43m','/62HCnUTziyWcpDaBO2i1DX17ljH.jpg',96,7.7,90,'','mission_impossible_dead_reckoning_part_one','tt9603212'),
+
+  // ── Additional Thriller movies ──
+  m(67,'Shutter Island',2010,'R','Thriller','2h 18m','/aOIuZAjPaRIE6CMzbazvcHuHXDc.jpg',68,8.2,80,'','shutter_island','tt1130884'),
+  m(68,'Zodiac',2007,'R','Thriller','2h 37m','/pEzNVQfdzYDzVK0XqxERIw2x2se.jpg',89,7.7,84,'','zodiac','tt0443706'),
+
+  // ── Additional Drama movies ──
+  m(57,'Top Gun: Maverick',2022,'PG-13','Drama','2h 11m','/62HCnUTziyWcpDaBO2i1DX17ljH.jpg',96,8.2,94,'','top_gun_maverick','tt1745960'),
+  m(58,'The Shawshank Redemption',1994,'R','Drama','2h 22m','/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg',90,9.3,96,'','the_shawshank_redemption','tt0111161'),
+  m(59,'Marriage Story',2019,'R','Drama','2h 17m','/kDEjffiKgjuGo2DRzsqfjvW0CQh.jpg',95,7.9,91,'','marriage_story','tt7653254'),
+  m(60,'Past Lives',2023,'PG-13','Drama','1h 46m','/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',96,7.8,93,'','past_lives','tt13238346'),
+  m(61,'Tár',2022,'R','Drama','2h 38m','/dRVAlaU0vbG6hMf2K45NSiIyoUe.jpg',91,7.4,88,'','tar_2022','tt14444726'),
+  m(62,'Yellowstone (film)',2023,'R','Drama','2h 5m','/vOYfRZ0NpUK5hG2CB2dJFnYJlGe.jpg',75,6.8,73,'','yellowstone','tt0120815'),
+
+  // ── Additional Animation movies ──
+  m(63,'Spider-Verse',2018,'PG','Animation','1h 57m','/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg',97,8.4,95,'','spider_man_into_the_spider_verse','tt4633694'),
+  m(64,'Coco',2017,'PG','Animation','1h 49m','/6Ryitt95xrO8KXuqRGm1fUuNwqF.jpg',97,8.4,95,'','coco_2017','tt2380307'),
+
+  // ── Additional Thriller movies ──
+  m(65,'Interstellar',2014,'PG-13','Thriller','2h 49m','/7fR3KxswtY8OHHZuOUB9td58CRX.jpg',73,8.7,88,'','interstellar_2014','tt0816692'),
+
+  // ── Additional TV shows ──
+  // Sci-Fi shows
+  s(124,'Black Mirror',2023,'TV-MA','Sci-Fi','6 Seasons','/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg',83,8.7,85,'','black_mirror','tt2085059'),
+  s(125,'Silo',2024,'TV-14','Sci-Fi','2 Seasons','/EpDuYIK81YtCUT3gH2JDpyj8Qk.jpg',89,8.2,86,'','silo','tt14688458'),
+  s(126,'The Expanse',2022,'TV-14','Sci-Fi','6 Seasons','/huxmY6Dmzwpv5Q2hnNft0UMK7vf.jpg',94,8.5,90,'','the_expanse','tt3230854'),
+  s(127,'Andor',2022,'TV-14','Sci-Fi','1 Season','/khZqmwHQicTYoS7Flreb9EddFZC.jpg',96,8.4,93,'','andor','tt9253284'),
+  s(128,'Halo',2024,'TV-14','Sci-Fi','2 Seasons','/4UmNhZCEu8Vt3byMvNxNEPyf8EY.jpg',52,6.7,58,'','halo','tt2934286'),
+  s(129,'Ahsoka',2023,'TV-PG','Sci-Fi','1 Season','/gbSaK9v1CbcYH1ISgbM7XObD2dW.jpg',77,7.4,75,'','ahsoka','tt13622776'),
+  s(130,'Westworld',2022,'TV-MA','Sci-Fi','4 Seasons','/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg',74,8.5,78,'','westworld','tt0475784'),
+
+  // Comedy shows
+  s(131,'Ted Lasso',2023,'TV-MA','Comedy','3 Seasons','/5fhZdwP1DVJ0FyVH6vrFdHwpXIn.jpg',89,8.8,90,'','ted_lasso','tt10986410'),
+  s(132,'The Office',2013,'TV-14','Comedy','9 Seasons','/7DJKHzAi83BmQrWLrYYOqcoKfhR.jpg',89,9.0,92,'','the_office','tt0386676'),
+  s(133,'Parks and Recreation',2015,'TV-PG','Comedy','7 Seasons','/A3SymGlOHefSKbz1bCOz56moupS.jpg',93,8.6,90,'','parks_and_recreation','tt1266020'),
+  s(134,'What We Do in the Shadows',2024,'TV-MA','Comedy','6 Seasons','/wa3ZQE9kLnqwN3vQ0NNjg1NPsCa.jpg',94,8.6,91,'','what_we_do_in_the_shadows','tt7908628'),
+  s(135,'Disenchantment',2023,'TV-14','Comedy','5 Seasons','/1WynayCqKRzrl4cFZR8NOfiDwd6.jpg',68,7.2,70,'','disenchantment','tt5363918'),
+  s(136,'South Park',2024,'TV-MA','Comedy','26 Seasons','/1CGwZCFX2qerXaXQJJUB3qUvxq7.jpg',80,8.7,82,'','south_park','tt0121955'),
+  s(137,'Brooklyn Nine-Nine',2021,'TV-14','Comedy','8 Seasons','/A3SymGlOHefSKbz1bCOz56moupS.jpg',95,8.4,91,'','brooklyn_nine_nine','tt2467372'),
+
+  // Action shows
+  s(138,'Reacher',2024,'TV-MA','Action','2 Seasons','/pcT1vivabBnBk0tZgVBO1I8aK75.jpg',92,8.1,88,'','reacher','tt9288030'),
+  s(139,'Peacemaker',2022,'TV-MA','Action','1 Season','/kfcJl5e8CRWDU7e4vX6uNABPRbS.jpg',94,8.3,90,'','peacemaker','tt13006836'),
+  s(140,'The Umbrella Academy',2023,'TV-14','Action','4 Seasons','/kaMisKeOoTBPxPkbC3OW7Wgt6ON.jpg',77,7.9,78,'','the_umbrella_academy','tt1312171'),
+  s(141,'Invincible',2024,'TV-MA','Action','2 Seasons','/4tblBrslcKSifMVZ3TmtT2ukMor.jpg',98,8.7,95,'','invincible','tt6741278'),
+  s(142,'One Piece',2024,'TV-14','Action','1 Season','/dT10AxJIXVvRwFAew4tt2RhzJrD.jpg',85,8.4,83,'','one_piece_2023','tt11737520'),
+  s(143,'The Witcher',2023,'TV-MA','Action','3 Seasons','/AoGsDM02UVt0npBA8OvpDcZbaMi.jpg',70,8.0,74,'','the_witcher','tt5180504'),
+
+  // Horror shows
+  s(144,'American Horror Story',2024,'TV-MA','Horror','12 Seasons','/fbKE87mojpIETWepSbD5Qt741fp.jpg',77,8.0,76,'','american_horror_story','tt1844624'),
+  s(145,'The Haunting of Hill House',2018,'TV-MA','Horror','1 Season','/vb1sQLC2MqfCPOFqHd8SyVsyDVB.jpg',93,8.6,90,'','the_haunting_of_hill_house','tt6763664'),
+  s(146,'From',2024,'TV-MA','Horror','3 Seasons','/geCRueV3ElhRTr0xtJuEWJt6dJ1.jpg',94,7.8,85,'','from','tt9813792'),
+  s(147,'All of Us Are Dead',2022,'TV-MA','Horror','1 Season','/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg',75,7.5,73,'','all_of_us_are_dead','tt14169960'),
+  s(148,'Stranger Things',2025,'TV-14','Horror','4 Seasons','/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg',92,8.7,90,'','stranger_things','tt4574334'),
+  s(149,'Chernobyl',2019,'TV-MA','Horror','1 Season','/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg',96,9.4,95,'','chernobyl','tt7366338'),
+  s(150,'The Midnight Club',2022,'TV-14','Horror','1 Season','/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg',72,6.6,68,'','the_midnight_club','tt13406334'),
+  s(151,'Demon Slayer',2024,'TV-14','Horror','4 Seasons','/xUfRZu2mi8jH6SzQEJGP6tjBuYj.jpg',98,8.6,92,'','demon_slayer','tt9335498'),
+  s(152,'Arcane',2024,'TV-14','Horror','2 Seasons','/aVYHMW8pdzJ9qG1OGRMKyGy9xor.jpg',97,9.0,95,'','arcane','tt11126994'),
+
+  // Animation shows
+  s(153,'Invincible (Animated)',2024,'TV-MA','Animation','2 Seasons','/4tblBrslcKSifMVZ3TmtT2ukMor.jpg',98,8.7,95,'','invincible','tt6741278'),
+  s(154,'Arcane (Animated)',2024,'TV-14','Animation','2 Seasons','/aVYHMW8pdzJ9qG1OGRMKyGy9xor.jpg',97,9.0,95,'','arcane','tt11126994'),
+  s(155,'Demon Slayer (Animated)',2024,'TV-14','Animation','4 Seasons','/xUfRZu2mi8jH6SzQEJGP6tjBuYj.jpg',98,8.6,92,'','demon_slayer','tt9335498'),
+  s(156,'Rick and Morty (Animated)',2024,'TV-MA','Animation','7 Seasons','/WGRQ8FpjkDTzivQJ43t94bOuY0.jpg',93,9.1,92,'','rick_and_morty','tt2861424'),
+  s(157,'One Piece (Animated)',2024,'TV-14','Animation','1 Season','/dT10AxJIXVvRwFAew4tt2RhzJrD.jpg',85,8.4,83,'','one_piece_2023','tt11737520'),
+  s(158,'Disenchantment (Animated)',2023,'TV-14','Animation','5 Seasons','/1WynayCqKRzrl4cFZR8NOfiDwd6.jpg',68,7.2,70,'','disenchantment','tt5363918'),
+  s(159,'South Park (Animated)',2024,'TV-MA','Animation','26 Seasons','/1CGwZCFX2qerXaXQJJUB3qUvxq7.jpg',80,8.7,82,'','south_park','tt0121955'),
+  s(160,'Love Death & Robots',2024,'TV-MA','Animation','3 Seasons','/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg',85,8.4,83,'','love_death_robots','tt9561862'),
+  s(161,'The Mandalorian (Animated)',2023,'TV-PG','Animation','3 Seasons','/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg',89,8.7,88,'','the_mandalorian','tt8111088'),
+
+  // Drama shows (need 1 more)
+  s(162,'Yellowstone',2024,'TV-MA','Drama','5 Seasons','/vOYfRZ0NpUK5hG2CB2dJFnYJlGe.jpg',83,8.6,82,'','yellowstone','tt4236770'),
+
+  // Thriller shows (need 2 more)
+  s(163,'You',2023,'TV-MA','Thriller','4 Seasons','/7DJKHzAi83BmQrWLrYYOqcoKfhR.jpg',93,7.7,85,'','you','tt7335184'),
+  s(164,'Mindhunter',2019,'TV-MA','Thriller','2 Seasons','/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg',97,8.6,93,'','mindhunter','tt5290382'),
 ];
 
 TITLES.forEach(t => { if (DESC[t.id]) t.description = DESC[t.id]; });

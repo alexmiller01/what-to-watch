@@ -251,8 +251,7 @@
         <div class="supertop-poster-trailer"></div>
       </div>
     `).join('');
-    const repeatCount = Math.max(3, Math.ceil(30 / titles.length));
-    const posters = posterHTML.repeat(repeatCount);
+    const posters = posterHTML;
 
     return `
       <div class="supertop-rail">
