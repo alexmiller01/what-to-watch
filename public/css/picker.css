@@ -8,10 +8,10 @@
   background: #6001D2;
   background-image: url('/assets/theater-bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   overflow-y: auto;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -22,15 +22,19 @@
 .picker-card {
   position: relative;
   background: var(--uds-background-primary);
-  border-radius: var(--uds-radius-xl);
-  padding: var(--uds-space-3xl) var(--uds-space-2xl);
-  max-width: 680px;
-  width: calc(100% - 48px);
+  border-radius: var(--uds-radius-md);
+  padding: var(--uds-space-2xl) var(--uds-space-xl);
+  max-width: 58%;
+  width: 58%;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--uds-space-xl);
+  gap: var(--uds-space-lg);
+  margin-top: 10vh;
+  max-height: 52vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .picker-close {
@@ -407,15 +411,28 @@
   align-items: center;
 }
 
+@media (max-width: 1100px) {
+  .picker-card {
+    max-width: 70%;
+    width: 70%;
+    margin-top: 8vh;
+    max-height: 55vh;
+  }
+}
+
 @media (max-width: 767px) {
   .picker-card {
-    padding: var(--uds-space-2xl) var(--uds-space-md);
-    gap: var(--uds-space-lg);
+    max-width: calc(100% - 32px);
+    width: calc(100% - 32px);
+    padding: var(--uds-space-xl) var(--uds-space-md);
+    gap: var(--uds-space-md);
+    margin-top: 15vh;
+    max-height: 60vh;
   }
 
   .picker-title {
-    font-size: var(--uds-text-title2-size);
-    line-height: var(--uds-text-title2-line-height);
+    font-size: var(--uds-text-title3-size);
+    line-height: var(--uds-text-title3-line-height);
   }
 
   .picker-chips {
