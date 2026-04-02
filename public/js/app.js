@@ -119,7 +119,7 @@
               <span class="hover-card-rating-value">${t.imdb}/10</span>
             </div>
             <div class="hover-card-rating-item">
-              <svg class="hover-card-rating-icon" viewBox="0 0 16 16" fill="#6001d2"><circle cx="8" cy="8" r="7"/><text x="8" y="11" text-anchor="middle" fill="white" font-size="7" font-weight="bold">Y!</text></svg>
+              <img class="hover-card-rating-icon" src="/assets/yep.svg" alt="Yahoo">
               <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
             </div>
           </div>
