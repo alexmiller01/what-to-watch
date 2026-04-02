@@ -862,10 +862,19 @@
     -webkit-line-clamp: 2;
   }
 
-  /* See full details – centered */
+  /* See full details – full width filled pill */
   .mobile-hover-details {
-    align-self: center;
+    align-self: stretch;
+    justify-content: center;
+    background: var(--uds-spectrum-carbon-2);
+    border: none;
+    padding: var(--uds-space-sm) var(--uds-space-md);
     font-size: var(--uds-text-body2-size);
+    font-weight: var(--uds-text-ui2-weight);
+  }
+
+  .mobile-hover-details:hover {
+    background: var(--uds-line-secondary);
   }
 
   /* Hide carousel arrows on mobile */
