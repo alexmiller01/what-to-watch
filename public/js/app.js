@@ -303,25 +303,38 @@
       }
     });
 
-    // Type filter chips
-    document.querySelectorAll('.nav-filter-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        activeType = chip.dataset.type;
-        document.querySelectorAll('.nav-filter-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        renderSections();
+    // Tab bar
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('is-selected'));
+        tab.classList.add('is-selected');
       });
     });
 
-    // Search
+    // Search input + clear button
     const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
     let debounceTimer;
+
+    function updateClearBtn() {
+      clearBtn.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+    }
+
     searchInput.addEventListener('input', () => {
+      updateClearBtn();
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         searchQuery = searchInput.value.trim();
         renderSections();
       }, 300);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      updateClearBtn();
+      searchInput.focus();
+      renderSections();
     });
 
     document.getElementById('searchBtn').addEventListener('click', () => {

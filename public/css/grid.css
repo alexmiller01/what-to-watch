@@ -9,7 +9,7 @@ body {
   margin: 0;
   overflow-x: clip;
   min-width: 0;
-  padding-top: var(--nav-height, 72px);
+  padding-top: var(--nav-height, 130px);
   font-family: var(--uds-font-sans);
   color: var(--uds-foreground-primary);
   background: var(--uds-background-primary);

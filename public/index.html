@@ -14,31 +14,71 @@
 </head>
 <body>
 
-  <!-- ── Navigation ── -->
+  <!-- ── Navigation – Figma 18913:161331 (SYC Header) ── -->
   <header class="nav-header">
     <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <span class="nav-logo-text">What to Watch</span>
-      </a>
+      <!-- Top row: logo + search + nav icons -->
+      <div class="nav-top">
+        <div class="nav-front">
+          <a href="/" class="nav-logo">
+            <img src="/assets/yahoo-logo.svg" alt="Yahoo" width="86" height="24">
+          </a>
 
-      <div class="nav-search-wrap">
-        <div class="nav-search-box">
-          <div class="nav-search-inner">
-            <input type="text" id="searchInput" placeholder="Search movies & shows..." autocomplete="off">
-            <button class="nav-search-btn" id="searchBtn" aria-label="Search">
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11" y1="11" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
+          <div class="nav-search-wrap">
+            <div class="nav-search-box">
+              <div class="nav-search-inner">
+                <div class="nav-search-text">
+                  <input type="text" id="searchInput" placeholder="What to watch" autocomplete="off">
+                </div>
+                <div class="nav-search-end">
+                  <button class="nav-clear-btn" id="clearBtn" aria-label="Clear" style="display:none">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+                  </button>
+                  <div class="nav-search-icons">
+                    <button class="nav-icon-btn" aria-label="Voice search">
+                      <img src="/assets/mic.svg" alt="" width="16" height="16">
+                    </button>
+                    <button class="nav-icon-btn" id="searchBtn" aria-label="Search">
+                      <img src="/assets/search.svg" alt="" width="16" height="16">
+                    </button>
+                    <div class="nav-search-divider"></div>
+                  </div>
+                  <button class="nav-scout-btn" aria-label="Yahoo Scout">
+                    <img src="/assets/scout.svg" alt="Scout" width="20" height="20">
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="nav-actions">
+          <button class="nav-icon-btn" aria-label="Apps">
+            <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="3" cy="3" r="1.5"/><circle cx="8" cy="3" r="1.5"/><circle cx="13" cy="3" r="1.5"/><circle cx="3" cy="8" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="13" cy="8" r="1.5"/><circle cx="3" cy="13" r="1.5"/><circle cx="8" cy="13" r="1.5"/><circle cx="13" cy="13" r="1.5"/></svg>
+          </button>
+          <button class="nav-icon-btn" aria-label="Inbox">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="3" width="12" height="10" rx="1.5"/><polyline points="2,5 8,9 14,5"/></svg>
+          </button>
         </div>
       </div>
 
-      <div class="nav-actions">
-        <div class="nav-filter-chips">
-          <button class="nav-filter-chip active" data-type="">All</button>
-          <button class="nav-filter-chip" data-type="movie">Movies</button>
-          <button class="nav-filter-chip" data-type="series">TV Shows</button>
+      <!-- Tab bar -->
+      <div class="nav-tabs-row">
+        <div class="nav-tabs" id="navTabs">
+          <a href="#" class="nav-scout-link">
+            <img src="/assets/scout-sm.svg" alt="" width="16" height="16">
+            Yahoo Scout
+          </a>
+          <button class="nav-tab is-selected" data-tab="all">All</button>
+          <button class="nav-tab" data-tab="images">Images</button>
+          <button class="nav-tab" data-tab="videos">Videos</button>
+          <button class="nav-tab" data-tab="news">News</button>
+          <button class="nav-tab" data-tab="local">Local</button>
+          <button class="nav-tab-dropdown" aria-label="Time filter">
+            Anytime
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg>
+          </button>
         </div>
-        <div class="nav-avatar" title="Profile">Y</div>
       </div>
     </div>
   </header>
