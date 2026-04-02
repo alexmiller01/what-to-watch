@@ -42,7 +42,7 @@ const TITLES = [
     genre: 'Drama', type: 'movie', duration: '2h 21m',
     image: `${TMDB}/w342/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg`,
     backdrop: `${TMDB}/w780/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg`,
-    rt: 79, imdb: 7.3, yahoo: 82, trailer: 'QjPbRTfNqbA',
+    rt: 79, imdb: 7.3, yahoo: 82, trailer: 'FdV-Cs5o8mc',
     description: 'Set in the early 1960s, a 19-year-old Bob Dylan arrives in New York City with his guitar and revolutionary talent, destined to change the course of American music.',
     streaming: ['Hulu']
   },
@@ -105,7 +105,7 @@ const TITLES = [
     genre: 'Animation', type: 'movie', duration: '1h 25m',
     image: `${TMDB}/w342/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg`,
     backdrop: `${TMDB}/w780/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg`,
-    rt: 95, imdb: 8.3, yahoo: 93, trailer: 'JoMRSmmq27M',
+    rt: 95, imdb: 8.3, yahoo: 93, trailer: 'ZgZccxuj2RY',
     description: 'A solitary cat, displaced by a great flood, finds refuge on a boat with a group of diverse animals and must overcome its differences to survive.',
     streaming: ['Prime Video']
   },
@@ -132,7 +132,7 @@ const TITLES = [
     genre: 'Action', type: 'movie', duration: '1h 51m',
     image: `${TMDB}/w342/g8TbOXrNMuqq7AaKqdvqS2oG4ob.jpg`,
     backdrop: `${TMDB}/w780/g8TbOXrNMuqq7AaKqdvqS2oG4ob.jpg`,
-    rt: 23, imdb: 5.3, yahoo: 42, trailer: '4rKJy-x-y58',
+    rt: 23, imdb: 5.3, yahoo: 42, trailer: 'HKC2AG14M8A',
     description: 'Two soulmates are brutally murdered. Given a second chance at life, Eric sets out on a path of revenge, becoming an unstoppable force.',
     streaming: ['Prime Video']
   },
@@ -152,7 +152,7 @@ const TITLES = [
     genre: 'Drama', type: 'series', duration: '3 Seasons',
     image: `${TMDB}/w342/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg`,
     backdrop: `${TMDB}/w780/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg`,
-    rt: 93, imdb: 8.5, yahoo: 92, trailer: 'sEOuJ4z5aTc',
+    rt: 93, imdb: 8.5, yahoo: 92, trailer: 'gBmkI4jlaIo',
     description: 'A young chef from the fine dining world returns to Chicago to run his deceased brother\'s Italian beef sandwich shop.',
     streaming: ['Hulu']
   },
@@ -179,7 +179,7 @@ const TITLES = [
     genre: 'Thriller', type: 'series', duration: '2 Seasons',
     image: `${TMDB}/w342/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg`,
     backdrop: `${TMDB}/w780/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg`,
-    rt: 85, imdb: 8.0, yahoo: 84, trailer: 'USgPGqDCb-k',
+    rt: 85, imdb: 8.0, yahoo: 84, trailer: 'lQBmZBJCYcY',
     description: 'Hundreds of cash-strapped players accept an invitation to compete in children\'s games for a tempting prize, with deadly stakes.',
     streaming: ['Netflix']
   },
@@ -224,7 +224,7 @@ const TITLES = [
     genre: 'Drama', type: 'series', duration: '8 Seasons',
     image: `${TMDB}/w342/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg`,
     backdrop: `${TMDB}/w780/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg`,
-    rt: 89, imdb: 9.2, yahoo: 90, trailer: 'KPLWWIOCOOQ',
+    rt: 89, imdb: 9.2, yahoo: 90, trailer: 'bjqEWgDVPe0',
     description: 'Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for millennia.',
     streaming: ['Max']
   },
@@ -233,7 +233,7 @@ const TITLES = [
     genre: 'Thriller', type: 'series', duration: '3 Seasons',
     image: `${TMDB}/w342/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg`,
     backdrop: `${TMDB}/w780/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg`,
-    rt: 88, imdb: 7.8, yahoo: 86, trailer: 'KSgOKRdFiEA',
+    rt: 88, imdb: 7.8, yahoo: 86, trailer: 'x8FUUxj6yOA',
     description: 'A wildly talented high school girls soccer team survives a plane crash deep in the Ontario wilderness, leading to a descent into savagery.',
     streaming: ['Paramount+']
   },
@@ -242,7 +242,7 @@ const TITLES = [
     genre: 'Thriller', type: 'series', duration: '1 Season',
     image: `${TMDB}/w342/ltG0kMlDcy84AxYekX7Cqr0JCAT.jpg`,
     backdrop: `${TMDB}/w780/ltG0kMlDcy84AxYekX7Cqr0JCAT.jpg`,
-    rt: 72, imdb: 6.8, yahoo: 70, trailer: 'olXYZOsXw50',
+    rt: 72, imdb: 6.8, yahoo: 70, trailer: 'pAxMy31nffA',
     description: 'A covert CIA agent is ordered to abandon his undercover identity and return to London Station, reigniting a past love.',
     streaming: ['Paramount+']
   },
@@ -251,7 +251,7 @@ const TITLES = [
     genre: 'Comedy', type: 'series', duration: '6 Seasons',
     image: `${TMDB}/w342/ekZobS8isE6mA53RAiGDG93hBxL.jpg`,
     backdrop: `${TMDB}/w780/ekZobS8isE6mA53RAiGDG93hBxL.jpg`,
-    rt: 85, imdb: 8.1, yahoo: 83, trailer: 'X4bF_quwNtw',
+    rt: 85, imdb: 8.1, yahoo: 83, trailer: 'ueMwVGBwqRo',
     description: 'Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandons his throne to retire in Los Angeles, where he helps the LAPD punish criminals.',
     streaming: ['Netflix']
   }
