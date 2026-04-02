@@ -1,10 +1,17 @@
 (function () {
   'use strict';
 
-  const GENRES = [
+  const GENRES_ROW1 = [
     'Thriller', 'Drama', 'Action', 'Comedy',
     'Adventure', 'Romance', 'Science fiction', 'Crime drama'
   ];
+
+  const GENRES_ROW2 = [
+    'Horror', 'Animation', 'Documentary', 'Fantasy',
+    'Mystery', 'Musical', 'Western', 'War'
+  ];
+
+  let genresExpanded = false;
 
   let allTitles = [];
   let activeGenre = '';
@@ -31,13 +38,21 @@
   function renderGenreChips() {
     const container = document.getElementById('supertopGenres');
     const label = '<span class="supertop-genre-label">Genres:</span>';
-    const chips = GENRES.map(g =>
-      `<button class="supertop-genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`
-    ).join('');
-    const expandBtn = `<button class="supertop-genre-expand" aria-label="Show more genres">
+
+    function chipHTML(g) {
+      return `<button class="supertop-genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`;
+    }
+
+    const row1 = GENRES_ROW1.map(chipHTML).join('');
+    const expandBtn = `<button class="supertop-genre-expand${genresExpanded ? ' is-expanded' : ''}" id="genreExpandBtn" aria-label="Show more genres">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg>
     </button>`;
-    container.innerHTML = label + chips + expandBtn;
+
+    const row2 = `<div class="supertop-genre-row2${genresExpanded ? ' is-visible' : ''}" id="genreRow2">
+      ${GENRES_ROW2.map(chipHTML).join('')}
+    </div>`;
+
+    container.innerHTML = label + row1 + expandBtn + row2;
   }
 
   // ── Poster rails ──
@@ -246,6 +261,16 @@
   // ── Events ──
 
   function bindEvents() {
+    // Genre expand toggle
+    document.addEventListener('click', (e) => {
+      const expandBtn = e.target.closest('#genreExpandBtn');
+      if (expandBtn) {
+        genresExpanded = !genresExpanded;
+        renderGenreChips();
+        return;
+      }
+    });
+
     // Genre chips
     document.addEventListener('click', (e) => {
       const chip = e.target.closest('.supertop-genre-chip');

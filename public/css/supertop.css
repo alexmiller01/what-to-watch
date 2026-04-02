@@ -76,6 +76,7 @@
   display: flex;
   align-items: center;
   gap: var(--uds-space-xs);
+  flex-wrap: wrap;
 }
 
 .supertop-genre-label {
@@ -143,6 +144,29 @@
 .supertop-genre-expand svg {
   width: var(--uds-space-md);
   height: var(--uds-space-md);
+  transition: transform 0.25s ease;
+}
+
+.supertop-genre-expand.is-expanded svg {
+  transform: rotate(180deg);
+}
+
+/* Expandable second row of genre chips */
+.supertop-genre-row2 {
+  display: flex;
+  gap: var(--uds-space-xs);
+  flex-basis: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease;
+  margin-top: 0;
+}
+
+.supertop-genre-row2.is-visible {
+  max-height: 50px;
+  opacity: 1;
+  margin-top: var(--uds-space-xs);
 }
 
 /* ── Content rails (Movies / Shows) ── */
