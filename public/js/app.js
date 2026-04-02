@@ -218,6 +218,12 @@
         html += buildRailHTML(`${genre} shows`, genreShows);
       }
 
+      if (activeGenres.length > 1) {
+        const comboLabel = activeGenres.join(' + ');
+        const comboTitles = pool.filter(t => activeGenres.includes(t.genre));
+        html += buildRailHTML(`All ${comboLabel}`, comboTitles);
+      }
+
       container.innerHTML = html;
     }
 
