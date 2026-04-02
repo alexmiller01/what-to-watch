@@ -139,26 +139,13 @@
     const item = allTitles.find(t => t.id === id);
     if (!item) return;
 
-    const rail = posterEl.closest('.supertop-rail');
-    const wrapper = posterEl.closest('.supertop-rail-track-wrapper');
-    if (!rail || !wrapper) return;
-
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const posterRect = posterEl.getBoundingClientRect();
-    let left = posterRect.left - wrapperRect.left;
-    const maxLeft = wrapperRect.width - 700;
-    if (left > maxLeft) left = Math.max(0, maxLeft);
-
     const cardHTML = buildHoverCard(item);
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
 
-    cardEl.style.left = left + 'px';
-    cardEl.style.top = wrapper.offsetTop + 'px';
-
     posterEl.classList.add('is-active');
-    rail.appendChild(cardEl);
+    posterEl.insertAdjacentElement('afterend', cardEl);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -180,11 +167,13 @@
         existing.remove();
       } else {
         existing.classList.remove('is-visible');
-        existing.addEventListener('transitionend', function handler() {
-          existing.removeEventListener('transitionend', handler);
-          existing.remove();
+        existing.addEventListener('transitionend', function handler(e) {
+          if (e.propertyName === 'max-width') {
+            existing.removeEventListener('transitionend', handler);
+            existing.remove();
+          }
         });
-        setTimeout(() => { if (existing.parentNode) existing.remove(); }, 400);
+        setTimeout(() => { if (existing.parentNode) existing.remove(); }, 500);
       }
     }
 
