@@ -226,12 +226,13 @@
   flex-shrink: 0;
 }
 
-.supertop-poster img {
+.supertop-poster-art {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: var(--uds-radius-xl);
   display: block;
+  transition: opacity 0.3s ease;
 }
 
 /* Rail scroll button – chevron right, positioned at right edge */
@@ -314,9 +315,56 @@
   position: relative;
 }
 
-.supertop-poster.is-active {
-  outline: var(--uds-border-medium) solid var(--uds-foreground-brand);
-  outline-offset: -2px;
+.supertop-poster.is-active .supertop-poster-art {
+  opacity: 0;
+}
+
+.supertop-poster-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--uds-radius-xl);
+  overflow: hidden;
+}
+
+.supertop-poster-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.supertop-poster.is-active .supertop-poster-video {
+  opacity: 1;
+}
+
+.supertop-poster-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--uds-radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.supertop-poster.is-active .supertop-poster-play {
+  opacity: 1;
+}
+
+.supertop-poster-play svg {
+  width: 14px;
+  height: 14px;
+  color: var(--uds-foreground-primary);
+  margin-left: 2px;
 }
 
 .supertop-hover-card {

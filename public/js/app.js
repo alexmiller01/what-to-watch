@@ -78,8 +78,12 @@
     }
 
     const posters = titles.map(t => `
-      <div class="supertop-poster" data-id="${t.id}">
-        <img src="${t.image}" alt="${t.title}" loading="lazy">
+      <div class="supertop-poster" data-id="${t.id}" data-backdrop="${t.backdrop || t.image}">
+        <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
+        <div class="supertop-poster-video"></div>
+        <div class="supertop-poster-play">
+          <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+        </div>
       </div>
     `).join('');
     track.innerHTML = posters + posters + posters;
@@ -143,6 +147,12 @@
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
+
+    const videoLayer = posterEl.querySelector('.supertop-poster-video');
+    if (videoLayer && !videoLayer.querySelector('img')) {
+      const backdrop = posterEl.dataset.backdrop;
+      videoLayer.innerHTML = `<img src="${backdrop}" alt="">`;
+    }
 
     posterEl.classList.add('is-active');
     posterEl.insertAdjacentElement('afterend', cardEl);
