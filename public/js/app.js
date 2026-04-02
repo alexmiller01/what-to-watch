@@ -821,124 +821,56 @@
       if (!pick) return;
 
       overlay.classList.add('is-result-mode');
-      const card = document.querySelector('.picker-card');
-      card.style.display = 'none';
 
-      const resultPage = document.createElement('div');
-      resultPage.className = 'result-page';
-      resultPage.innerHTML = `
-        <!-- Theater section with video -->
-        <div class="result-theater">
-          <div class="result-video" id="resultVideo" data-trailer="${pick.trailer}">
-            <img src="https://img.youtube.com/vi/${pick.trailer}/maxresdefault.jpg" alt="${pick.title}" onerror="this.src='https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg'">
-            <button class="result-play" aria-label="Play trailer">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,4 20,12 8,20"/></svg>
-            </button>
-            <button class="result-close" id="resultClose" aria-label="Close">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Where to watch -->
-        <div class="result-wtw">
-          <div class="result-wtw-inner grid">
-            <h3 class="result-wtw-title">Where to watch ${pick.title}</h3>
-            <div class="result-wtw-services">
-              <div class="result-wtw-row">
-                <div class="result-wtw-service">
-                  <svg class="result-wtw-icon" viewBox="0 0 24 24" fill="#141414"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div class="result-wtw-info"><span class="result-wtw-name">Pick theater</span><span class="result-wtw-price">Select showtimes</span></div>
-                </div>
-                <a class="result-wtw-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(pick.title + ' showtimes')}" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><polygon points="7,6 7,10 10,8" fill="currentColor"/></svg>
-                  Get tickets
-                </a>
-              </div>
-              <div class="result-wtw-row">
-                <div class="result-wtw-service">
-                  <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=paramountplus.com&sz=64" alt="">
-                  <div class="result-wtw-info"><span class="result-wtw-name">Paramount+</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
-                </div>
-                <a class="result-wtw-btn" href="https://www.paramountplus.com/" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg> Watch
-                </a>
-              </div>
-              <div class="result-wtw-row">
-                <div class="result-wtw-service">
-                  <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=max.com&sz=64" alt="">
-                  <div class="result-wtw-info"><span class="result-wtw-name">HBO Max</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
-                </div>
-                <a class="result-wtw-btn" href="https://www.max.com/" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg> Watch
-                </a>
-              </div>
-            </div>
-            <button class="result-show-more">Show more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></button>
-          </div>
-        </div>
-
-        <!-- Two column: left content + right detail card -->
-        <div class="result-columns grid">
-          <div class="result-left"></div>
-          <div class="result-right">
-            <h3 class="result-detail-title">${pick.title}</h3>
-            <div class="result-detail-meta">
-              <span class="hover-card-rating-badge">${pick.rating}</span>
-              <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
-            </div>
-            <div class="result-detail-poster">
-              <img src="https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg" alt="${pick.title}">
-              <button class="supertop-trailer-play result-detail-play" aria-label="Play" data-trailer="${pick.trailer}">
-                <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
-              </button>
-              <span class="supertop-trailer-duration">${pick.duration}</span>
-            </div>
-            <div class="result-detail-scores">
-              <div class="result-detail-score-box"><span class="result-detail-score-label">IMDb</span><span class="result-detail-score-value">${pick.imdb}/10</span></div>
-              <div class="result-detail-score-box"><span class="result-detail-score-label">Rotten Tomatoes</span><span class="result-detail-score-value">${pick.rt}%</span></div>
-            </div>
-            <div class="result-detail-watch">
-              <h4>Watch now</h4>
-              <div class="result-wtw-row">
-                <div class="result-wtw-service">
-                  <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=paramountplus.com&sz=64" alt="">
-                  <div class="result-wtw-info"><span class="result-wtw-name">Paramount+</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
-                </div>
-                <a class="result-wtw-btn" href="#"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg> Watch</a>
-              </div>
-              <div class="result-wtw-row">
-                <div class="result-wtw-service">
-                  <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=max.com&sz=64" alt="">
-                  <div class="result-wtw-info"><span class="result-wtw-name">HBO Max</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
-                </div>
-                <a class="result-wtw-btn" href="#"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg> Watch</a>
-              </div>
-              <button class="result-show-more">Show more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></button>
-            </div>
-            <div class="result-detail-overview">
-              <h4>Overview</h4>
-              <p>${pick.description || 'No description available.'} <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(pick.title)}" target="_blank" rel="noopener" style="color:#0f69ff;font-weight:500;">Wikipedia</a></p>
-            </div>
-            <button class="picker-submit" id="resultPickAgain">Pick again</button>
-          </div>
-        </div>
+      const screen = document.createElement('div');
+      screen.className = 'result-screen';
+      screen.id = 'resultScreen';
+      screen.dataset.trailer = pick.trailer;
+      screen.innerHTML = `
+        <img src="https://img.youtube.com/vi/${pick.trailer}/maxresdefault.jpg" alt="${pick.title}" onerror="this.src='https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg'">
+        <button class="result-screen-play" aria-label="Play trailer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,4 20,12 8,20"/></svg>
+        </button>
+        <button class="result-screen-close" id="resultClose" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+        </button>
       `;
-      overlay.appendChild(resultPage);
+      overlay.appendChild(screen);
+
+      const wtw = document.createElement('div');
+      wtw.className = 'result-wtw';
+      wtw.innerHTML = `
+        <h3 class="result-wtw-title">Where to watch ${pick.title}</h3>
+        <div class="result-wtw-row">
+          <div class="result-wtw-service">
+            <svg class="result-wtw-icon" viewBox="0 0 24 24" fill="#141414"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="result-wtw-info"><span class="result-wtw-name">Pick theater</span><span class="result-wtw-price">Select showtimes</span></div>
+          </div>
+          <a class="result-wtw-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(pick.title + ' showtimes')}" target="_blank" rel="noopener">Get tickets</a>
+        </div>
+        <div class="result-wtw-row">
+          <div class="result-wtw-service">
+            <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=paramountplus.com&sz=64" alt="">
+            <div class="result-wtw-info"><span class="result-wtw-name">Paramount+</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
+          </div>
+          <a class="result-wtw-btn" href="https://www.paramountplus.com/" target="_blank" rel="noopener">Watch</a>
+        </div>
+        <div class="result-wtw-row">
+          <div class="result-wtw-service">
+            <img class="result-wtw-icon" src="https://www.google.com/s2/favicons?domain=max.com&sz=64" alt="">
+            <div class="result-wtw-info"><span class="result-wtw-name">HBO Max</span><span class="result-wtw-price">Rental starting at $3.99</span></div>
+          </div>
+          <a class="result-wtw-btn" href="https://www.max.com/" target="_blank" rel="noopener">Watch</a>
+        </div>
+        <button class="result-show-more">Show more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></button>
+      `;
+      overlay.appendChild(wtw);
 
       document.getElementById('resultClose').addEventListener('click', closePicker);
-      document.getElementById('resultPickAgain').addEventListener('click', () => {
-        resultPage.remove();
-        overlay.classList.remove('is-result-mode');
-        card.style.display = '';
-        resetPickerCard();
-      });
 
-      const videoEl = document.getElementById('resultVideo');
-      videoEl.querySelector('.result-play').addEventListener('click', (e) => {
+      screen.querySelector('.result-screen-play').addEventListener('click', (e) => {
         e.stopPropagation();
-        const tid = videoEl.dataset.trailer;
-        videoEl.innerHTML = `<iframe src="https://www.youtube.com/embed/${tid}?autoplay=1&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        screen.innerHTML = `<iframe src="https://www.youtube.com/embed/${pick.trailer}?autoplay=1&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
       });
     });
 
@@ -965,13 +897,10 @@
       overlay.classList.remove('is-result-mode');
       document.body.style.overflow = '';
       setTimeout(() => {
-        const resultPage = overlay.querySelector('.result-page');
-        if (resultPage) resultPage.remove();
-        const card = document.querySelector('.picker-card');
-        if (card) {
-          card.style.display = '';
-          card.classList.remove('is-result');
-        }
+        const screen = overlay.querySelector('.result-screen');
+        const wtw = overlay.querySelector('.result-wtw');
+        if (screen) screen.remove();
+        if (wtw) wtw.remove();
         resetPickerCard();
       }, 300);
     }
