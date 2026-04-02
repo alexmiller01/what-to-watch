@@ -77,11 +77,12 @@
       return;
     }
 
-    track.innerHTML = titles.map(t => `
+    const posters = titles.map(t => `
       <div class="supertop-poster" data-id="${t.id}">
         <img src="${t.image}" alt="${t.title}" loading="lazy">
       </div>
     `).join('');
+    track.innerHTML = posters + posters + posters;
   }
 
   // ── Hover card ──
