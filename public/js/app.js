@@ -132,7 +132,7 @@
     const id = parseInt(posterEl.dataset.id, 10);
     if (activeHoverId === id) return;
 
-    removeHoverCard();
+    removeHoverCard(true);
     activeHoverId = id;
 
     const item = allTitles.find(t => t.id === id);
@@ -143,8 +143,14 @@
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
 
-    posterEl.style.display = 'none';
+    posterEl.classList.add('is-fading');
     posterEl.insertAdjacentElement('afterend', cardEl);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        cardEl.classList.add('is-visible');
+      });
+    });
 
     cardEl.addEventListener('mouseenter', () => {
       clearTimeout(hoverTimeout);
@@ -155,18 +161,34 @@
     });
   }
 
-  function removeHoverCard() {
+  function removeHoverCard(instant) {
     if (activeHoverId === null) return;
 
     const existing = document.querySelector('.supertop-hover-card');
+    const fadedPoster = document.querySelector(`.supertop-poster.is-fading[data-id="${activeHoverId}"]`);
+
     if (existing) {
-      const track = existing.closest('.supertop-rail-track');
-      if (track) {
-        const hiddenPoster = track.querySelector(`.supertop-poster[data-id="${activeHoverId}"][style*="display: none"]`);
-        if (hiddenPoster) hiddenPoster.style.display = '';
+      if (instant) {
+        if (fadedPoster) fadedPoster.classList.remove('is-fading');
+        existing.remove();
+      } else {
+        existing.classList.add('is-collapsing');
+        existing.classList.remove('is-visible');
+        if (fadedPoster) fadedPoster.classList.remove('is-fading');
+
+        existing.addEventListener('transitionend', function handler(e) {
+          if (e.propertyName === 'max-width') {
+            existing.removeEventListener('transitionend', handler);
+            existing.remove();
+          }
+        });
+
+        setTimeout(() => { if (existing.parentNode) existing.remove(); }, 500);
       }
-      existing.remove();
+    } else {
+      if (fadedPoster) fadedPoster.classList.remove('is-fading');
     }
+
     activeHoverId = null;
   }
 

@@ -309,17 +309,38 @@
 
 /* ── Hover card – Figma 18913:163569 ── */
 
+.supertop-poster {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.supertop-poster.is-fading {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
 .supertop-hover-card {
   display: flex;
   gap: var(--uds-space-sm);
   height: 207px;
   flex-shrink: 0;
-  animation: hoverFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes hoverFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.supertop-hover-card.is-visible {
+  opacity: 1;
+  max-width: 720px;
+}
+
+.supertop-hover-card.is-collapsing {
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.2s ease,
+              max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
 }
 
 /* Left: video embed / backdrop */
