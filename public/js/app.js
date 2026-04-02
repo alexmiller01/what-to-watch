@@ -821,6 +821,7 @@
       if (!pick) return;
 
       const card = document.querySelector('.picker-card');
+      card.classList.add('is-result');
       card.innerHTML = `
         <button class="picker-close" id="pickerCloseResult" aria-label="Close">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
@@ -829,27 +830,93 @@
           <div class="picker-result-video">
             <iframe src="https://www.youtube.com/embed/${pick.trailer}?modestbranding=1&rel=0" allow="encrypted-media" allowfullscreen></iframe>
           </div>
-          <h3 class="picker-result-title">${pick.title}</h3>
-          <div class="picker-result-meta">
-            <span class="hover-card-rating-badge">${pick.rating}</span>
-            <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
-          </div>
-          <div class="picker-result-ratings">
-            <div class="hover-card-rating-item">
-              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
-              <span class="hover-card-rating-value">${pick.rt}%</span>
-            </div>
-            <div class="hover-card-rating-item">
-              <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
-              <span class="hover-card-rating-value">${pick.imdb}/10</span>
-            </div>
-          </div>
-          <button class="picker-submit" id="pickerTryAgain">Pick again</button>
         </div>
       `;
 
+      const wtw = document.createElement('div');
+      wtw.className = 'picker-wtw';
+      wtw.innerHTML = `
+        <h3 class="picker-wtw-title">Where to watch ${pick.title}</h3>
+        <div class="picker-wtw-services">
+          <div class="picker-wtw-row">
+            <div class="picker-wtw-service">
+              <svg class="picker-wtw-icon" viewBox="0 0 24 24" fill="var(--uds-foreground-primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <div class="picker-wtw-info">
+                <span class="picker-wtw-name">Pick theater</span>
+                <span class="picker-wtw-price">Select showtimes</span>
+              </div>
+            </div>
+            <a class="picker-wtw-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(pick.title + ' showtimes')}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><polygon points="7,6 7,10 10,8" fill="currentColor"/></svg>
+              Get tickets
+            </a>
+          </div>
+          <div class="picker-wtw-row">
+            <div class="picker-wtw-service">
+              <img class="picker-wtw-icon" src="https://www.google.com/s2/favicons?domain=paramountplus.com&sz=64" alt="">
+              <div class="picker-wtw-info">
+                <span class="picker-wtw-name">Paramount+</span>
+                <span class="picker-wtw-price">Rental starting at $3.99</span>
+              </div>
+            </div>
+            <a class="picker-wtw-btn" href="https://www.paramountplus.com/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg>
+              Watch
+            </a>
+          </div>
+          <div class="picker-wtw-row">
+            <div class="picker-wtw-service">
+              <img class="picker-wtw-icon" src="https://www.google.com/s2/favicons?domain=max.com&sz=64" alt="">
+              <div class="picker-wtw-info">
+                <span class="picker-wtw-name">HBO Max</span>
+                <span class="picker-wtw-price">Rental starting at $3.99</span>
+              </div>
+            </div>
+            <a class="picker-wtw-btn" href="https://www.max.com/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 13,8 5,13" fill="currentColor"/></svg>
+              Watch
+            </a>
+          </div>
+        </div>
+        <button class="picker-wtw-more">Show more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></button>
+      `;
+      overlay.appendChild(wtw);
+
+      const detail = document.createElement('div');
+      detail.className = 'picker-detail';
+      detail.innerHTML = `
+        <h3 class="picker-detail-title">${pick.title}</h3>
+        <div class="picker-detail-meta">
+          <span class="hover-card-rating-badge">${pick.rating}</span>
+          <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
+        </div>
+        <div class="picker-detail-poster">
+          <img src="${pick.backdrop}" alt="${pick.title}">
+          <span class="supertop-trailer-duration">${pick.duration}</span>
+        </div>
+        <div class="picker-detail-scores">
+          <div class="picker-detail-score-box">
+            <span class="picker-detail-score-label">IMDb</span>
+            <span class="picker-detail-score-value">${pick.imdb}/10</span>
+          </div>
+          <div class="picker-detail-score-box">
+            <span class="picker-detail-score-label">Rotten Tomatoes</span>
+            <span class="picker-detail-score-value">${pick.rt}%</span>
+          </div>
+        </div>
+        <div class="picker-detail-overview">
+          <h4>Overview</h4>
+          <p>${pick.description || 'No description available.'}</p>
+        </div>
+        <button class="picker-submit" id="pickerTryAgain">Pick again</button>
+      `;
+      overlay.appendChild(detail);
+
       document.getElementById('pickerCloseResult').addEventListener('click', closePicker);
       document.getElementById('pickerTryAgain').addEventListener('click', () => {
+        const extra = overlay.querySelectorAll('.picker-wtw, .picker-detail');
+        extra.forEach(el => el.remove());
+        card.classList.remove('is-result');
         resetPickerCard();
       });
     });
@@ -875,7 +942,13 @@
     function closePicker() {
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
-      setTimeout(resetPickerCard, 300);
+      setTimeout(() => {
+        const extra = overlay.querySelectorAll('.picker-wtw, .picker-detail');
+        extra.forEach(el => el.remove());
+        const card = document.querySelector('.picker-card');
+        if (card) card.classList.remove('is-result');
+        resetPickerCard();
+      }, 300);
     }
 
     overlay.addEventListener('click', (e) => {
