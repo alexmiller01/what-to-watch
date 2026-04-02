@@ -736,5 +736,80 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  // ── Movie picker overlay ──
+
+  function initPicker() {
+    const overlay = document.getElementById('pickerOverlay');
+    const closeBtn = document.getElementById('pickerClose');
+    const submitBtn = document.getElementById('pickerSubmit');
+    const chipsContainer = document.getElementById('pickerChips');
+    const starsContainer = document.getElementById('pickerStars');
+    const triggerIcon = document.querySelector('.supertop-title-icon');
+
+    for (let i = 0; i < 30; i++) {
+      const star = document.createElement('div');
+      star.className = 'picker-star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      star.style.width = (4 + Math.random() * 8) + 'px';
+      star.style.height = star.style.width;
+      starsContainer.appendChild(star);
+    }
+
+    if (triggerIcon) {
+      triggerIcon.style.cursor = 'pointer';
+      triggerIcon.addEventListener('click', () => {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    });
+
+    chipsContainer.addEventListener('click', (e) => {
+      const chip = e.target.closest('.picker-chip');
+      if (!chip) return;
+
+      if (chip.classList.contains('is-selected')) {
+        chip.classList.remove('is-selected');
+      } else {
+        const selected = chipsContainer.querySelectorAll('.picker-chip.is-selected');
+        if (selected.length >= 3) return;
+        chip.classList.add('is-selected');
+      }
+    });
+
+    submitBtn.addEventListener('click', () => {
+      const selected = [...chipsContainer.querySelectorAll('.picker-chip.is-selected')]
+        .map(c => c.dataset.tag);
+
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+
+      if (selected.length > 0) {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.value = selected.join(', ');
+          searchQuery = selected.join(' ');
+          renderAllRails();
+        }
+      }
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    init();
+    initPicker();
+  });
 })();

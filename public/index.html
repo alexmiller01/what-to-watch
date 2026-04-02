@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/nav.css">
   <link rel="stylesheet" href="/css/supertop.css">
   <link rel="stylesheet" href="/css/algo.css">
+  <link rel="stylesheet" href="/css/picker.css">
   <link rel="stylesheet" href="/css/y100.css">
   <link rel="stylesheet" href="/css/cards.css">
   <link rel="stylesheet" href="/css/dropdown.css">
@@ -208,6 +209,46 @@
     </div>
 
   </main>
+
+  <!-- Movie picker overlay -->
+  <div class="picker-overlay" id="pickerOverlay">
+    <div class="picker-stars" id="pickerStars"></div>
+    <div class="picker-card">
+      <button class="picker-close" id="pickerClose" aria-label="Close">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+      </button>
+      <h2 class="picker-title">Pick up to 3 to narrow down:</h2>
+      <div class="picker-chips" id="pickerChips">
+        <button class="picker-chip" data-tag="Timeless classics">Timeless classics</button>
+        <button class="picker-chip" data-tag="80's">80's</button>
+        <button class="picker-chip" data-tag="90's or 00's">90's or 00's</button>
+        <button class="picker-chip" data-tag="New releases">New releases</button>
+        <button class="picker-chip" data-tag="Action & adventure">Action & adventure</button>
+        <button class="picker-chip" data-tag="Romance">Romance</button>
+        <button class="picker-chip" data-tag="Light-hearted">Light-hearted</button>
+        <button class="picker-chip" data-tag="Family friendly">Family friendly</button>
+        <button class="picker-chip" data-tag="Animated">Animated</button>
+        <button class="picker-chip" data-tag="Live action">Live action</button>
+        <button class="picker-chip" data-tag="Oscar movie">Oscar movie</button>
+        <button class="picker-chip" data-tag="Dad movie">Dad movie</button>
+        <button class="picker-chip" data-tag="Historical">Historical</button>
+        <button class="picker-chip" data-tag="B movie">B movie</button>
+        <button class="picker-chip" data-tag="Bee movie">Bee movie</button>
+        <button class="picker-chip" data-tag="High school drama">High school drama</button>
+        <button class="picker-chip" data-tag="Foreign film">Foreign film</button>
+        <button class="picker-chip" data-tag="Magic">Magic</button>
+        <button class="picker-chip" data-tag="Robots">Robots</button>
+        <button class="picker-chip" data-tag="90 min">90 min</button>
+        <button class="picker-chip" data-tag="Comedy">Comedy</button>
+        <button class="picker-chip" data-tag="Drama">Drama</button>
+        <button class="picker-chip" data-tag="Sci-fi">Sci-fi</button>
+        <button class="picker-chip" data-tag="Aliens">Aliens</button>
+        <button class="picker-chip" data-tag="Horror">Horror</button>
+        <button class="picker-chip" data-tag="Trilogy">Trilogy</button>
+      </div>
+      <button class="picker-submit" id="pickerSubmit">Pick a movie</button>
+    </div>
+  </div>
 
   <script src="/js/app.js"></script>
 </body>
