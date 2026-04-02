@@ -659,9 +659,9 @@
   }
 
   .supertop-genre-chip.active {
-    background: var(--uds-always-black);
-    color: var(--uds-always-white);
-    border-color: var(--uds-always-black);
+    background: var(--uds-foreground-brand);
+    color: var(--uds-foreground-on-color);
+    border-color: var(--uds-foreground-brand);
     font-weight: var(--uds-text-ui2-weight);
   }
 
