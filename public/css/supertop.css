@@ -16,7 +16,7 @@
 .supertop-title-row {
   display: flex;
   align-items: flex-start;
-  gap: var(--uds-space-xs);
+  gap: var(--uds-space-sm);
 }
 
 .supertop-title {
