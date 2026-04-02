@@ -254,9 +254,6 @@
       <div class="supertop-rail">
         <div class="supertop-rail-header">
           <h2 class="supertop-rail-title">${title}</h2>
-          <button class="supertop-rail-hide" aria-label="Hide ${title}">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
-          </button>
         </div>
         <div class="supertop-rail-track-wrapper">
           <div class="supertop-rail-track" id="${railId}">${posters}</div>
