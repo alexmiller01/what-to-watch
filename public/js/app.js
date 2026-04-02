@@ -12,19 +12,19 @@
   ];
 
   let genresExpanded = false;
-
   let allTitles = [];
-  let activeGenre = '';
+  let activeGenres = [];
   let searchQuery = '';
   let activeHoverId = null;
   let hoverTimeout = null;
+  let railCounter = 0;
 
   async function init() {
     const titles = await fetchJSON('/api/titles');
     allTitles = titles;
 
     renderGenreChips();
-    renderSupertopRails();
+    renderAllRails();
     bindEvents();
   }
 
@@ -40,7 +40,8 @@
     const label = '<span class="supertop-genre-label">Genres:</span>';
 
     function chipHTML(g) {
-      return `<button class="supertop-genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`;
+      const isActive = activeGenres.includes(g);
+      return `<button class="supertop-genre-chip${isActive ? ' active' : ''}" data-genre="${g}">${g}</button>`;
     }
 
     const row1 = GENRES_ROW1.map(chipHTML).join('');
@@ -55,50 +56,85 @@
     container.innerHTML = label + row1 + expandBtn + row2;
   }
 
-  // ── Poster rails ──
+  // ── Dynamic rail rendering ──
 
-  function getFilteredTitles() {
-    let filtered = [...allTitles];
-    if (activeGenre) {
-      filtered = filtered.filter(t => t.genre === activeGenre);
-    }
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      filtered = filtered.filter(t =>
-        t.title.toLowerCase().includes(q) ||
-        t.description.toLowerCase().includes(q) ||
-        t.genre.toLowerCase().includes(q)
-      );
-    }
-    return filtered;
+  function getSearchFiltered() {
+    if (!searchQuery) return allTitles;
+    const q = searchQuery.toLowerCase();
+    return allTitles.filter(t =>
+      t.title.toLowerCase().includes(q) ||
+      t.description.toLowerCase().includes(q) ||
+      t.genre.toLowerCase().includes(q)
+    );
   }
 
-  function renderSupertopRails() {
-    const filtered = getFilteredTitles();
-    const movies = filtered.filter(t => t.type === 'movie');
-    const shows = filtered.filter(t => t.type === 'series');
+  function renderAllRails() {
+    removeHoverCard(true);
+    const container = document.getElementById('supertopRails');
+    const pool = getSearchFiltered();
 
-    renderRailPosters('moviesRail', movies);
-    renderRailPosters('showsRail', shows);
+    if (activeGenres.length === 0) {
+      const movies = pool.filter(t => t.type === 'movie');
+      const shows = pool.filter(t => t.type === 'series');
+      container.innerHTML = buildRailHTML('Movies', movies) + buildRailHTML('Shows', shows);
+    } else {
+      let html = '';
+
+      for (const genre of activeGenres) {
+        const genreMovies = pool.filter(t => t.type === 'movie' && t.genre === genre);
+        const genreShows = pool.filter(t => t.type === 'series' && t.genre === genre);
+        html += buildRailHTML(`${genre} movies`, genreMovies);
+        html += buildRailHTML(`${genre} shows`, genreShows);
+      }
+
+      if (activeGenres.length > 1) {
+        const comboLabel = activeGenres.map(g => g.toLowerCase()).join(' ');
+        const comboTitles = pool.filter(t => activeGenres.includes(t.genre));
+        html += buildRailHTML(capitalizeFirst(comboLabel), comboTitles);
+      }
+
+      container.innerHTML = html;
+    }
+
     initRailButtons();
   }
 
-  function renderRailPosters(railId, titles) {
-    const track = document.getElementById(railId);
-    if (!track) return;
+  function capitalizeFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-    if (!titles.length) {
-      track.innerHTML = '<p style="color:var(--uds-foreground-tertiary);font-size:14px;padding:32px 0;">No titles found</p>';
-      return;
-    }
+  function buildRailHTML(title, titles) {
+    railCounter++;
+    const railId = 'rail-' + railCounter;
 
-    const posters = titles.map(t => `
-      <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
-        <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
-        <div class="supertop-poster-trailer"></div>
+    const posters = titles.length
+      ? titles.map(t => `
+          <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
+            <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
+            <div class="supertop-poster-trailer"></div>
+          </div>
+        `).join('').repeat(3)
+      : '<p style="color:var(--uds-foreground-tertiary);font-size:14px;padding:32px 0;">No titles found</p>';
+
+    return `
+      <div class="supertop-rail">
+        <div class="supertop-rail-header">
+          <h2 class="supertop-rail-title">${title}</h2>
+          <button class="supertop-rail-hide" aria-label="Hide ${title}">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
+          </button>
+        </div>
+        <div class="supertop-rail-track-wrapper">
+          <div class="supertop-rail-track" id="${railId}">${posters}</div>
+          <button class="supertop-rail-btn prev" data-rail="${railId}" aria-label="Previous">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+          </button>
+          <button class="supertop-rail-btn next visible" data-rail="${railId}" aria-label="Next">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+          </button>
+        </div>
       </div>
-    `).join('');
-    track.innerHTML = posters + posters + posters;
+    `;
   }
 
   // ── Hover card ──
@@ -263,24 +299,33 @@
   function bindEvents() {
     // Genre expand toggle
     document.addEventListener('click', (e) => {
-      const expandBtn = e.target.closest('#genreExpandBtn');
-      if (expandBtn) {
+      if (e.target.closest('#genreExpandBtn')) {
         genresExpanded = !genresExpanded;
         renderGenreChips();
         return;
       }
-    });
 
-    // Genre chips
-    document.addEventListener('click', (e) => {
+      // Genre chips — multi-select toggle
       const chip = e.target.closest('.supertop-genre-chip');
       if (chip) {
         const genre = chip.dataset.genre;
-        activeGenre = activeGenre === genre ? '' : genre;
-        document.querySelectorAll('.supertop-genre-chip').forEach(c => c.classList.remove('active'));
-        if (activeGenre) chip.classList.add('active');
+        const idx = activeGenres.indexOf(genre);
+        if (idx === -1) {
+          activeGenres.push(genre);
+        } else {
+          activeGenres.splice(idx, 1);
+        }
+        renderGenreChips();
+        renderAllRails();
+        return;
+      }
+
+      // Click outside dismisses a locked (playing) card
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (playing) {
+        if (e.target.closest('.supertop-poster.is-active')) return;
+        if (e.target.closest('.supertop-hover-card')) return;
         removeHoverCard();
-        renderSupertopRails();
       }
     });
 
@@ -306,8 +351,7 @@
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         searchQuery = searchInput.value.trim();
-        removeHoverCard();
-        renderSupertopRails();
+        renderAllRails();
       }, 300);
     });
 
@@ -316,21 +360,18 @@
       searchQuery = '';
       updateClearBtn();
       searchInput.focus();
-      removeHoverCard();
-      renderSupertopRails();
+      renderAllRails();
     });
 
     document.getElementById('searchBtn').addEventListener('click', () => {
       searchQuery = searchInput.value.trim();
-      removeHoverCard();
-      renderSupertopRails();
+      renderAllRails();
     });
 
     searchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         searchQuery = searchInput.value.trim();
-        removeHoverCard();
-        renderSupertopRails();
+        renderAllRails();
       }
     });
 
@@ -368,23 +409,6 @@
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => removeHoverCard(), 150);
       }
-    });
-
-    // Close hover card when scrolling rail (unless trailer is playing)
-    document.querySelectorAll('.supertop-rail-track').forEach(track => {
-      track.addEventListener('scroll', () => {
-        const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-        if (!playing) removeHoverCard(true);
-      });
-    });
-
-    // Click outside dismisses a locked (playing) card
-    document.addEventListener('click', (e) => {
-      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-      if (!playing) return;
-      if (e.target.closest('.supertop-poster.is-active')) return;
-      if (e.target.closest('.supertop-hover-card')) return;
-      removeHoverCard();
     });
   }
 

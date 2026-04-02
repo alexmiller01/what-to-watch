@@ -103,46 +103,8 @@
           </div>
         </div>
 
-        <!-- Rails -->
-        <div class="supertop-rails">
-          <!-- Movies rail -->
-          <div class="supertop-rail">
-            <div class="supertop-rail-header">
-              <h2 class="supertop-rail-title">Movies</h2>
-              <button class="supertop-rail-hide" aria-label="Hide movies">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
-              </button>
-            </div>
-            <div class="supertop-rail-track-wrapper">
-              <div class="supertop-rail-track" id="moviesRail"></div>
-              <button class="supertop-rail-btn prev" data-rail="moviesRail" aria-label="Previous">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-              </button>
-              <button class="supertop-rail-btn next visible" data-rail="moviesRail" aria-label="Next">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Shows rail -->
-          <div class="supertop-rail">
-            <div class="supertop-rail-header">
-              <h2 class="supertop-rail-title">Shows</h2>
-              <button class="supertop-rail-hide" aria-label="Hide shows">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
-              </button>
-            </div>
-            <div class="supertop-rail-track-wrapper">
-              <div class="supertop-rail-track" id="showsRail"></div>
-              <button class="supertop-rail-btn prev" data-rail="showsRail" aria-label="Previous">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-              </button>
-              <button class="supertop-rail-btn next visible" data-rail="showsRail" aria-label="Next">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
+        <!-- Rails (dynamically populated) -->
+        <div class="supertop-rails" id="supertopRails"></div>
 
         <!-- Legal + divider -->
         <div class="supertop-legal">
