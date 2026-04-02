@@ -11,31 +11,23 @@
     'Peacock': '#0D0D0D'
   };
 
+  const GENRES = [
+    'Thriller', 'Drama', 'Action', 'Comedy',
+    'Adventure', 'Romance', 'Science fiction', 'Crime drama'
+  ];
+
   let allTitles = [];
-  let featuredTitles = [];
-  let currentFeaturedIndex = 0;
-  let activeGenre = 'Trending';
-  let activeType = '';
+  let activeGenre = '';
   let searchQuery = '';
-  let heroTimer = null;
 
-  // ── Init ──
   async function init() {
-    const [genres, titles, featured] = await Promise.all([
-      fetchJSON('/api/genres'),
-      fetchJSON('/api/titles'),
-      fetchJSON('/api/featured')
-    ]);
-
+    const titles = await fetchJSON('/api/titles');
     allTitles = titles;
-    featuredTitles = featured;
 
-    renderGenreBar(genres);
-    renderMobileGenreBar(genres);
-    renderHero();
+    renderGenreChips();
+    renderSupertopRails();
     renderSections();
     bindEvents();
-    startHeroRotation();
   }
 
   async function fetchJSON(url) {
@@ -43,67 +35,87 @@
     return res.json();
   }
 
-  // ── Genre bar ──
-  function renderGenreBar(genres) {
-    const bar = document.getElementById('genreBar');
-    bar.innerHTML = genres.map(g =>
-      `<button class="genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`
+  // ── Supertop genre chips ──
+
+  function renderGenreChips() {
+    const container = document.getElementById('supertopGenres');
+    const label = '<span class="supertop-genre-label">Genres:</span>';
+    const chips = GENRES.map(g =>
+      `<button class="supertop-genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`
     ).join('');
+    const expandBtn = `<button class="supertop-genre-expand" aria-label="Show more genres">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg>
+    </button>`;
+    container.innerHTML = label + chips + expandBtn;
   }
 
-  function renderMobileGenreBar(genres) {
-    const bar = document.getElementById('mobileGenreBar');
-    bar.innerHTML = genres.map(g =>
-      `<button class="genre-chip${g === activeGenre ? ' active' : ''}" data-genre="${g}">${g}</button>`
-    ).join('');
+  // ── Supertop poster rails ──
+
+  function renderSupertopRails() {
+    const movies = getFilteredTitles().filter(t => t.type === 'movie');
+    const shows = getFilteredTitles().filter(t => t.type === 'series');
+
+    renderRailPosters('moviesRail', movies);
+    renderRailPosters('showsRail', shows);
+    initRailButtons();
   }
 
-  // ── Hero featured ──
-  function renderHero() {
-    if (!featuredTitles.length) return;
-    const item = featuredTitles[currentFeaturedIndex];
+  function renderRailPosters(railId, titles) {
+    const track = document.getElementById(railId);
+    if (!track) return;
 
-    document.getElementById('heroBackdrop').src = item.backdrop;
-    document.getElementById('heroBackdrop').alt = item.title;
-    document.getElementById('heroTitle').textContent = item.title;
-    document.getElementById('heroBadge').textContent = item.type === 'series' ? 'Featured Series' : 'Featured Film';
-    document.getElementById('heroDescription').textContent = item.description;
+    if (!titles.length) {
+      track.innerHTML = '<p style="color:var(--uds-foreground-tertiary);font-size:14px;padding:32px 0;">No titles found</p>';
+      return;
+    }
 
-    const metaEl = document.getElementById('heroMeta');
-    const scoreClass = item.score >= 70 ? 'fresh' : 'rotten';
-    metaEl.innerHTML = `
-      <span class="hero-score ${scoreClass}">${item.score}%</span>
-      <span>${item.year}</span>
-      <span class="hero-meta-dot"></span>
-      <span>${item.rating}</span>
-      <span class="hero-meta-dot"></span>
-      <span>${item.duration}</span>
-      <span class="hero-meta-dot"></span>
-      <span>${item.streaming.join(', ')}</span>
-    `;
-
-    const dotsEl = document.getElementById('heroDots');
-    dotsEl.innerHTML = featuredTitles.map((_, i) =>
-      `<button class="hero-dot${i === currentFeaturedIndex ? ' active' : ''}" data-index="${i}"></button>`
-    ).join('');
+    track.innerHTML = titles.map(t => `
+      <div class="supertop-poster" data-id="${t.id}">
+        <img src="${t.image}" alt="${t.title}" loading="lazy">
+      </div>
+    `).join('');
   }
 
-  function startHeroRotation() {
-    clearInterval(heroTimer);
-    heroTimer = setInterval(() => {
-      currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredTitles.length;
-      renderHero();
-    }, 6000);
+  function initRailButtons() {
+    document.querySelectorAll('.supertop-rail-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const railId = btn.dataset.rail;
+        const track = document.getElementById(railId);
+        if (!track) return;
+
+        const scrollAmount = track.clientWidth * 0.7;
+        if (btn.classList.contains('prev')) {
+          track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      });
+    });
+
+    document.querySelectorAll('.supertop-rail-track').forEach(track => {
+      const wrapper = track.closest('.supertop-rail-track-wrapper');
+      const prevBtn = wrapper.querySelector('.supertop-rail-btn.prev');
+      const nextBtn = wrapper.querySelector('.supertop-rail-btn.next');
+
+      function updateButtons() {
+        const atStart = track.scrollLeft <= 10;
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+        if (prevBtn) prevBtn.classList.toggle('visible', !atStart);
+        if (nextBtn) nextBtn.classList.toggle('visible', !atEnd);
+      }
+
+      track.addEventListener('scroll', updateButtons);
+      updateButtons();
+    });
   }
 
-  // ── Content sections ──
+  // ── Content sections (below supertop) ──
+
   function getFilteredTitles() {
     let filtered = [...allTitles];
-    if (activeGenre && activeGenre !== 'Trending') {
+    if (activeGenre) {
       filtered = filtered.filter(t => t.genre === activeGenre);
-    }
-    if (activeType) {
-      filtered = filtered.filter(t => t.type === activeType);
     }
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -140,7 +152,7 @@
       return;
     }
 
-    if (activeGenre === 'Trending' && !searchQuery) {
+    if (!activeGenre && !searchQuery) {
       const groups = groupByGenre(filtered);
       const topPicks = filtered.filter(t => t.score >= 90);
       let html = '';
@@ -215,6 +227,7 @@
   }
 
   // ── Carousels ──
+
   function initCarousels() {
     document.querySelectorAll('.carousel-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -240,7 +253,6 @@
       function updateButtons() {
         const atStart = track.scrollLeft <= 10;
         const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
-
         if (prevBtn) prevBtn.classList.toggle('visible', !atStart);
         if (nextBtn) nextBtn.classList.toggle('visible', !atEnd);
       }
@@ -251,6 +263,7 @@
   }
 
   // ── Detail overlay ──
+
   function showDetail(titleId) {
     const item = allTitles.find(t => t.id === titleId);
     if (!item) return;
@@ -291,14 +304,17 @@
   }
 
   // ── Events ──
+
   function bindEvents() {
-    // Genre chips
+    // Genre chips in supertop
     document.addEventListener('click', (e) => {
-      const chip = e.target.closest('.genre-chip');
+      const chip = e.target.closest('.supertop-genre-chip');
       if (chip) {
-        activeGenre = chip.dataset.genre;
-        document.querySelectorAll('.genre-chip').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll(`.genre-chip[data-genre="${activeGenre}"]`).forEach(c => c.classList.add('active'));
+        const genre = chip.dataset.genre;
+        activeGenre = activeGenre === genre ? '' : genre;
+        document.querySelectorAll('.supertop-genre-chip').forEach(c => c.classList.remove('active'));
+        if (activeGenre) chip.classList.add('active');
+        renderSupertopRails();
         renderSections();
       }
     });
@@ -325,6 +341,7 @@
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         searchQuery = searchInput.value.trim();
+        renderSupertopRails();
         renderSections();
       }, 300);
     });
@@ -334,55 +351,35 @@
       searchQuery = '';
       updateClearBtn();
       searchInput.focus();
+      renderSupertopRails();
       renderSections();
     });
 
     document.getElementById('searchBtn').addEventListener('click', () => {
       searchQuery = searchInput.value.trim();
+      renderSupertopRails();
       renderSections();
     });
 
     searchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         searchQuery = searchInput.value.trim();
+        renderSupertopRails();
         renderSections();
       }
     });
 
-    // Title card clicks
+    // Poster clicks (supertop rails)
     document.addEventListener('click', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (poster) {
+        showDetail(parseInt(poster.dataset.id, 10));
+        return;
+      }
+
       const card = e.target.closest('.title-card');
       if (card) {
         showDetail(parseInt(card.dataset.id, 10));
-      }
-    });
-
-    // Hero clicks
-    document.getElementById('heroWatchBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      const item = featuredTitles[currentFeaturedIndex];
-      if (item) showDetail(item.id);
-    });
-
-    document.getElementById('heroInfoBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      const item = featuredTitles[currentFeaturedIndex];
-      if (item) showDetail(item.id);
-    });
-
-    document.getElementById('heroSection').addEventListener('click', () => {
-      const item = featuredTitles[currentFeaturedIndex];
-      if (item) showDetail(item.id);
-    });
-
-    // Hero dots
-    document.getElementById('heroDots').addEventListener('click', (e) => {
-      const dot = e.target.closest('.hero-dot');
-      if (dot) {
-        e.stopPropagation();
-        currentFeaturedIndex = parseInt(dot.dataset.index, 10);
-        renderHero();
-        startHeroRotation();
       }
     });
 
@@ -394,6 +391,5 @@
     });
   }
 
-  // Start the app
   document.addEventListener('DOMContentLoaded', init);
 })();

@@ -1,0 +1,382 @@
+/**
+ * Supertop section – Figma 18913:163383
+ * Title, filter chips, Movies rail, Shows rail, legal footer
+ * All typography and colors use UDS tokens.
+ */
+
+.supertop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-md);
+  padding-top: var(--uds-space-lg);
+}
+
+/* ── Title row: "What to watch" + icon ── */
+
+.supertop-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--uds-space-xs);
+}
+
+.supertop-title {
+  margin: 0;
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title2-size);
+  font-weight: var(--uds-text-title2-weight);
+  line-height: var(--uds-text-title2-line-height);
+  color: var(--uds-foreground-primary);
+}
+
+.supertop-title-icon {
+  width: 16px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* ── Filter chip bar ── */
+
+.supertop-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--uds-space-md);
+}
+
+.supertop-service-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--uds-space-xs) var(--uds-space-sm);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-md);
+  background: var(--uds-background-primary);
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-body2-size);
+  font-weight: var(--uds-text-ui2-weight);
+  line-height: 15.4px;
+  color: var(--uds-foreground-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.supertop-service-dropdown:hover {
+  background: var(--uds-line-tertiary);
+}
+
+.supertop-service-dropdown svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+  transform: rotate(90deg);
+  flex-shrink: 0;
+}
+
+.supertop-genre-group {
+  display: flex;
+  align-items: center;
+  gap: var(--uds-space-xs);
+}
+
+.supertop-genre-label {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-label4-size);
+  font-weight: var(--uds-text-label4-weight);
+  line-height: var(--uds-text-label4-line-height);
+  color: var(--uds-foreground-primary);
+  white-space: nowrap;
+  width: 54px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.supertop-genre-chip {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-label4-size);
+  font-weight: var(--uds-text-label4-weight);
+  line-height: var(--uds-text-label4-line-height);
+  color: var(--uds-foreground-primary);
+  background: var(--uds-background-primary);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-full);
+  padding: var(--uds-space-xs) var(--uds-space-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.supertop-genre-chip:hover {
+  background: var(--uds-line-tertiary);
+}
+
+.supertop-genre-chip.active {
+  background: var(--uds-always-black);
+  color: var(--uds-always-white);
+  border-color: var(--uds-always-black);
+}
+
+.supertop-genre-expand {
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  border-radius: var(--uds-radius-full);
+  background: var(--uds-spectrum-carbon-2);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--uds-space-xs);
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+}
+
+.supertop-genre-expand:hover {
+  background: var(--uds-line-secondary);
+}
+
+.supertop-genre-expand svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+}
+
+/* ── Content rails (Movies / Shows) ── */
+
+.supertop-rails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-xl);
+}
+
+.supertop-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-sm);
+}
+
+.supertop-rail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.supertop-rail-title {
+  margin: 0;
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title3-size);
+  font-weight: var(--uds-text-title3-weight);
+  line-height: var(--uds-text-title3-line-height);
+  color: var(--uds-foreground-primary);
+}
+
+.supertop-rail-hide {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+  color: var(--uds-foreground-tertiary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.supertop-rail-hide svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+}
+
+/* LG Rail – horizontal poster scroll */
+.supertop-rail-track-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 207px;
+}
+
+.supertop-rail-track {
+  display: flex;
+  gap: var(--uds-space-sm);
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  height: 207px;
+  align-items: center;
+}
+
+.supertop-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Poster card – 128×207, border-radius lg (16px) */
+.supertop-poster {
+  flex: 0 0 128px;
+  width: 128px;
+  height: 207px;
+  border-radius: var(--uds-radius-xl);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: var(--uds-foreground-brand);
+  flex-shrink: 0;
+}
+
+.supertop-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--uds-radius-xl);
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.supertop-poster:hover img {
+  transform: scale(1.05);
+}
+
+/* Rail scroll button – chevron right, positioned at right edge */
+.supertop-rail-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: var(--uds-always-white);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-full);
+  padding: var(--uds-space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(31, 31, 31, 0.1), 0 1px 2px rgba(31, 31, 31, 0.1);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.supertop-rail-btn:hover {
+  background: var(--uds-spectrum-carbon-2);
+  box-shadow: 0 2px 6px rgba(31, 31, 31, 0.15), 0 1px 3px rgba(31, 31, 31, 0.12);
+}
+
+.supertop-rail-btn svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+}
+
+.supertop-rail-btn.next {
+  right: 0;
+}
+
+.supertop-rail-btn.prev {
+  left: 0;
+  display: none;
+}
+
+.supertop-rail-btn.prev svg {
+  transform: rotate(180deg);
+}
+
+.supertop-rail-btn.visible {
+  display: flex;
+}
+
+.supertop-rail-btn.hidden {
+  display: none;
+}
+
+/* ── Legal footer + divider ── */
+
+.supertop-legal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-sm);
+}
+
+.supertop-legal-text {
+  font-family: var(--uds-font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: var(--uds-text-caption1-line-height);
+  color: var(--uds-foreground-tertiary);
+  text-align: right;
+  margin: 0;
+}
+
+.supertop-divider {
+  height: var(--uds-border-thin);
+  background: var(--uds-line-secondary);
+  border: none;
+  margin: 0;
+}
+
+/* ── Mobile responsive ── */
+
+@media (max-width: 1100px) {
+  .supertop-poster {
+    flex: 0 0 120px;
+    width: 120px;
+    height: 194px;
+  }
+
+  .supertop-rail-track-wrapper,
+  .supertop-rail-track {
+    height: 194px;
+  }
+}
+
+@media (max-width: 767px) {
+  .supertop {
+    gap: var(--uds-space-sm);
+    padding-top: var(--uds-space-md);
+  }
+
+  .supertop-title {
+    font-size: var(--uds-text-title3-size);
+    line-height: var(--uds-text-title3-line-height);
+  }
+
+  .supertop-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--uds-space-xs);
+  }
+
+  .supertop-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .supertop-genre-label {
+    display: none;
+  }
+
+  .supertop-rails {
+    gap: var(--uds-space-lg);
+  }
+
+  .supertop-poster {
+    flex: 0 0 110px;
+    width: 110px;
+    height: 178px;
+  }
+
+  .supertop-rail-track-wrapper,
+  .supertop-rail-track {
+    height: 178px;
+  }
+
+  .supertop-rail-title {
+    font-size: var(--uds-text-headline1-size);
+    line-height: var(--uds-text-headline1-line-height);
+  }
+
+  .supertop-rail-btn {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+  }
+}

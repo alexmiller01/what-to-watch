@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/grid.css">
   <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/supertop.css">
   <link rel="stylesheet" href="/css/hero.css">
   <link rel="stylesheet" href="/css/cards.css">
   <link rel="stylesheet" href="/css/sections.css">
@@ -83,39 +84,74 @@
     </div>
   </header>
 
-  <!-- ── Mobile genre bar ── -->
-  <div class="mobile-genre-bar" id="mobileGenreBar"></div>
-
   <!-- ── Main content ── -->
   <main>
-    <!-- Hero / Featured -->
+    <!-- Supertop – Figma 18913:163383 -->
     <div class="grid">
-      <div class="hero" id="heroSection">
-        <img class="hero-backdrop" id="heroBackdrop" src="" alt="">
-        <div class="hero-gradient"></div>
-        <div class="hero-content">
-          <span class="hero-badge" id="heroBadge">Featured</span>
-          <h1 class="hero-title" id="heroTitle"></h1>
-          <div class="hero-meta" id="heroMeta"></div>
-          <p class="hero-description" id="heroDescription"></p>
-          <div class="hero-actions">
-            <button class="hero-btn hero-btn-primary" id="heroWatchBtn">
-              <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 14,8 4,14"/></svg>
-              Where to Watch
-            </button>
-            <button class="hero-btn hero-btn-secondary" id="heroInfoBtn">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><line x1="8" y1="7" x2="8" y2="11"/><circle cx="8" cy="5" r="0.5" fill="currentColor"/></svg>
-              More Info
-            </button>
+      <div class="supertop">
+        <!-- Title row -->
+        <div class="supertop-title-row">
+          <h1 class="supertop-title">What to watch</h1>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="supertop-filters" id="supertopFilters">
+          <button class="supertop-service-dropdown">
+            All services
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+          </button>
+          <div class="supertop-genre-group" id="supertopGenres">
+            <span class="supertop-genre-label">Genres:</span>
           </div>
         </div>
-        <div class="hero-dots" id="heroDots"></div>
-      </div>
-    </div>
 
-    <!-- Genre chips (desktop) -->
-    <div class="grid desktop-genre-bar">
-      <div class="genre-bar" id="genreBar"></div>
+        <!-- Rails -->
+        <div class="supertop-rails">
+          <!-- Movies rail -->
+          <div class="supertop-rail">
+            <div class="supertop-rail-header">
+              <h2 class="supertop-rail-title">Movies</h2>
+              <button class="supertop-rail-hide" aria-label="Hide movies">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
+              </button>
+            </div>
+            <div class="supertop-rail-track-wrapper">
+              <div class="supertop-rail-track" id="moviesRail"></div>
+              <button class="supertop-rail-btn prev" data-rail="moviesRail" aria-label="Previous">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+              </button>
+              <button class="supertop-rail-btn next visible" data-rail="moviesRail" aria-label="Next">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Shows rail -->
+          <div class="supertop-rail">
+            <div class="supertop-rail-header">
+              <h2 class="supertop-rail-title">Shows</h2>
+              <button class="supertop-rail-hide" aria-label="Hide shows">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 8c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5c-1.5 3-3.5 4.5-5.5 4.5S4 11 2.5 8z"/><circle cx="8" cy="8" r="2"/><line x1="3" y1="13" x2="13" y2="3"/></svg>
+              </button>
+            </div>
+            <div class="supertop-rail-track-wrapper">
+              <div class="supertop-rail-track" id="showsRail"></div>
+              <button class="supertop-rail-btn prev" data-rail="showsRail" aria-label="Previous">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+              </button>
+              <button class="supertop-rail-btn next visible" data-rail="showsRail" aria-label="Next">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal + divider -->
+        <div class="supertop-legal">
+          <p class="supertop-legal-text">©A.M.P.A.S.®</p>
+          <hr class="supertop-divider">
+        </div>
+      </div>
     </div>
 
     <!-- Content sections -->
