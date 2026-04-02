@@ -354,22 +354,47 @@
       const trackRect = track.getBoundingClientRect();
       const posterRect = posterEl.getBoundingClientRect();
       const spaceRight = trackRect.right - posterRect.right;
+      const spaceLeft = posterRect.left - trackRect.left;
 
       if (spaceRight < 350) {
-        cardEl.classList.add('is-flipped');
-        posterEl.insertAdjacentElement('beforebegin', cardEl);
+        if (spaceLeft < 350) {
+          const scrollNeeded = 350 - spaceLeft;
+          track.scrollBy({ left: -scrollNeeded, behavior: 'smooth' });
+          posterEl.insertAdjacentElement('beforebegin', cardEl);
+          cardEl.classList.add('is-flipped');
+        } else {
+          cardEl.classList.add('is-flipped');
+          posterEl.insertAdjacentElement('beforebegin', cardEl);
+        }
       } else {
         posterEl.insertAdjacentElement('afterend', cardEl);
       }
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          cardEl.classList.add('is-visible');
+
+          const updatedPosterRect = posterEl.getBoundingClientRect();
+          const updatedTrackRect = track.getBoundingClientRect();
+
+          if (updatedPosterRect.left < updatedTrackRect.left) {
+            track.scrollBy({ left: updatedPosterRect.left - updatedTrackRect.left - 20, behavior: 'smooth' });
+          }
+
+          const cardRect = cardEl.getBoundingClientRect();
+          if (cardRect.right > updatedTrackRect.right) {
+            track.scrollBy({ left: cardRect.right - updatedTrackRect.right + 20, behavior: 'smooth' });
+          }
+        });
+      });
     } else {
       posterEl.insertAdjacentElement('afterend', cardEl);
-    }
-
-    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        cardEl.classList.add('is-visible');
+        requestAnimationFrame(() => {
+          cardEl.classList.add('is-visible');
+        });
       });
-    });
+    }
   }
 
   function removeHoverCard(instant) {
