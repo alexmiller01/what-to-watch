@@ -193,7 +193,7 @@
 /* LG Rail – horizontal poster scroll */
 .supertop-rail-track-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   height: 207px;
 }
 
@@ -201,6 +201,7 @@
   display: flex;
   gap: var(--uds-space-sm);
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -262,11 +263,11 @@
 }
 
 .supertop-rail-btn.next {
-  right: 0;
+  right: -20px;
 }
 
 .supertop-rail-btn.prev {
-  left: 0;
+  left: -20px;
   display: none;
 }
 
