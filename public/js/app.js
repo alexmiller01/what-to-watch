@@ -827,8 +827,11 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
         </button>
         <div class="picker-result">
-          <div class="picker-result-video">
-            <iframe src="https://www.youtube.com/embed/${pick.trailer}?modestbranding=1&rel=0" allow="encrypted-media" allowfullscreen></iframe>
+          <div class="picker-result-video" id="pickerVideo" data-trailer="${pick.trailer}">
+            <img src="https://img.youtube.com/vi/${pick.trailer}/maxresdefault.jpg" alt="${pick.title}" onerror="this.src='https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg'">
+            <button class="picker-video-play" aria-label="Play trailer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,4 20,12 8,20"/></svg>
+            </button>
           </div>
         </div>
       `;
@@ -883,6 +886,16 @@
       overlay.appendChild(wtw);
 
       document.getElementById('pickerCloseResult').addEventListener('click', closePicker);
+
+      const videoContainer = document.getElementById('pickerVideo');
+      const videoPlayBtn = videoContainer.querySelector('.picker-video-play');
+      if (videoPlayBtn) {
+        videoPlayBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const tid = videoContainer.dataset.trailer;
+          videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${tid}?autoplay=1&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        });
+      }
 
       const tryAgainBtn = wtw.querySelector('.picker-wtw-more');
       if (tryAgainBtn) {
