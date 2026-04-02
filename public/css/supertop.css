@@ -451,6 +451,10 @@
   opacity: 1;
 }
 
+.supertop-hover-card.is-flipped {
+  flex-direction: row-reverse;
+}
+
 /* Right: info panel */
 .hover-card-info {
   width: 320px;

@@ -348,7 +348,22 @@
     }
 
     posterEl.classList.add('is-active');
-    posterEl.insertAdjacentElement('afterend', cardEl);
+
+    const track = posterEl.closest('.supertop-rail-track');
+    if (track) {
+      const trackRect = track.getBoundingClientRect();
+      const posterRect = posterEl.getBoundingClientRect();
+      const spaceRight = trackRect.right - posterRect.right;
+
+      if (spaceRight < 350) {
+        cardEl.classList.add('is-flipped');
+        posterEl.insertAdjacentElement('beforebegin', cardEl);
+      } else {
+        posterEl.insertAdjacentElement('afterend', cardEl);
+      }
+    } else {
+      posterEl.insertAdjacentElement('afterend', cardEl);
+    }
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
