@@ -738,38 +738,78 @@
     padding-top: var(--uds-space-md);
   }
 
-  /* Mobile hover card: stacked vertical layout */
-  .supertop-hover-card {
+  /* Mobile: poster stays normal size, no inline expand */
+  .supertop-poster.is-active {
+    flex-basis: 110px;
+    width: 110px;
+    height: 178px;
+    background: var(--uds-foreground-brand);
+    outline: var(--uds-border-medium) solid var(--uds-foreground-brand);
+    outline-offset: -2px;
+  }
+
+  /* Mobile hover card: below the rail, full width, stacked */
+  .supertop-hover-card.is-mobile {
     flex-direction: column;
     height: auto;
     max-width: none !important;
-    opacity: 1 !important;
     width: 100%;
-    flex-basis: 100%;
-    gap: var(--uds-space-sm);
+    gap: var(--uds-space-md);
+    padding: var(--uds-space-md) 0;
+    overflow: visible;
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
-  .supertop-poster.is-active {
-    flex-basis: 100%;
+  .supertop-hover-card.is-mobile.is-visible {
+    opacity: 1;
+    max-width: none;
+  }
+
+  .mobile-hover-backdrop {
     width: 100%;
-    height: auto;
     aspect-ratio: 16/9;
+    border-radius: var(--uds-radius-xl);
+    overflow: hidden;
+    position: relative;
+    background: var(--uds-always-black);
   }
 
-  .hover-card-info {
+  .mobile-hover-backdrop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-hover-backdrop .supertop-trailer-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-hover-backdrop .supertop-trailer-duration {
+    position: absolute;
+    bottom: var(--uds-space-md);
+    right: var(--uds-space-md);
+  }
+
+  .supertop-hover-card.is-mobile .hover-card-info {
     width: 100%;
     height: auto;
     padding: 0;
     gap: var(--uds-space-sm);
   }
 
-  .hover-card-title {
+  .supertop-hover-card.is-mobile .hover-card-title {
     font-size: var(--uds-text-title3-size);
     line-height: var(--uds-text-title3-line-height);
     white-space: normal;
   }
 
-  .hover-card-details-btn {
+  .supertop-hover-card.is-mobile .hover-card-details-btn {
     align-self: flex-start;
   }
 

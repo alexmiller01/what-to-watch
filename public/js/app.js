@@ -273,6 +273,48 @@
 
   // ── Hover card ──
 
+  function buildMobileHoverCard(t) {
+    return `
+      <div class="supertop-hover-card" data-hover-id="${t.id}">
+        <div class="mobile-hover-backdrop">
+          <img src="${t.backdrop || t.image}" alt="${t.title}">
+          <button class="supertop-trailer-play" aria-label="Play trailer" data-trailer="${t.trailer || ''}">
+            <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+          </button>
+          <span class="supertop-trailer-duration">${t.duration}</span>
+        </div>
+        <div class="hover-card-info">
+          <div class="hover-card-header">
+            <h3 class="hover-card-title">${t.title}</h3>
+            <div class="hover-card-subtitle">
+              <span class="hover-card-rating-badge">${t.rating}</span>
+              <span class="hover-card-meta">${t.year} · ${t.genre} · ${t.duration}</span>
+            </div>
+          </div>
+          <div class="hover-card-ratings">
+            <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
+              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
+              <span class="hover-card-rating-value">${t.rt}%</span>
+            </a>
+            <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
+              <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
+              <span class="hover-card-rating-value">${t.imdb}/10</span>
+            </a>
+            <a class="hover-card-rating-link" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
+              <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
+              <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
+            </a>
+          </div>
+          <p class="hover-card-desc">${t.description}</p>
+          <a class="hover-card-details-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
+            See full details
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
   function buildHoverCard(t) {
     return `
       <div class="supertop-hover-card" data-hover-id="${t.id}">
@@ -349,51 +391,86 @@
 
     posterEl.classList.add('is-active');
 
-    const track = posterEl.closest('.supertop-rail-track');
-    const expandedPosterWidth = 369;
-    const cardInfoWidth = 340;
-    const totalNeeded = expandedPosterWidth + cardInfoWidth + 12;
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
 
-    if (track) {
-      const trackRect = track.getBoundingClientRect();
-      const posterRect = posterEl.getBoundingClientRect();
-      const spaceRight = trackRect.right - posterRect.left - expandedPosterWidth;
+    if (mobile) {
+      const mobileCardHTML = buildMobileHoverCard(item);
+      const mobileTempDiv = document.createElement('div');
+      mobileTempDiv.innerHTML = mobileCardHTML;
+      const mobileCardEl = mobileTempDiv.firstElementChild;
+      mobileCardEl.classList.add('is-mobile');
 
-      posterEl.insertAdjacentElement('afterend', cardEl);
+      const playBtn = mobileCardEl.querySelector('.supertop-trailer-play');
+      if (playBtn && playBtn.dataset.trailer) {
+        const tid = playBtn.dataset.trailer;
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const bd = mobileCardEl.querySelector('.mobile-hover-backdrop');
+          if (bd) {
+            bd.innerHTML = `<iframe src="https://www.youtube.com/embed/${tid}?autoplay=1&modestbranding=1&rel=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;aspect-ratio:16/9;border:none;border-radius:var(--uds-radius-xl);"></iframe>`;
+          }
+        });
+      }
 
-      if (spaceRight < cardInfoWidth) {
-        const scrollAmount = cardInfoWidth - spaceRight + 40;
-        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const rail = posterEl.closest('.supertop-rail');
+      if (rail) {
+        rail.insertAdjacentElement('afterend', mobileCardEl);
+      } else {
+        posterEl.insertAdjacentElement('afterend', mobileCardEl);
       }
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          cardEl.classList.add('is-visible');
+          mobileCardEl.classList.add('is-visible');
+          mobileCardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
       });
-
-      setTimeout(() => {
-        if (!cardEl.parentNode) return;
-        const posterR = posterEl.getBoundingClientRect();
-        const cardR = cardEl.getBoundingClientRect();
-        const trackR = track.getBoundingClientRect();
-
-        const leftEdge = Math.min(posterR.left, cardR.left);
-        const rightEdge = Math.max(posterR.right, cardR.right);
-
-        if (rightEdge > trackR.right) {
-          track.scrollBy({ left: rightEdge - trackR.right + 20, behavior: 'smooth' });
-        } else if (leftEdge < trackR.left) {
-          track.scrollBy({ left: leftEdge - trackR.left - 20, behavior: 'smooth' });
-        }
-      }, 450);
     } else {
-      posterEl.insertAdjacentElement('afterend', cardEl);
-      requestAnimationFrame(() => {
+      const track = posterEl.closest('.supertop-rail-track');
+      const expandedPosterWidth = 369;
+      const cardInfoWidth = 340;
+
+      if (track) {
+        const trackRect = track.getBoundingClientRect();
+        const posterRect = posterEl.getBoundingClientRect();
+        const spaceRight = trackRect.right - posterRect.left - expandedPosterWidth;
+
+        posterEl.insertAdjacentElement('afterend', cardEl);
+
+        if (spaceRight < cardInfoWidth) {
+          const scrollAmount = cardInfoWidth - spaceRight + 40;
+          track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+
         requestAnimationFrame(() => {
-          cardEl.classList.add('is-visible');
+          requestAnimationFrame(() => {
+            cardEl.classList.add('is-visible');
+          });
         });
-      });
+
+        setTimeout(() => {
+          if (!cardEl.parentNode) return;
+          const posterR = posterEl.getBoundingClientRect();
+          const cardR = cardEl.getBoundingClientRect();
+          const trackR = track.getBoundingClientRect();
+
+          const leftEdge = Math.min(posterR.left, cardR.left);
+          const rightEdge = Math.max(posterR.right, cardR.right);
+
+          if (rightEdge > trackR.right) {
+            track.scrollBy({ left: rightEdge - trackR.right + 20, behavior: 'smooth' });
+          } else if (leftEdge < trackR.left) {
+            track.scrollBy({ left: leftEdge - trackR.left - 20, behavior: 'smooth' });
+          }
+        }, 450);
+      } else {
+        posterEl.insertAdjacentElement('afterend', cardEl);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            cardEl.classList.add('is-visible');
+          });
+        });
+      }
     }
   }
 
