@@ -1,0 +1,91 @@
+/* Algo result cards – Yahoo Search style */
+
+.algo {
+  padding: var(--uds-space-md, 16px) 0;
+}
+
+.algo + .algo {
+  border-top: var(--uds-border-thin, 1px) solid var(--uds-line-secondary, #e3e3e3);
+}
+
+/* ── Favicon + source row ── */
+
+.algo-source {
+  display: flex;
+  align-items: center;
+  gap: var(--uds-space-xs, 8px);
+  margin-bottom: var(--uds-space-xs, 8px);
+}
+
+.algo-favicon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--uds-radius-full, 9999px);
+  border: var(--uds-border-thin, 1px) solid var(--uds-line-secondary, #e3e3e3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.algo-favicon img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.algo-source-name {
+  display: block;
+  font-family: var(--uds-font-sans);
+  font-weight: var(--uds-text-ui2-weight, 500);
+  font-size: var(--uds-text-body2-size, 14px);
+  line-height: var(--uds-text-body2-line-height, 20px);
+  color: var(--uds-foreground-primary, #141414);
+}
+
+.algo-source-url {
+  display: block;
+  font-family: var(--uds-font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--uds-foreground-secondary, #444444);
+}
+
+/* ── Title ── */
+
+.algo-title {
+  margin: 0 0 4px;
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title3-size, 20px);
+  font-weight: var(--uds-text-title3-weight, 500);
+  line-height: var(--uds-text-title3-line-height, 24px);
+}
+
+.algo-title a {
+  color: #2015c2;
+  text-decoration: none;
+}
+
+.algo-title a:hover {
+  text-decoration: underline;
+}
+
+.algo-title a:visited {
+  color: #6a17b0;
+}
+
+/* ── Snippet ── */
+
+.algo-snippet {
+  margin: 0;
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-body2-size, 14px);
+  font-weight: var(--uds-text-body2-weight, 400);
+  line-height: var(--uds-text-body2-line-height, 20px);
+  color: var(--uds-foreground-secondary, #444444);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

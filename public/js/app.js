@@ -25,7 +25,92 @@
 
     renderGenreChips();
     renderAllRails();
+    renderCenterRail();
     bindEvents();
+  }
+
+  function renderCenterRail() {
+    const results = [
+      {
+        source: 'Rotten Tomatoes',
+        favicon: 'https://www.google.com/s2/favicons?domain=rottentomatoes.com&sz=32',
+        url: 'editorial.rottentomatoes.com \u203a guide \u203a popular-tv-shows',
+        title: '25 Most Popular TV Shows Right Now: What to Watch on Streaming',
+        snippet: 'Here are the current top 25 series! Click on each show for reviews and trailers, where to watch, and how to cast your own ratings vote. Check back weekly for latest updates.',
+        link: 'https://editorial.rottentomatoes.com/guide/popular-tv-shows/'
+      },
+      {
+        source: 'Decider',
+        favicon: 'https://www.google.com/s2/favicons?domain=decider.com&sz=32',
+        url: 'decider.com \u203a what-to-watch',
+        title: 'What to Watch Right Now | Where To Stream the Best Movies & Shows',
+        snippet: 'Decider\u2019s list of the best movies and shows to watch online with Netflix, Hulu, Amazon Prime, HBO, and other streaming services. Updated daily with new recommendations.',
+        link: 'https://decider.com/what-to-watch/'
+      },
+      {
+        source: 'PureWow',
+        favicon: 'https://www.google.com/s2/favicons?domain=purewow.com&sz=32',
+        url: 'purewow.com \u203a entertainment \u203a what-to-watch-this',
+        title: '15 Shows and Movies to Watch This Weekend',
+        snippet: 'Here\u2019s what to watch this weekend! From star-studded movies to buzzy new streaming shows, handpicked must-watch shows and movies. Streaming recommendations.',
+        link: 'https://www.purewow.com/entertainment/what-to-watch-this-weekend'
+      },
+      {
+        source: 'What To Watch',
+        favicon: 'https://www.google.com/s2/favicons?domain=whattowatch.com&sz=32',
+        url: 'whattowatch.com',
+        title: 'What To Watch - Best Streaming Recommendations',
+        snippet: 'Find the best movies and TV shows to stream right now. Expert reviews, ratings, and where to watch guides for Netflix, Hulu, HBO Max, and more.',
+        link: 'https://www.whattowatch.com/'
+      },
+      {
+        source: 'Digital Trends',
+        favicon: 'https://www.google.com/s2/favicons?domain=digitaltrends.com&sz=32',
+        url: 'digitaltrends.com \u203a movies \u203a best-new-shows-to',
+        title: 'The best new shows to stream on Netflix, Hulu, HBO Max, and more',
+        snippet: 'Read the entire guide for the full list of recommendations. We also have guides to the best new movies to stream, the best shows on Netflix, and best shows on Hulu.',
+        link: 'https://www.digitaltrends.com/movies/best-new-shows-to-stream-this-week/'
+      },
+      {
+        source: 'Shortlist',
+        favicon: 'https://www.google.com/s2/favicons?domain=shortlist.com&sz=32',
+        url: 'shortlist.com \u203a news \u203a new-on-streaming-tv-show',
+        title: 'What to watch: new movies and TV shows to stream this week',
+        snippet: 'Welcome to the WatchList, the ultimate what to watch guide. Each week, our TV and movie experts curate a list of the best things to watch on streaming.',
+        link: 'https://www.shortlist.com/news/new-on-streaming-tv-show-movies-402461'
+      },
+      {
+        source: 'The Wrap',
+        favicon: 'https://www.google.com/s2/favicons?domain=thewrap.com&sz=32',
+        url: 'thewrap.com \u203a what-to-watch',
+        title: 'What to Watch - TheWrap',
+        snippet: 'Discover the latest new releases on Netflix, Hulu, Amazon Prime, and more. Stay up-to-date with top streaming picks and never miss the best shows and movies!',
+        link: 'https://www.thewrap.com/what-to-watch/'
+      },
+      {
+        source: 'Yahoo Entertainment',
+        favicon: 'https://www.google.com/s2/favicons?domain=yahoo.com&sz=32',
+        url: 'yahoo.com \u203a entertainment \u203a movies',
+        title: 'Best Movies and TV Shows to Watch in 2026',
+        snippet: 'Yahoo Entertainment\u2019s guide to the best movies and TV shows streaming now. Reviews, trailers, and recommendations from our entertainment editors.',
+        link: 'https://www.yahoo.com/entertainment/'
+      }
+    ];
+
+    const container = document.getElementById('centerRail');
+    container.innerHTML = results.map(r => `
+      <div class="algo">
+        <div class="algo-source">
+          <div class="algo-favicon"><img src="${r.favicon}" alt=""></div>
+          <div>
+            <span class="algo-source-name">${r.source}</span>
+            <span class="algo-source-url">${r.url}</span>
+          </div>
+        </div>
+        <h3 class="algo-title"><a href="${r.link}" target="_blank" rel="noopener">${r.title}</a></h3>
+        <p class="algo-snippet">${r.snippet}</p>
+      </div>
+    `).join('');
   }
 
   async function fetchJSON(url) {
