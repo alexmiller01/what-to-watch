@@ -358,15 +358,10 @@
       const trackRect = track.getBoundingClientRect();
       const posterRect = posterEl.getBoundingClientRect();
       const spaceRight = trackRect.right - posterRect.left - expandedPosterWidth;
-      const spaceLeft = posterRect.left - trackRect.left;
 
-      if (spaceRight >= cardInfoWidth) {
-        posterEl.insertAdjacentElement('afterend', cardEl);
-      } else if (spaceLeft >= cardInfoWidth) {
-        cardEl.classList.add('is-flipped');
-        posterEl.insertAdjacentElement('beforebegin', cardEl);
-      } else {
-        posterEl.insertAdjacentElement('afterend', cardEl);
+      posterEl.insertAdjacentElement('afterend', cardEl);
+
+      if (spaceRight < cardInfoWidth) {
         const scrollAmount = cardInfoWidth - spaceRight + 40;
         track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
