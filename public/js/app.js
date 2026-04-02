@@ -114,10 +114,10 @@
             </a>
           </div>
           <p class="hover-card-desc">${t.description}</p>
-          <button class="hover-card-details-btn">
+          <a class="hover-card-details-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
             See full details
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-          </button>
+          </a>
         </div>
       </div>
     `;
