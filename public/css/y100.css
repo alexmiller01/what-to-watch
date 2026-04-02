@@ -1,0 +1,182 @@
+/* Yahoo Top 100 – right rail widget (Figma 18913:162073) */
+
+.y100 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-md);
+  align-items: center;
+}
+
+.y100-title {
+  margin: 0;
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title2-size);
+  font-weight: var(--uds-text-title2-weight);
+  line-height: var(--uds-text-title2-line-height);
+  color: var(--uds-foreground-primary);
+  width: 100%;
+}
+
+.y100-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-sm);
+  width: 100%;
+}
+
+/* ── Individual row ── */
+
+.y100-item {
+  display: flex;
+  align-items: center;
+  gap: var(--uds-space-sm);
+  width: 100%;
+}
+
+.y100-poster {
+  width: 54px;
+  height: 87px;
+  border-radius: var(--uds-radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--uds-foreground-brand);
+}
+
+.y100-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.y100-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-2xs);
+  justify-content: center;
+  align-self: stretch;
+}
+
+.y100-name {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title3-size);
+  font-weight: var(--uds-text-title3-weight);
+  line-height: var(--uds-text-title3-line-height);
+  color: var(--uds-foreground-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.y100-ratings {
+  display: flex;
+  gap: var(--uds-space-sm);
+  align-items: center;
+}
+
+.y100-rating-item {
+  display: flex;
+  align-items: center;
+  gap: var(--uds-space-2xs);
+}
+
+.y100-rating-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.y100-rating-value {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-body1-size);
+  font-weight: var(--uds-text-ui2-weight);
+  line-height: var(--uds-text-body1-line-height);
+  color: var(--uds-always-black);
+  white-space: nowrap;
+}
+
+.y100-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--uds-space-xs);
+}
+
+.y100-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px var(--uds-space-xs);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-xs);
+  font-family: var(--uds-font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: var(--uds-foreground-secondary);
+  background: var(--uds-background-primary);
+  min-width: 24px;
+  text-align: center;
+}
+
+.y100-meta-text {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-label4-size);
+  font-weight: var(--uds-text-label4-weight);
+  line-height: var(--uds-text-label4-line-height);
+  color: var(--uds-foreground-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Large Yahoo score on the right */
+.y100-score {
+  font-family: var(--uds-font-sans);
+  font-size: 24px;
+  font-weight: var(--uds-text-ui2-weight);
+  line-height: 32px;
+  letter-spacing: -0.36px;
+  color: var(--uds-foreground-primary);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.y100-divider {
+  width: 100%;
+  height: var(--uds-border-thin);
+  background: var(--uds-line-secondary);
+  border: none;
+  margin: 0;
+}
+
+/* "More on Yahoo Entertainment" button */
+.y100-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--uds-space-xs) var(--uds-space-sm);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-full);
+  background: var(--uds-background-primary);
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-body2-size);
+  font-weight: var(--uds-text-ui2-weight);
+  line-height: 15.4px;
+  color: var(--uds-foreground-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.y100-more-btn:hover {
+  background: var(--uds-line-tertiary);
+}
+
+.y100-more-btn svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+}

@@ -26,6 +26,7 @@
     renderGenreChips();
     renderAllRails();
     renderCenterRail();
+    renderRightRail();
     bindEvents();
   }
 
@@ -116,6 +117,54 @@
   async function fetchJSON(url) {
     const res = await fetch(url);
     return res.json();
+  }
+
+  // ── Right rail: Yahoo Top 100 ──
+
+  function renderRightRail() {
+    const top5 = [...allTitles]
+      .filter(t => t.type === 'movie')
+      .sort((a, b) => b.yahoo - a.yahoo)
+      .slice(0, 5);
+
+    const container = document.getElementById('rightRail');
+    const rows = top5.map((t, i) => `
+      <div class="y100-item">
+        <div class="y100-poster">
+          <img src="${t.image}" alt="${t.title}" loading="lazy">
+        </div>
+        <div class="y100-info">
+          <p class="y100-name">${i + 1}. ${t.title}</p>
+          <div class="y100-ratings">
+            <div class="y100-rating-item">
+              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
+              <span class="y100-rating-value">${t.rt}%</span>
+            </div>
+            <div class="y100-rating-item">
+              <img class="y100-rating-icon" src="/assets/imdb.svg" alt="IMDb">
+              <span class="y100-rating-value">${t.imdb}/10</span>
+            </div>
+          </div>
+          <div class="y100-meta">
+            <span class="y100-rating-badge">${t.rating}</span>
+            <span class="y100-meta-text">${t.year} · ${t.genre} · ${t.duration}</span>
+          </div>
+        </div>
+        <span class="y100-score">${t.yahoo.toFixed(1)}</span>
+      </div>
+      ${i < top5.length - 1 ? '<hr class="y100-divider">' : ''}
+    `).join('');
+
+    container.innerHTML = `
+      <div class="y100">
+        <h2 class="y100-title">Yahoo top 100</h2>
+        <div class="y100-list">${rows}</div>
+        <a class="y100-more-btn" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
+          More on Yahoo Entertainment
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+        </a>
+      </div>
+    `;
   }
 
   // ── Genre chips ──
