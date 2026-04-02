@@ -78,12 +78,9 @@
     }
 
     const posters = titles.map(t => `
-      <div class="supertop-poster" data-id="${t.id}" data-backdrop="${t.backdrop || t.image}">
+      <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}">
         <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
-        <div class="supertop-poster-video"></div>
-        <div class="supertop-poster-play">
-          <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
-        </div>
+        <div class="supertop-poster-trailer"></div>
       </div>
     `).join('');
     track.innerHTML = posters + posters + posters;
@@ -94,13 +91,6 @@
   function buildHoverCard(t) {
     return `
       <div class="supertop-hover-card" data-hover-id="${t.id}">
-        <div class="hover-card-video">
-          <img src="${t.backdrop || t.image}" alt="${t.title}">
-          <button class="hover-card-play" aria-label="Play trailer">
-            <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
-          </button>
-          <span class="hover-card-duration">${t.duration}</span>
-        </div>
         <div class="hover-card-info">
           <div class="hover-card-header">
             <h3 class="hover-card-title">${t.title}</h3>
@@ -148,10 +138,10 @@
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
 
-    const videoLayer = posterEl.querySelector('.supertop-poster-video');
-    if (videoLayer && !videoLayer.querySelector('img')) {
-      const backdrop = posterEl.dataset.backdrop;
-      videoLayer.innerHTML = `<img src="${backdrop}" alt="">`;
+    const trailerLayer = posterEl.querySelector('.supertop-poster-trailer');
+    const trailerId = posterEl.dataset.trailer;
+    if (trailerLayer && trailerId && !trailerLayer.querySelector('iframe')) {
+      trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&loop=1&playlist=${trailerId}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
 
     posterEl.classList.add('is-active');
@@ -170,7 +160,13 @@
     const existing = document.querySelector('.supertop-hover-card');
     const activePoster = document.querySelector('.supertop-poster.is-active');
 
-    if (activePoster) activePoster.classList.remove('is-active');
+    if (activePoster) {
+      activePoster.classList.remove('is-active');
+      const trailerLayer = activePoster.querySelector('.supertop-poster-trailer');
+      if (trailerLayer) {
+        setTimeout(() => { trailerLayer.innerHTML = ''; }, 400);
+      }
+    }
 
     if (existing) {
       if (instant) {
