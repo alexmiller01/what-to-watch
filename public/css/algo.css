@@ -89,3 +89,19 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@media (max-width: 767px) {
+  .algo-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .algo-snippet {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .algo-source {
+    font-size: 12px;
+  }
+}

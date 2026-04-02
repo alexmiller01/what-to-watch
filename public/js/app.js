@@ -513,8 +513,30 @@
       }
     });
 
-    // Poster hover → expand card
+    // Detect touch device
+    const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+
+    // Mobile: tap poster to expand/collapse
+    document.addEventListener('click', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (!poster) return;
+      if (!isMobile()) return;
+
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (playing) return;
+
+      const id = parseInt(poster.dataset.id, 10);
+      if (activeHoverId === id) {
+        removeHoverCard();
+      } else {
+        showHoverCard(poster);
+      }
+    });
+
+    // Desktop: hover to expand
     document.addEventListener('mouseover', (e) => {
+      if (isMobile()) return;
+
       const hoverCard = e.target.closest('.supertop-hover-card');
       if (hoverCard) {
         clearTimeout(hoverTimeout);
@@ -531,6 +553,8 @@
     });
 
     document.addEventListener('mouseout', (e) => {
+      if (isMobile()) return;
+
       const playing = document.querySelector('.supertop-poster-trailer.is-playing');
       if (playing) return;
 

@@ -180,3 +180,29 @@
   width: var(--uds-space-md);
   height: var(--uds-space-md);
 }
+
+@media (max-width: 767px) {
+  .y100-name {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .y100-score {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .y100-poster {
+    width: 48px;
+    height: 77px;
+  }
+
+  .y100-rating-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .y100-rating-value {
+    font-size: 14px;
+  }
+}

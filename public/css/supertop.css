@@ -695,6 +695,81 @@
 
 @media (max-width: 767px) {
   .main-layout {
-    gap: var(--uds-space-md);
+    gap: var(--uds-space-lg);
+    padding-top: var(--uds-space-md);
+  }
+
+  /* Mobile hover card: stacked vertical layout */
+  .supertop-hover-card {
+    flex-direction: column;
+    height: auto;
+    max-width: none !important;
+    opacity: 1 !important;
+    width: 100%;
+    flex-basis: 100%;
+    gap: var(--uds-space-sm);
+  }
+
+  .supertop-poster.is-active {
+    flex-basis: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  .hover-card-info {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    gap: var(--uds-space-sm);
+  }
+
+  .hover-card-title {
+    font-size: var(--uds-text-title3-size);
+    line-height: var(--uds-text-title3-line-height);
+    white-space: normal;
+  }
+
+  .hover-card-details-btn {
+    align-self: flex-start;
+  }
+
+  /* Hide carousel arrows on mobile */
+  .supertop-rail-btn {
+    display: none !important;
+  }
+
+  /* Supertop rail track allows free scroll */
+  .supertop-rail-track {
+    padding-left: 0;
+    padding-right: var(--uds-space-md);
+  }
+
+  .supertop-genre-expand {
+    width: 28px;
+    height: 28px;
+    min-height: 28px;
+    padding: 6px;
+  }
+
+  .supertop-service-dropdown {
+    font-size: 13px;
+    padding: 6px var(--uds-space-sm);
+  }
+
+  .supertop-genre-chip {
+    font-size: 13px;
+    padding: 6px var(--uds-space-sm);
+  }
+
+  .supertop-genre-row2 {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .supertop-genre-row2::-webkit-scrollbar {
+    display: none;
   }
 }
