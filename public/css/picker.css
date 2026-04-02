@@ -129,14 +129,20 @@
   transform: scale(0.97);
 }
 
-/* Result state — card becomes transparent video container */
+/* Result state — video fills the screen area */
 .picker-card.is-result {
-  background: transparent;
-  padding: var(--uds-space-lg);
-  max-width: 800px;
+  background: var(--uds-always-black);
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--uds-radius-md);
+  max-height: none;
+  aspect-ratio: 16/9;
 }
 
 .picker-card.is-result .picker-close {
+  position: absolute;
+  top: var(--uds-space-sm);
+  right: var(--uds-space-sm);
   background: rgba(31, 31, 31, 0.6);
   color: var(--uds-always-white);
   z-index: 5;
@@ -144,6 +150,23 @@
 
 .picker-card.is-result .picker-close:hover {
   background: rgba(31, 31, 31, 0.8);
+}
+
+.picker-card.is-result .picker-result {
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+
+.picker-card.is-result .picker-result-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.picker-card.is-result .picker-result-video iframe {
+  width: 100%;
+  height: 100%;
 }
 
 /* Where to watch section */
