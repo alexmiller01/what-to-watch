@@ -425,7 +425,7 @@
   }
 
   .nav-tab {
-    font-family: 'Helvetica Neue', var(--uds-font-sans);
+    font-family: var(--uds-font-sans);
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
