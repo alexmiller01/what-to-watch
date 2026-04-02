@@ -152,14 +152,6 @@
         cardEl.classList.add('is-visible');
       });
     });
-
-    cardEl.addEventListener('mouseenter', () => {
-      clearTimeout(hoverTimeout);
-    });
-
-    cardEl.addEventListener('mouseleave', () => {
-      hoverTimeout = setTimeout(() => removeHoverCard(), 200);
-    });
   }
 
   function removeHoverCard(instant) {
@@ -295,27 +287,34 @@
       }
     });
 
-    // Poster hover → expand card
-    document.addEventListener('mouseenter', (e) => {
+    // Poster hover → expand card (mouseover/mouseout bubble, unlike mouseenter/mouseleave)
+    document.addEventListener('mouseover', (e) => {
       const poster = e.target.closest('.supertop-poster');
-      if (poster) {
+      if (poster && !poster.classList.contains('is-fading')) {
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => showHoverCard(poster), 300);
       }
-    }, true);
+    });
 
-    document.addEventListener('mouseleave', (e) => {
+    document.addEventListener('mouseout', (e) => {
       const poster = e.target.closest('.supertop-poster');
-      if (poster) {
+      const hoverCard = e.target.closest('.supertop-hover-card');
+      const related = e.relatedTarget;
+
+      if (poster || hoverCard) {
+        const movingToCard = related && related.closest('.supertop-hover-card');
+        const movingToPoster = related && related.closest('.supertop-poster');
+        if (movingToCard || movingToPoster) return;
+
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => removeHoverCard(), 200);
       }
-    }, true);
+    });
 
     // Close hover card when scrolling rail
     document.querySelectorAll('.supertop-rail-track').forEach(track => {
       track.addEventListener('scroll', () => {
-        removeHoverCard();
+        removeHoverCard(true);
       });
     });
   }

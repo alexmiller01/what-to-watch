@@ -311,12 +311,15 @@
 /* ── Hover card – Figma 18913:163569 ── */
 
 .supertop-poster {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.2s ease, flex-basis 0.3s ease, width 0.3s ease;
 }
 
 .supertop-poster.is-fading {
   opacity: 0;
-  transform: scale(0.92);
+  flex-basis: 0;
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
