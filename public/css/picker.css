@@ -31,8 +31,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--uds-space-lg);
-  margin-top: 10vh;
-  max-height: 52vh;
+  margin-top: 16vh;
+  max-height: 48vh;
   overflow-y: auto;
   scrollbar-width: thin;
 }
