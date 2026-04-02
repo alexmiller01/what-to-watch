@@ -397,6 +397,7 @@
       }
     }
 
+    document.querySelectorAll('.supertop-poster.is-active').forEach(p => p.classList.remove('is-active'));
     posterEl.classList.add('is-active');
 
     const mobile = window.matchMedia('(max-width: 767px)').matches;
@@ -494,18 +495,16 @@
     if (activeHoverId === null) return;
 
     const existing = document.querySelector('.supertop-hover-card');
-    const activePoster = document.querySelector('.supertop-poster.is-active');
-
-    if (activePoster) {
-      activePoster.classList.remove('is-active');
-      const trailerLayer = activePoster.querySelector('.supertop-poster-trailer');
+    document.querySelectorAll('.supertop-poster.is-active').forEach(p => {
+      p.classList.remove('is-active');
+      const trailerLayer = p.querySelector('.supertop-poster-trailer');
       if (trailerLayer) {
         setTimeout(() => {
           trailerLayer.innerHTML = '';
           trailerLayer.classList.remove('is-playing');
         }, 400);
       }
-    }
+    });
 
     if (existing) {
       if (instant) {
