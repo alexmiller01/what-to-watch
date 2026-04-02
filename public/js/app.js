@@ -743,19 +743,7 @@
     const closeBtn = document.getElementById('pickerClose');
     const submitBtn = document.getElementById('pickerSubmit');
     const chipsContainer = document.getElementById('pickerChips');
-    const starsContainer = document.getElementById('pickerStars');
     const triggerIcon = document.querySelector('.supertop-title-icon');
-
-    for (let i = 0; i < 30; i++) {
-      const star = document.createElement('div');
-      star.className = 'picker-star';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.animationDelay = (Math.random() * 2) + 's';
-      star.style.width = (4 + Math.random() * 8) + 'px';
-      star.style.height = star.style.width;
-      starsContainer.appendChild(star);
-    }
 
     if (triggerIcon) {
       triggerIcon.style.cursor = 'pointer';
