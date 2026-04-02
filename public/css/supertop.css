@@ -754,7 +754,7 @@
     height: auto;
     max-width: none !important;
     width: 100%;
-    gap: var(--uds-space-md);
+    gap: var(--uds-space-sm);
     padding: var(--uds-space-md) 0;
     overflow: visible;
     opacity: 0;
@@ -766,6 +766,51 @@
     max-width: none;
   }
 
+  /* Header: title + close button */
+  .mobile-hover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--uds-space-sm);
+    width: 100%;
+  }
+
+  .mobile-hover-title {
+    margin: 0;
+    font-family: var(--uds-font-sans);
+    font-size: var(--uds-text-title3-size);
+    font-weight: var(--uds-text-title3-weight);
+    line-height: var(--uds-text-title3-line-height);
+    color: var(--uds-foreground-primary);
+  }
+
+  .mobile-hover-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--uds-space-xs);
+    margin-top: var(--uds-space-2xs);
+  }
+
+  .mobile-hover-close {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
+    color: var(--uds-foreground-tertiary);
+  }
+
+  .mobile-hover-close svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Backdrop image */
   .mobile-hover-backdrop {
     width: 100%;
     aspect-ratio: 16/9;
@@ -792,25 +837,28 @@
 
   .mobile-hover-backdrop .supertop-trailer-duration {
     position: absolute;
-    bottom: var(--uds-space-md);
-    right: var(--uds-space-md);
+    bottom: var(--uds-space-sm);
+    right: var(--uds-space-sm);
   }
 
-  .supertop-hover-card.is-mobile .hover-card-info {
-    width: 100%;
-    height: auto;
-    padding: 0;
+  /* Ratings row */
+  .mobile-hover-ratings {
+    display: flex;
     gap: var(--uds-space-sm);
+    align-items: center;
   }
 
-  .supertop-hover-card.is-mobile .hover-card-title {
-    font-size: var(--uds-text-title3-size);
-    line-height: var(--uds-text-title3-line-height);
-    white-space: normal;
+  /* Description */
+  .supertop-hover-card.is-mobile .hover-card-desc {
+    font-size: var(--uds-text-body2-size);
+    line-height: 21px;
+    -webkit-line-clamp: 2;
   }
 
-  .supertop-hover-card.is-mobile .hover-card-details-btn {
-    align-self: flex-start;
+  /* See full details – centered */
+  .mobile-hover-details {
+    align-self: center;
+    font-size: var(--uds-text-body2-size);
   }
 
   /* Hide carousel arrows on mobile */

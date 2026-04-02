@@ -276,6 +276,18 @@
   function buildMobileHoverCard(t) {
     return `
       <div class="supertop-hover-card" data-hover-id="${t.id}">
+        <div class="mobile-hover-header">
+          <div>
+            <h3 class="mobile-hover-title">${t.title}</h3>
+            <div class="mobile-hover-meta">
+              <span class="hover-card-rating-badge">${t.rating}</span>
+              <span class="hover-card-meta">${t.year} · ${t.genre} · ${t.duration}</span>
+            </div>
+          </div>
+          <button class="mobile-hover-close" aria-label="Close">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+          </button>
+        </div>
         <div class="mobile-hover-backdrop">
           <img src="${t.backdrop || t.image}" alt="${t.title}">
           <button class="supertop-trailer-play" aria-label="Play trailer" data-trailer="${t.trailer || ''}">
@@ -283,34 +295,25 @@
           </button>
           <span class="supertop-trailer-duration">${t.duration}</span>
         </div>
-        <div class="hover-card-info">
-          <div class="hover-card-header">
-            <h3 class="hover-card-title">${t.title}</h3>
-            <div class="hover-card-subtitle">
-              <span class="hover-card-rating-badge">${t.rating}</span>
-              <span class="hover-card-meta">${t.year} · ${t.genre} · ${t.duration}</span>
-            </div>
-          </div>
-          <div class="hover-card-ratings">
-            <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
-              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
-              <span class="hover-card-rating-value">${t.rt}%</span>
-            </a>
-            <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
-              <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
-              <span class="hover-card-rating-value">${t.imdb}/10</span>
-            </a>
-            <a class="hover-card-rating-link" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
-              <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
-              <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
-            </a>
-          </div>
-          <p class="hover-card-desc">${t.description}</p>
-          <a class="hover-card-details-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
-            See full details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+        <div class="mobile-hover-ratings">
+          <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
+            <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
+            <span class="hover-card-rating-value">${t.rt}%</span>
+          </a>
+          <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
+            <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
+            <span class="hover-card-rating-value">${t.imdb}/10</span>
+          </a>
+          <a class="hover-card-rating-link" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
+            <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
+            <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
           </a>
         </div>
+        <p class="hover-card-desc">${t.description}</p>
+        <a class="hover-card-details-btn mobile-hover-details" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
+          See full details
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+        </a>
       </div>
     `;
   }
@@ -399,6 +402,14 @@
       mobileTempDiv.innerHTML = mobileCardHTML;
       const mobileCardEl = mobileTempDiv.firstElementChild;
       mobileCardEl.classList.add('is-mobile');
+
+      const closeBtn = mobileCardEl.querySelector('.mobile-hover-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeHoverCard();
+        });
+      }
 
       const playBtn = mobileCardEl.querySelector('.supertop-trailer-play');
       if (playBtn && playBtn.dataset.trailer) {
