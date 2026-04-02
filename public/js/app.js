@@ -3,13 +3,10 @@
 
   const GENRES_ROW1 = [
     'Thriller', 'Drama', 'Action', 'Comedy',
-    'Adventure', 'Romance', 'Science fiction', 'Crime drama'
+    'Horror', 'Animation', 'Sci-Fi'
   ];
 
-  const GENRES_ROW2 = [
-    'Horror', 'Animation', 'Documentary', 'Fantasy',
-    'Mystery', 'Musical', 'Western', 'War'
-  ];
+  const GENRES_ROW2 = [];
 
   let genresExpanded = false;
   let allTitles = [];
