@@ -108,10 +108,10 @@
               <img class="hover-card-rating-icon" src="/assets/imdb.svg" alt="IMDb">
               <span class="hover-card-rating-value">${t.imdb}/10</span>
             </a>
-            <div class="hover-card-rating-item">
+            <a class="hover-card-rating-link" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
               <img class="hover-card-rating-icon" src="/assets/YEP.svg" alt="Yahoo">
               <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
-            </div>
+            </a>
           </div>
           <p class="hover-card-desc">${t.description}</p>
           <button class="hover-card-details-btn">
