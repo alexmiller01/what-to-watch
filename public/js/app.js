@@ -141,7 +141,7 @@
     const trailerLayer = posterEl.querySelector('.supertop-poster-trailer');
     const trailerId = posterEl.dataset.trailer;
     if (trailerLayer && trailerId && !trailerLayer.querySelector('iframe')) {
-      trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&loop=1&playlist=${trailerId}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?modestbranding=1&rel=0&showinfo=0" allow="encrypted-media" allowfullscreen></iframe>`;
     }
 
     posterEl.classList.add('is-active');
