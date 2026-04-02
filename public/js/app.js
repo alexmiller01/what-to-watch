@@ -12,6 +12,8 @@
   let allTitles = [];
   let activeGenres = [];
   let searchQuery = '';
+  let showMovies = true;
+  let showTV = true;
   let activeHoverId = null;
   let hoverTimeout = null;
   let railCounter = 0;
@@ -208,22 +210,25 @@
     const pool = getSearchFiltered();
 
     if (activeGenres.length === 0) {
-      const movies = pool.filter(t => t.type === 'movie');
-      const shows = pool.filter(t => t.type === 'series');
-      container.innerHTML = buildRailHTML('Movies', movies) + buildRailHTML('Shows', shows);
+      let html = '';
+      if (showMovies) html += buildRailHTML('Movies', pool.filter(t => t.type === 'movie'));
+      if (showTV) html += buildRailHTML('Shows', pool.filter(t => t.type === 'series'));
+      container.innerHTML = html;
     } else {
       let html = '';
 
       for (const genre of activeGenres) {
-        const genreMovies = pool.filter(t => t.type === 'movie' && t.genre === genre);
-        const genreShows = pool.filter(t => t.type === 'series' && t.genre === genre);
-        html += buildRailHTML(`${genre} movies`, genreMovies);
-        html += buildRailHTML(`${genre} shows`, genreShows);
+        if (showMovies) {
+          html += buildRailHTML(`${genre} movies`, pool.filter(t => t.type === 'movie' && t.genre === genre));
+        }
+        if (showTV) {
+          html += buildRailHTML(`${genre} shows`, pool.filter(t => t.type === 'series' && t.genre === genre));
+        }
       }
 
       if (activeGenres.length > 1) {
         const comboLabel = activeGenres.join(' + ');
-        const comboTitles = pool.filter(t => activeGenres.includes(t.genre));
+        const comboTitles = pool.filter(t => activeGenres.includes(t.genre) && ((showMovies && t.type === 'movie') || (showTV && t.type === 'series')));
         html += buildRailHTML(`All ${comboLabel}`, comboTitles);
       }
 
@@ -575,6 +580,15 @@
         e.stopPropagation();
         const checkbox = dropdownItem.querySelector('.dropdown-checkbox');
         if (checkbox) checkbox.classList.toggle('is-checked');
+
+        const filter = dropdownItem.dataset.filter;
+        if (filter === 'movies') {
+          showMovies = checkbox.classList.contains('is-checked');
+          renderAllRails();
+        } else if (filter === 'tv') {
+          showTV = checkbox.classList.contains('is-checked');
+          renderAllRails();
+        }
         return;
       }
 
