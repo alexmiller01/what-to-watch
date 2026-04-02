@@ -13,8 +13,8 @@ const TITLES = [
   {
     id: 1, title: 'Sinners', year: 2025, rating: 'R',
     genre: 'Thriller', type: 'movie', duration: '2h 17m',
-    image: `${TMDB}/w342/oN0o3owobFjePDc5vMdLRAd0jkd.jpg`,
-    backdrop: `${TMDB}/w780/oN0o3owobFjePDc5vMdLRAd0jkd.jpg`,
+    image: `${TMDB}/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg`,
+    backdrop: `${TMDB}/w780/705nQHqe4JGdEisrQmVYmXyjs1U.jpg`,
     rt: 97, imdb: 7.5, yahoo: 94, trailer: '7joulECTx_U',
     rtUrl: 'https://www.rottentomatoes.com/m/sinners_2025', imdbUrl: 'https://www.imdb.com/title/tt31193180/',
     description: 'Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.',
