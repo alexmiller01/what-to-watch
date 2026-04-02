@@ -119,19 +119,22 @@
   // ── Right rail: Yahoo Top 100 ──
 
   function renderRightRail() {
-    const top5 = [...allTitles]
-      .filter(t => t.type === 'movie')
-      .sort((a, b) => b.yahoo - a.yahoo)
-      .slice(0, 5);
+    const y100 = [
+      { rank: 1, title: 'Project Hail Mary', rt: 96, imdb: 8.1, rating: 'PG-13', year: 2026, genre: 'Science fiction', duration: '2h 36m', score: 93.5, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
+      { rank: 2, title: 'Sinners', rt: 97, imdb: 7.5, rating: 'R', year: 2025, genre: 'Horror', duration: '2h 17m', score: 90.2, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
+      { rank: 3, title: 'The Wild Robot', rt: 98, imdb: 8.2, rating: 'PG', year: 2024, genre: 'Animation', duration: '1h 42m', score: 88.7, image: 'https://media.themoviedb.org/t/p/w342/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg' },
+      { rank: 4, title: 'Conclave', rt: 93, imdb: 7.6, rating: 'PG', year: 2024, genre: 'Thriller', duration: '2h 0m', score: 86.4, image: 'https://media.themoviedb.org/t/p/w342/jf3YO8hOqGHCupsREf5qymYq1n.jpg' },
+      { rank: 5, title: 'Flow', rt: 95, imdb: 8.3, rating: 'PG', year: 2024, genre: 'Animation', duration: '1h 25m', score: 85.1, image: 'https://media.themoviedb.org/t/p/w342/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg' },
+    ];
 
     const container = document.getElementById('rightRail');
-    const rows = top5.map((t, i) => `
+    const rows = y100.map((t, i) => `
       <div class="y100-item">
         <div class="y100-poster">
           <img src="${t.image}" alt="${t.title}" loading="lazy">
         </div>
         <div class="y100-info">
-          <p class="y100-name">${i + 1}. ${t.title}</p>
+          <p class="y100-name">${t.rank}. ${t.title}</p>
           <div class="y100-ratings">
             <div class="y100-rating-item">
               <img class="y100-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
@@ -147,9 +150,9 @@
             <span class="y100-meta-text">${t.year} · ${t.genre} · ${t.duration}</span>
           </div>
         </div>
-        <span class="y100-score">${t.yahoo.toFixed(1)}</span>
+        <span class="y100-score">${t.score.toFixed(1)}</span>
       </div>
-      ${i < top5.length - 1 ? '<hr class="y100-divider">' : ''}
+      ${i < y100.length - 1 ? '<hr class="y100-divider">' : ''}
     `).join('');
 
     container.innerHTML = `
