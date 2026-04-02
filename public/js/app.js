@@ -221,12 +221,6 @@
         html += buildRailHTML(`${genre} shows`, genreShows);
       }
 
-      if (activeGenres.length > 1) {
-        const comboLabel = activeGenres.map(g => g.toLowerCase()).join(' ');
-        const comboTitles = pool.filter(t => activeGenres.includes(t.genre));
-        html += buildRailHTML(capitalizeFirst(comboLabel), comboTitles);
-      }
-
       container.innerHTML = html;
     }
 
