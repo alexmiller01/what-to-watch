@@ -16,6 +16,7 @@
   let showTV = true;
   let activeHoverId = null;
   let hoverTimeout = null;
+  let hoverLocked = false;
   let railCounter = 0;
 
   async function init() {
@@ -455,8 +456,10 @@
         posterEl.insertAdjacentElement('afterend', cardEl);
 
         if (spaceRight < cardInfoWidth) {
+          hoverLocked = true;
           const scrollAmount = cardInfoWidth - spaceRight + 40;
           track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          setTimeout(() => { hoverLocked = false; }, 600);
         }
 
         requestAnimationFrame(() => {
@@ -475,9 +478,13 @@
           const rightEdge = Math.max(posterR.right, cardR.right);
 
           if (rightEdge > trackR.right) {
+            hoverLocked = true;
             track.scrollBy({ left: rightEdge - trackR.right + 20, behavior: 'smooth' });
+            setTimeout(() => { hoverLocked = false; }, 600);
           } else if (leftEdge < trackR.left) {
+            hoverLocked = true;
             track.scrollBy({ left: leftEdge - trackR.left - 20, behavior: 'smooth' });
+            setTimeout(() => { hoverLocked = false; }, 600);
           }
         }, 450);
       } else {
@@ -697,6 +704,7 @@
     // Desktop: hover to expand
     document.addEventListener('mouseover', (e) => {
       if (isMobile()) return;
+      if (hoverLocked) return;
 
       const hoverCard = e.target.closest('.supertop-hover-card');
       if (hoverCard) {
@@ -706,10 +714,14 @@
 
       const poster = e.target.closest('.supertop-poster');
       if (poster) {
+        if (poster.classList.contains('is-active')) return;
         const playing = document.querySelector('.supertop-poster-trailer.is-playing');
         if (playing) return;
         clearTimeout(hoverTimeout);
-        hoverTimeout = setTimeout(() => showHoverCard(poster), 300);
+        hoverTimeout = setTimeout(() => {
+          if (hoverLocked) return;
+          showHoverCard(poster);
+        }, 300);
       }
     });
 
