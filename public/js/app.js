@@ -870,7 +870,107 @@
       `;
       overlay.appendChild(wtw);
 
+      const columns = document.createElement('div');
+      columns.className = 'result-columns grid';
+      columns.innerHTML = `
+        <div class="result-left">
+          <div class="result-placeholder">
+            <div class="result-placeholder-line" style="width:40%"></div>
+            <div class="result-placeholder-bar" style="width:55%"></div>
+            <div class="result-placeholder-line" style="width:90%"></div>
+            <div class="result-placeholder-line" style="width:80%"></div>
+            <div class="result-placeholder-line" style="width:70%"></div>
+            <div class="result-placeholder-line" style="width:85%"></div>
+          </div>
+
+          <div class="result-videos-section">
+            <h3 class="result-section-title">Videos</h3>
+            <div class="result-videos-row">
+              <div class="result-video-card">
+                <div class="result-video-thumb">
+                  <img src="https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg" alt="">
+                  <span class="result-video-play"><svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg></span>
+                  <span class="result-video-duration">${pick.duration}</span>
+                </div>
+                <div class="result-video-meta">
+                  <span class="result-video-source"><svg viewBox="0 0 16 16" fill="red"><path d="M14.5 4.5s-.1-1.2-.5-1.7c-.5-.5-1-.5-1.3-.5C10.5 2 8 2 8 2s-2.5 0-4.7.3c-.3 0-.8 0-1.3.5-.4.5-.5 1.7-.5 1.7S1.3 5.8 1.3 7.2v1.3c0 1.4.2 2.7.2 2.7s.1 1.2.5 1.7c.5.5 1.1.5 1.4.6 1 .1 4.6.1 4.6.1s2.5 0 4.7-.3c.3 0 .8 0 1.3-.5.4-.5.5-1.7.5-1.7s.2-1.3.2-2.7V7.2c0-1.4-.2-2.7-.2-2.7z"/><polygon points="6.5,5 11,8 6.5,11" fill="white"/></svg> YouTube</span>
+                  <span class="result-video-title">${pick.title} - Official Trailer</span>
+                </div>
+              </div>
+              <div class="result-video-card">
+                <div class="result-video-thumb">
+                  <img src="https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg" alt="">
+                  <span class="result-video-play"><svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg></span>
+                  <span class="result-video-duration">${pick.duration}</span>
+                </div>
+                <div class="result-video-meta">
+                  <span class="result-video-source"><svg viewBox="0 0 16 16" fill="red"><path d="M14.5 4.5s-.1-1.2-.5-1.7c-.5-.5-1-.5-1.3-.5C10.5 2 8 2 8 2s-2.5 0-4.7.3c-.3 0-.8 0-1.3.5-.4.5-.5 1.7-.5 1.7S1.3 5.8 1.3 7.2v1.3c0 1.4.2 2.7.2 2.7s.1 1.2.5 1.7c.5.5 1.1.5 1.4.6 1 .1 4.6.1 4.6.1s2.5 0 4.7-.3c.3 0 .8 0 1.3-.5.4-.5.5-1.7.5-1.7s.2-1.3.2-2.7V7.2c0-1.4-.2-2.7-.2-2.7z"/><polygon points="6.5,5 11,8 6.5,11" fill="white"/></svg> YouTube</span>
+                  <span class="result-video-title">${pick.title} - Behind the Scenes</span>
+                </div>
+              </div>
+              <div class="result-video-card">
+                <div class="result-video-thumb">
+                  <img src="https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg" alt="">
+                  <span class="result-video-play"><svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg></span>
+                  <span class="result-video-duration">${pick.duration}</span>
+                </div>
+                <div class="result-video-meta">
+                  <span class="result-video-source"><svg viewBox="0 0 16 16" fill="red"><path d="M14.5 4.5s-.1-1.2-.5-1.7c-.5-.5-1-.5-1.3-.5C10.5 2 8 2 8 2s-2.5 0-4.7.3c-.3 0-.8 0-1.3.5-.4.5-.5 1.7-.5 1.7S1.3 5.8 1.3 7.2v1.3c0 1.4.2 2.7.2 2.7s.1 1.2.5 1.7c.5.5 1.1.5 1.4.6 1 .1 4.6.1 4.6.1s2.5 0 4.7-.3c.3 0 .8 0 1.3-.5.4-.5.5-1.7.5-1.7s.2-1.3.2-2.7V7.2c0-1.4-.2-2.7-.2-2.7z"/><polygon points="6.5,5 11,8 6.5,11" fill="white"/></svg> YouTube</span>
+                  <span class="result-video-title">${pick.title} - Cast Interviews</span>
+                </div>
+              </div>
+            </div>
+            <a class="result-more-videos" href="https://video.search.yahoo.com/search/video?p=${encodeURIComponent(pick.title + ' trailer')}" target="_blank" rel="noopener">More videos <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg></a>
+          </div>
+
+          <div class="result-placeholder" style="margin-top:var(--uds-space-xl)">
+            <div class="result-placeholder-line" style="width:40%"></div>
+            <div class="result-placeholder-bar" style="width:60%"></div>
+            <div class="result-placeholder-line" style="width:85%"></div>
+            <div class="result-placeholder-line" style="width:75%"></div>
+          </div>
+        </div>
+
+        <div class="result-right">
+          <h3 class="result-detail-title">${pick.title}</h3>
+          <div class="result-detail-meta">
+            <span class="hover-card-rating-badge">${pick.rating}</span>
+            <span>${pick.year} · ${pick.genre} · ${pick.duration}</span>
+          </div>
+          <div class="result-detail-poster" data-trailer="${pick.trailer}">
+            <img src="https://img.youtube.com/vi/${pick.trailer}/hqdefault.jpg" alt="${pick.title}">
+            <button class="result-detail-play-btn" aria-label="Play">
+              <svg viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+            </button>
+            <span class="supertop-trailer-duration">${pick.duration}</span>
+          </div>
+          <div class="result-detail-scores">
+            <div class="result-detail-score-box">
+              <span class="result-detail-score-label">IMDb</span>
+              <span class="result-detail-score-value">${pick.imdb}/10</span>
+            </div>
+            <div class="result-detail-score-box">
+              <span class="result-detail-score-label">Rotten Tomatoes</span>
+              <span class="result-detail-score-value">${pick.rt}%</span>
+            </div>
+          </div>
+          <div class="result-detail-section">
+            <h4>Overview</h4>
+            <p>${pick.description} <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(pick.title)}" target="_blank" rel="noopener" class="result-wiki-link">Wikipedia</a></p>
+          </div>
+          <button class="picker-submit" id="resultPickAgain">Pick again</button>
+        </div>
+      `;
+      overlay.appendChild(columns);
+
       document.getElementById('resultClose').addEventListener('click', closePicker);
+      document.getElementById('resultPickAgain').addEventListener('click', () => {
+        closePicker();
+        setTimeout(() => {
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }, 350);
+      });
 
       screen.querySelector('.result-screen-play').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -901,10 +1001,7 @@
       overlay.classList.remove('is-result-mode');
       document.body.style.overflow = '';
       setTimeout(() => {
-        const screen = overlay.querySelector('.result-screen');
-        const wtw = overlay.querySelector('.result-wtw');
-        if (screen) screen.remove();
-        if (wtw) wtw.remove();
+        overlay.querySelectorAll('.result-screen, .result-wtw, .result-columns').forEach(el => el.remove());
         resetPickerCard();
       }, 300);
     }
