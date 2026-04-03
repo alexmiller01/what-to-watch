@@ -542,7 +542,15 @@
         hoverLocked = true;
         clearTimeout(hoverTimeout);
         clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => { hoverLocked = false; }, 300);
+        scrollTimer = setTimeout(() => {
+          hoverLocked = false;
+          const hovered = document.querySelector('.supertop-poster:hover');
+          if (hovered && !hovered.classList.contains('is-active')) {
+            hoverTimeout = setTimeout(() => {
+              if (!hoverLocked) showHoverCard(hovered);
+            }, 750);
+          }
+        }, 150);
       });
     });
   }
