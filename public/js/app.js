@@ -139,16 +139,6 @@
         </div>
         <div class="y100-info">
           <p class="y100-name">${t.rank}. ${t.title}</p>
-          <div class="y100-ratings">
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
-              <span class="y100-rating-value">${t.rt}%</span>
-            </div>
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/imdb.svg" alt="IMDb">
-              <span class="y100-rating-value">${t.imdb}/10</span>
-            </div>
-          </div>
           <div class="y100-meta">
             <span class="y100-rating-badge">${t.rating}</span>
             <span class="y100-meta-text">${t.year} · ${t.genre} · ${t.duration}</span>
