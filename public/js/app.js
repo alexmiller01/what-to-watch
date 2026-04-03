@@ -695,16 +695,16 @@
     // Detect touch device
     const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
 
-    // Mobile: tap poster to expand/collapse
+    // Click poster to expand/collapse (mobile tap or desktop click)
     document.addEventListener('click', (e) => {
       const poster = e.target.closest('.supertop-poster');
       if (!poster) return;
-      if (!isMobile()) return;
 
       const id = parseInt(poster.dataset.id, 10);
       if (activeHoverId === id) {
         removeHoverCard();
       } else {
+        clearTimeout(hoverTimeout);
         showHoverCard(poster);
       }
     });
@@ -727,7 +727,7 @@
         hoverTimeout = setTimeout(() => {
           if (hoverLocked) return;
           showHoverCard(poster);
-        }, 1000);
+        }, 750);
       }
     });
 
