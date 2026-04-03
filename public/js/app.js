@@ -727,6 +727,9 @@
       if (isMobile()) return;
       if (hoverGrace) return;
 
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (playing) return;
+
       const poster = e.target.closest('.supertop-poster');
       const hoverCard = e.target.closest('.supertop-hover-card');
 
@@ -740,6 +743,15 @@
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => removeHoverCard(), 150);
       }
+    });
+
+    // Click outside dismisses a playing trailer card
+    document.addEventListener('click', (e) => {
+      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
+      if (!playing) return;
+      if (e.target.closest('.supertop-poster.is-active')) return;
+      if (e.target.closest('.supertop-hover-card')) return;
+      removeHoverCard();
     });
   }
 
