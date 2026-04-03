@@ -150,10 +150,9 @@
 /* Trailer thumbnail in the screen */
 .result-screen {
   position: relative;
-  width: 56%;
-  margin-top: calc(12vh + 60px);
+  width: 100%;
   aspect-ratio: 16/9;
-  border-radius: var(--uds-radius-sm);
+  border-radius: 0;
   overflow: hidden;
   background: var(--uds-always-black);
   flex-shrink: 0;
@@ -230,14 +229,14 @@
   height: 14px;
 }
 
-/* Where to watch — peeks up from bottom */
+/* Where to watch — below trailer with 40px gap */
 .result-wtw {
   background: var(--uds-background-primary);
   border-radius: var(--uds-radius-xl) var(--uds-radius-xl) 0 0;
   padding: var(--uds-space-xl) var(--uds-space-lg);
   padding-bottom: var(--uds-space-2xl);
   width: 100%;
-  margin-top: auto;
+  margin-top: 40px;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -357,8 +356,7 @@
   }
 
   .result-screen {
-    width: 70%;
-    margin-top: calc(10vh + 50px);
+    width: 100%;
   }
 }
 
@@ -383,8 +381,7 @@
   }
 
   .result-screen {
-    width: 90%;
-    margin-top: calc(8vh + 40px);
+    width: 100%;
   }
 
   .result-wtw {
