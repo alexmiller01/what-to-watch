@@ -693,9 +693,6 @@
       if (!poster) return;
       if (!isMobile()) return;
 
-      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-      if (playing) return;
-
       const id = parseInt(poster.dataset.id, 10);
       if (activeHoverId === id) {
         removeHoverCard();
@@ -718,8 +715,6 @@
       const poster = e.target.closest('.supertop-poster');
       if (poster) {
         if (poster.classList.contains('is-active')) return;
-        const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-        if (playing) return;
         clearTimeout(hoverTimeout);
         hoverTimeout = setTimeout(() => {
           if (hoverLocked) return;
@@ -731,9 +726,6 @@
     document.addEventListener('mouseout', (e) => {
       if (isMobile()) return;
       if (hoverGrace) return;
-
-      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-      if (playing) return;
 
       const poster = e.target.closest('.supertop-poster');
       const hoverCard = e.target.closest('.supertop-hover-card');
