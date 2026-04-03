@@ -452,44 +452,13 @@
       const cardInfoWidth = 340;
 
       if (track) {
-        const trackRect = track.getBoundingClientRect();
-        const posterRect = posterEl.getBoundingClientRect();
-        const spaceRight = trackRect.right - posterRect.left - expandedPosterWidth;
-
         posterEl.insertAdjacentElement('afterend', cardEl);
-
-        if (spaceRight < cardInfoWidth) {
-          hoverLocked = true;
-          const scrollAmount = cardInfoWidth - spaceRight + 40;
-          track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-          setTimeout(() => { hoverLocked = false; }, 600);
-        }
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             cardEl.classList.add('is-visible');
           });
         });
-
-        setTimeout(() => {
-          if (!cardEl.parentNode) return;
-          const posterR = posterEl.getBoundingClientRect();
-          const cardR = cardEl.getBoundingClientRect();
-          const trackR = track.getBoundingClientRect();
-
-          const leftEdge = Math.min(posterR.left, cardR.left);
-          const rightEdge = Math.max(posterR.right, cardR.right);
-
-          if (rightEdge > trackR.right) {
-            hoverLocked = true;
-            track.scrollBy({ left: rightEdge - trackR.right + 20, behavior: 'smooth' });
-            setTimeout(() => { hoverLocked = false; }, 600);
-          } else if (leftEdge < trackR.left) {
-            hoverLocked = true;
-            track.scrollBy({ left: leftEdge - trackR.left - 20, behavior: 'smooth' });
-            setTimeout(() => { hoverLocked = false; }, 600);
-          }
-        }, 450);
       } else {
         posterEl.insertAdjacentElement('afterend', cardEl);
         requestAnimationFrame(() => {
