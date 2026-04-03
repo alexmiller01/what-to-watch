@@ -17,6 +17,7 @@
   let activeHoverId = null;
   let hoverTimeout = null;
   let hoverLocked = false;
+  let hoverGrace = false;
   let railCounter = 0;
 
   async function init() {
@@ -400,6 +401,8 @@
 
     document.querySelectorAll('.supertop-poster.is-active').forEach(p => p.classList.remove('is-active'));
     posterEl.classList.add('is-active');
+    hoverGrace = true;
+    setTimeout(() => { hoverGrace = false; }, 500);
 
     const mobile = window.matchMedia('(max-width: 767px)').matches;
 
@@ -727,6 +730,7 @@
 
     document.addEventListener('mouseout', (e) => {
       if (isMobile()) return;
+      if (hoverGrace) return;
 
       const playing = document.querySelector('.supertop-poster-trailer.is-playing');
       if (playing) return;
