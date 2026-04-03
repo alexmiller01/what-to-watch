@@ -567,6 +567,14 @@
 
       track.addEventListener('scroll', updateButtons);
       updateButtons();
+
+      let scrollTimer;
+      track.addEventListener('scroll', () => {
+        hoverLocked = true;
+        clearTimeout(hoverTimeout);
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => { hoverLocked = false; }, 300);
+      });
     });
   }
 
