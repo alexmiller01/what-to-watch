@@ -727,7 +727,7 @@
         hoverTimeout = setTimeout(() => {
           if (hoverLocked) return;
           showHoverCard(poster);
-        }, 2000);
+        }, 1000);
       }
     });
 
