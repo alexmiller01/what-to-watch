@@ -459,6 +459,16 @@
             cardEl.classList.add('is-visible');
           });
         });
+
+        setTimeout(() => {
+          if (!cardEl.parentNode || activeHoverId === null) return;
+          const cardR = cardEl.getBoundingClientRect();
+          const trackR = track.getBoundingClientRect();
+
+          if (cardR.right > trackR.right) {
+            track.scrollBy({ left: cardR.right - trackR.right + 16, behavior: 'smooth' });
+          }
+        }, 500);
       } else {
         posterEl.insertAdjacentElement('afterend', cardEl);
         requestAnimationFrame(() => {
