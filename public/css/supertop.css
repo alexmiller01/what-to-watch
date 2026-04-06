@@ -469,6 +469,38 @@
   gap: var(--uds-space-2xs);
 }
 
+.hover-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--uds-space-xs);
+}
+
+.hover-card-close {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--uds-foreground-tertiary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hover-card-close:hover {
+  color: var(--uds-foreground-primary);
+}
+
+.hover-card-close svg {
+  width: 16px;
+  height: 16px;
+}
+
 .hover-card-title {
   margin: 0;
   font-family: var(--uds-font-sans);

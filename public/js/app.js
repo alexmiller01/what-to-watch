@@ -320,7 +320,12 @@
       <div class="supertop-hover-card" data-hover-id="${t.id}">
         <div class="hover-card-info">
           <div class="hover-card-header">
-            <h3 class="hover-card-title">${t.title}</h3>
+            <div class="hover-card-title-row">
+              <h3 class="hover-card-title">${t.title}</h3>
+              <button class="hover-card-close" aria-label="Close">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+              </button>
+            </div>
             <div class="hover-card-subtitle">
               <span class="hover-card-rating-badge">${t.rating}</span>
               <span class="hover-card-meta">${t.year} · ${t.genre} · ${t.duration}</span>
@@ -391,6 +396,14 @@
 
     document.querySelectorAll('.supertop-poster.is-active').forEach(p => p.classList.remove('is-active'));
     posterEl.classList.add('is-active');
+
+    const closeBtn = cardEl.querySelector('.hover-card-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeHoverCard();
+      });
+    }
     hoverGrace = true;
     setTimeout(() => { hoverGrace = false; }, 500);
 
