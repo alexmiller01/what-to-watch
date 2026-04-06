@@ -686,55 +686,10 @@
       }
     });
 
-    // Desktop: hover to expand
-    document.addEventListener('mouseover', (e) => {
-      if (isMobile()) return;
-      if (hoverLocked) return;
-
-      const hoverCard = e.target.closest('.supertop-hover-card');
-      if (hoverCard) {
-        clearTimeout(hoverTimeout);
-        return;
-      }
-
-      const poster = e.target.closest('.supertop-poster');
-      if (poster) {
-        if (poster.classList.contains('is-active')) return;
-        clearTimeout(hoverTimeout);
-        hoverTimeout = setTimeout(() => {
-          if (hoverLocked) return;
-          showHoverCard(poster);
-        }, 750);
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      if (isMobile()) return;
-      if (hoverGrace) return;
-
-      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-      if (playing) return;
-
-      const poster = e.target.closest('.supertop-poster');
-      const hoverCard = e.target.closest('.supertop-hover-card');
-
-      if (poster || hoverCard) {
-        const related = e.relatedTarget;
-        if (related) {
-          if (related.closest('.supertop-hover-card')) return;
-          if (related.closest('.supertop-poster.is-active')) return;
-        }
-
-        clearTimeout(hoverTimeout);
-        hoverTimeout = setTimeout(() => removeHoverCard(), 150);
-      }
-    });
-
-    // Click outside dismisses a playing trailer card
+    // Click outside dismisses an active card
     document.addEventListener('click', (e) => {
-      const playing = document.querySelector('.supertop-poster-trailer.is-playing');
-      if (!playing) return;
-      if (e.target.closest('.supertop-poster.is-active')) return;
+      if (activeHoverId === null) return;
+      if (e.target.closest('.supertop-poster')) return;
       if (e.target.closest('.supertop-hover-card')) return;
       removeHoverCard();
     });
