@@ -254,16 +254,21 @@
 }
 
 
+.supertop-poster-art-wrap {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--uds-radius-xl);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
 .supertop-poster-art {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--uds-radius-xl);
   display: block;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-  clip-path: inset(0 round var(--uds-radius-xl));
 }
 
 .supertop-poster:hover:not(.is-active) .supertop-poster-art {

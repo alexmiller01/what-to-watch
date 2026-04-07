@@ -242,7 +242,7 @@
 
     const posterHTML = titles.map(t => `
       <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
-        <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
+        <div class="supertop-poster-art-wrap"><img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy"></div>
         <div class="supertop-poster-trailer"></div>
       </div>
     `).join('');
