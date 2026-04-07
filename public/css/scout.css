@@ -109,5 +109,5 @@
   height: var(--uds-border-thin);
   background: var(--uds-line-secondary);
   border: none;
-  margin: 0;
+  margin: var(--uds-space-md) 0;
 }
