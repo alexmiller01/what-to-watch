@@ -124,9 +124,9 @@
 
   function renderRightRail() {
     const y100 = [
-      { rank: 1, title: 'Project Hail Mary', rt: 96, imdb: 8.1, rating: 'PG-13', year: 2026, genre: 'Science fiction', duration: '2h 36m', score: 91.8, image: 'https://media.themoviedb.org/t/p/w342/kjMbDciooTbJPofVXgAoFjfX8Of.jpg' },
-      { rank: 2, title: 'Sinners', rt: 97, imdb: 7.5, rating: 'R', year: 2025, genre: 'Horror', duration: '2h 17m', score: 90.2, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
-      { rank: 3, title: 'The Wild Robot', rt: 98, imdb: 8.2, rating: 'PG', year: 2024, genre: 'Animation', duration: '1h 42m', score: 88.7, image: 'https://media.themoviedb.org/t/p/w342/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg' },
+      { rank: 1, title: 'Project Hail Mary', rating: 'PG-13', year: 2026, genre: 'Science fiction', duration: '2h 36m', score: 91.8, image: 'https://media.themoviedb.org/t/p/w342/kjMbDciooTbJPofVXgAoFjfX8Of.jpg' },
+      { rank: 2, title: 'Sinners', rating: 'R', year: 2025, genre: 'Horror', duration: '2h 17m', score: 90.2, image: 'https://media.themoviedb.org/t/p/w342/705nQHqe4JGdEisrQmVYmXyjs1U.jpg' },
+      { rank: 3, title: 'The Wild Robot', rating: 'PG', year: 2024, genre: 'Animation', duration: '1h 42m', score: 88.7, image: 'https://media.themoviedb.org/t/p/w342/eG9lz41mJqsI4J6ubMtVqD26q2J.jpg' },
     ];
 
     const container = document.getElementById('rightRail');
@@ -137,16 +137,6 @@
         </div>
         <div class="y100-info">
           <p class="y100-name">${t.rank}. ${t.title}</p>
-          <div class="y100-ratings">
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.svg" alt="RT">
-              <span class="y100-rating-value">${t.rt}%</span>
-            </div>
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/imdb.svg" alt="IMDb">
-              <span class="y100-rating-value">${t.imdb}/10</span>
-            </div>
-          </div>
           <div class="y100-meta">
             <span class="y100-rating-badge">${t.rating}</span>
             <span class="y100-meta-text">${t.year} · ${t.genre} · ${t.duration}</span>
@@ -305,7 +295,7 @@
         </div>
         <div class="mobile-hover-ratings">
           <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
-            <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.svg" alt="Rotten Tomatoes">
+            <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
             <span class="hover-card-rating-value">${t.rt}%</span>
           </a>
           <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
@@ -344,7 +334,7 @@
           </div>
           <div class="hover-card-ratings">
             <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
-              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.svg" alt="Rotten Tomatoes">
+              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
               <span class="hover-card-rating-value">${t.rt}%</span>
             </a>
             <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
@@ -790,7 +780,7 @@
         <p class="supertop-poster-tooltip-title">${item.title}</p>
         <div class="supertop-poster-tooltip-ratings">
           <div class="supertop-poster-tooltip-rating">
-            <img src="/assets/rotten-tomatoes.svg" alt="RT">
+            <img src="/assets/rotten-tomatoes.png" alt="RT">
             <span>${item.rt}%</span>
           </div>
           <div class="supertop-poster-tooltip-rating">
