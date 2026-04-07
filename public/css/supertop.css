@@ -668,15 +668,15 @@
   line-height: 21px;
   color: var(--uds-foreground-primary);
   overflow: hidden;
-  max-height: 63px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   max-width: calc(100% - 16px);
-  transition: max-height 0.25s ease;
   cursor: pointer;
-  position: relative;
 }
 
 .hover-card-desc:hover {
-  max-height: 126px;
+  -webkit-line-clamp: 6;
 }
 
 /* "See full details" button */
