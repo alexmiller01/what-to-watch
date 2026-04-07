@@ -437,6 +437,13 @@
   flex: 0 0 128px;
   width: 128px;
   flex-shrink: 0;
+  transition: flex-basis 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.supertop-poster-wrap:has(.supertop-poster.is-active.has-trailer) {
+  flex: 0 0 369px;
+  width: 369px;
 }
 
 .supertop-poster-label {
