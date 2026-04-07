@@ -542,30 +542,29 @@
 }
 
 .hover-card-close {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
   border: none;
-  background: var(--uds-spectrum-carbon-2);
-  border-radius: var(--uds-radius-full);
+  background: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  color: var(--uds-foreground-primary);
+  padding: 0;
+  color: var(--uds-foreground-tertiary);
   flex-shrink: 0;
-  margin-top: 2px;
-  transition: background-color 0.15s ease;
+  margin-top: 6px;
+  transition: color 0.15s ease;
 }
 
 .hover-card-close:hover {
-  background: var(--uds-line-secondary);
+  color: var(--uds-foreground-primary);
 }
 
 .hover-card-close svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .hover-card-title {
