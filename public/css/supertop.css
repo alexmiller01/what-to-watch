@@ -846,12 +846,12 @@
   }
 
   .supertop-rail-track-wrapper {
-    min-height: 230px;
+    min-height: 220px;
     margin-bottom: 0;
   }
 
   .supertop-rail-track {
-    min-height: 230px;
+    min-height: 220px;
     padding-bottom: 0;
     align-items: flex-start;
   }
@@ -962,7 +962,7 @@
     max-width: none !important;
     width: 100%;
     gap: var(--uds-space-sm);
-    margin-top: var(--uds-space-md);
+    margin-top: var(--uds-space-xs);
     padding: 0;
     overflow: visible;
     opacity: 0;
