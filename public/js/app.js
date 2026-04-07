@@ -246,6 +246,19 @@
       <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
         <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
         <div class="supertop-poster-trailer"></div>
+        <div class="supertop-poster-tooltip">
+          <p class="supertop-poster-tooltip-title">${t.title}</p>
+          <div class="supertop-poster-tooltip-ratings">
+            <div class="supertop-poster-tooltip-rating">
+              <img src="/assets/rotten-tomatoes.png" alt="RT">
+              <span>${t.rt}%</span>
+            </div>
+            <div class="supertop-poster-tooltip-rating">
+              <img src="/assets/imdb.svg" alt="IMDb">
+              <span>${t.imdb}/10</span>
+            </div>
+          </div>
+        </div>
       </div>
     `).join('');
     const posters = posterHTML;
