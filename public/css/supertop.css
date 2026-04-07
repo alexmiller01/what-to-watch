@@ -870,6 +870,7 @@
     min-height: 220px;
     padding-bottom: 0;
     align-items: flex-start;
+    gap: 14px;
   }
 
   .supertop-rail-title {
