@@ -50,6 +50,8 @@
   cursor: pointer;
   align-self: flex-start;
   transition: background-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .scout-prompt:hover {
