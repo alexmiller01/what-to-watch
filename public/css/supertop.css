@@ -783,21 +783,30 @@
 
   .supertop-filters {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 0;
+    flex-wrap: wrap;
+    gap: var(--uds-space-xs);
     padding: 0;
     overflow: visible;
   }
 
   .supertop-genre-label,
-  .supertop-service-dropdown,
   .supertop-genre-expand {
     display: none;
+  }
+
+  .supertop-service-dropdown {
+    font-size: var(--uds-text-body2-size);
+    padding: var(--uds-space-xs) var(--uds-space-sm);
+  }
+
+  .dropdown-wrap {
+    flex-shrink: 0;
   }
 
   .supertop-genre-group {
     display: flex;
     flex-wrap: nowrap;
+    flex-basis: 100%;
     gap: var(--uds-space-xs);
     overflow-x: auto;
     scrollbar-width: none;
