@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--uds-space-md);
-  padding-top: var(--uds-space-md);
+  padding-top: var(--uds-space-xl);
 }
 
 /* ── Title row: "What to watch" + icon ── */
@@ -780,7 +780,7 @@
 @media (max-width: 767px) {
   .supertop {
     gap: var(--uds-space-sm);
-    padding-top: var(--uds-space-xs);
+    padding-top: var(--uds-space-md);
     padding-bottom: 0;
   }
 
