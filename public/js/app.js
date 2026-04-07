@@ -573,10 +573,22 @@
   function bindEvents() {
     const servicesDropdownBtn = document.getElementById('servicesDropdownBtn');
     const servicesDropdown = document.getElementById('servicesDropdown');
+    const typeDropdownBtn = document.getElementById('typeDropdownBtn');
+    const typeDropdown = document.getElementById('typeDropdown');
+
     if (servicesDropdownBtn && servicesDropdown) {
       servicesDropdownBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         servicesDropdown.classList.toggle('is-open');
+        if (typeDropdown) typeDropdown.classList.remove('is-open');
+      });
+    }
+
+    if (typeDropdownBtn && typeDropdown) {
+      typeDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        typeDropdown.classList.toggle('is-open');
+        if (servicesDropdown) servicesDropdown.classList.remove('is-open');
       });
     }
 
@@ -599,11 +611,8 @@
         return;
       }
 
-      const servicesDropdownEl = document.getElementById('servicesDropdown');
-      if (servicesDropdownEl && servicesDropdownEl.classList.contains('is-open')) {
-        if (!e.target.closest('.dropdown-wrap')) {
-          servicesDropdownEl.classList.remove('is-open');
-        }
+      if (!e.target.closest('.dropdown-wrap')) {
+        document.querySelectorAll('.dropdown-menu.is-open').forEach(m => m.classList.remove('is-open'));
       }
 
       if (e.target.closest('#genreExpandBtn')) {
