@@ -1002,7 +1002,7 @@
   .supertop-hover-card.is-mobile .hover-card-desc {
     font-size: var(--uds-text-body2-size);
     line-height: var(--uds-text-body2-line-height);
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 6;
   }
 
   /* See full details – full width filled pill */
