@@ -158,6 +158,29 @@
     `).join('');
 
     container.innerHTML = `
+      <div class="scout">
+        <div class="scout-icon"><img src="/assets/scout-badge.png" alt="Yahoo Scout"></div>
+        <h2 class="scout-title">What do you want to watch?</h2>
+        <div class="scout-prompts">
+          <button class="scout-prompt">
+            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <span class="scout-prompt-text">I want a 90's to 00s movie</span>
+          </button>
+          <button class="scout-prompt">
+            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <span class="scout-prompt-text">Something light-hearted and feel good vibes</span>
+          </button>
+          <button class="scout-prompt">
+            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <span class="scout-prompt-text">80's Action with a little Romance</span>
+          </button>
+        </div>
+        <a class="scout-btn" href="https://www.yahoo.com/scout" target="_blank" rel="noopener">
+          Go to Yahoo Scout
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+        </a>
+      </div>
+      <hr class="scout-divider">
       <div class="y100">
         <h2 class="y100-title">Yahoo top 100</h2>
         <div class="y100-list">${rows}</div>
