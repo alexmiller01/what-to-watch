@@ -983,7 +983,7 @@
     max-width: none !important;
     width: 100%;
     gap: var(--uds-space-sm);
-    margin-top: var(--uds-space-md);
+    margin-top: var(--uds-space-xs);
     padding: 0;
     overflow: visible;
     opacity: 0;
