@@ -31,6 +31,17 @@
   align-items: center;
   gap: var(--uds-space-sm);
   width: 100%;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--uds-space-xs);
+  margin: 0 calc(-1 * var(--uds-space-xs));
+  border-radius: var(--uds-radius-md);
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.y100-item:hover {
+  background: var(--uds-spectrum-carbon-2);
 }
 
 .y100-poster {
