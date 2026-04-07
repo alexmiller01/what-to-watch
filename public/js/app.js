@@ -707,7 +707,10 @@
 
       const id = parseInt(poster.dataset.id, 10);
       floatingTooltip.classList.remove('is-showing'); tooltipPoster = null;
+
       if (activeHoverId === id) {
+        const playing = poster.querySelector('.supertop-poster-trailer.is-playing');
+        if (playing) return;
         removeHoverCard();
       } else {
         clearTimeout(hoverTimeout);
