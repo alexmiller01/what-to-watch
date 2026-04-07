@@ -345,13 +345,15 @@
               <span class="hover-card-rating-value">${t.yahoo.toFixed(1)}</span>
             </a>
           </div>
-          <div class="hover-card-desc-wrap">
-            <p class="hover-card-desc">${t.description}</p>
+          <div class="hover-card-bottom">
+            <div class="hover-card-bottom-inner">
+              <p class="hover-card-desc">${t.description}</p>
+              <a class="hover-card-details-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
+                See full details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+              </a>
+            </div>
           </div>
-          <a class="hover-card-details-btn" href="https://search.yahoo.com/search?p=${encodeURIComponent(t.title + ' ' + t.year)}" target="_blank" rel="noopener">
-            See full details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-          </a>
         </div>
       </div>
     `;
@@ -727,12 +729,16 @@
 
     // Description text expand on hover
     document.addEventListener('mouseover', (e) => {
-      const desc = e.target.closest('.hover-card-desc');
-      if (desc) desc.classList.add('is-expanded');
+      const bottom = e.target.closest('.hover-card-bottom');
+      if (bottom) bottom.classList.add('is-expanded');
     });
     document.addEventListener('mouseout', (e) => {
-      const desc = e.target.closest('.hover-card-desc');
-      if (desc) desc.classList.remove('is-expanded');
+      const bottom = e.target.closest('.hover-card-bottom');
+      if (bottom) {
+        const related = e.relatedTarget;
+        if (related && related.closest('.hover-card-bottom') === bottom) return;
+        bottom.classList.remove('is-expanded');
+      }
     });
 
     // Poster hover tooltip

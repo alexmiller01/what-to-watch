@@ -522,7 +522,6 @@
   overflow: visible;
 }
 
-
 /* Right: info panel */
 .hover-card-info {
   width: 320px;
@@ -660,10 +659,27 @@
   white-space: nowrap;
 }
 
-/* Description */
-.hover-card-desc-wrap {
+/* Description + button bottom section */
+.hover-card-bottom {
   position: relative;
-  height: 63px;
+}
+
+.hover-card-bottom-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-space-xs);
+}
+
+.hover-card-bottom.is-expanded .hover-card-bottom-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background: var(--uds-background-primary);
+  padding-bottom: var(--uds-space-sm);
+  border-radius: 0 0 var(--uds-radius-md) var(--uds-radius-md);
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.12);
 }
 
 .hover-card-desc {
@@ -681,17 +697,8 @@
   cursor: pointer;
 }
 
-.hover-card-desc.is-expanded {
+.hover-card-bottom.is-expanded .hover-card-desc {
   -webkit-line-clamp: 6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  background: var(--uds-background-primary);
-  padding-bottom: var(--uds-space-xs);
-  box-shadow: 0 8px 12px -4px rgba(0,0,0,0.1);
-  border-radius: 0 0 var(--uds-radius-md) var(--uds-radius-md);
 }
 
 /* "See full details" button */
