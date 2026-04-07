@@ -784,7 +784,8 @@
   .supertop-filters {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--uds-space-xs);
+    column-gap: var(--uds-space-xs);
+    row-gap: var(--uds-space-md);
     padding: 0;
     overflow: visible;
   }
@@ -1100,9 +1101,11 @@
     display: none !important;
   }
 
-  /* Supertop rail track allows free scroll */
+  /* Bleed carousels to viewport edges */
   .supertop-rail-track {
-    padding-left: 0;
+    margin-left: calc(-1 * var(--uds-space-md));
+    margin-right: calc(-1 * var(--uds-space-md));
+    padding-left: var(--uds-space-md);
     padding-right: var(--uds-space-md);
   }
 
