@@ -47,7 +47,7 @@
 .algo-source-url {
   display: block;
   font-family: var(--uds-font-sans);
-  font-size: 13px;
+  font-size: var(--uds-text-caption1-size);
   line-height: 18px;
   color: var(--uds-foreground-secondary, #444444);
 }
@@ -63,7 +63,7 @@
 }
 
 .algo-title a {
-  color: #2015c2;
+  color: var(--uds-foreground-link);
   text-decoration: none;
 }
 
@@ -92,13 +92,13 @@
 
 @media (max-width: 767px) {
   .algo-title {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: var(--uds-text-headline1-size);
+    line-height: var(--uds-text-headline1-line-height);
   }
 
   .algo-snippet {
-    font-size: 13px;
-    line-height: 18px;
+    font-size: var(--uds-text-caption1-size);
+    line-height: var(--uds-text-caption1-line-height);
   }
 
   .algo-source {

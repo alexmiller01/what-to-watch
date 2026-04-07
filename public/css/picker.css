@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   z-index: 99;
-  background: #6001D2;
+  background: var(--uds-background-brand);
   background-image: url('/assets/theater-bg.png');
   background-size: cover;
   background-position: center top;
@@ -293,7 +293,7 @@
 
 .result-wtw-price {
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   color: var(--uds-foreground-tertiary);
 }
 
@@ -376,7 +376,7 @@
   }
 
   .picker-chip {
-    font-size: 13px;
+    font-size: var(--uds-text-caption1-size);
     padding: 6px var(--uds-space-sm);
   }
 
@@ -669,12 +669,12 @@
   margin: 0;
   font-family: var(--uds-font-sans);
   font-size: var(--uds-text-body2-size);
-  line-height: 21px;
+  line-height: var(--uds-text-body2-line-height);
   color: var(--uds-foreground-primary);
 }
 
 .result-wiki-link {
-  color: #0f69ff;
+  color: var(--uds-foreground-link);
   font-weight: 500;
   text-decoration: none;
 }

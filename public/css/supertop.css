@@ -54,7 +54,7 @@
   font-family: var(--uds-font-sans);
   font-size: var(--uds-text-body2-size);
   font-weight: var(--uds-text-ui2-weight);
-  line-height: 15.4px;
+  line-height: 16px;
   color: var(--uds-foreground-primary);
   cursor: pointer;
   white-space: nowrap;
@@ -278,13 +278,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 4px rgba(31, 31, 31, 0.1), 0 1px 2px rgba(31, 31, 31, 0.1);
+  box-shadow: var(--uds-elevation-1-shadow);
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .supertop-rail-btn:hover {
   background: var(--uds-spectrum-carbon-2);
-  box-shadow: 0 2px 6px rgba(31, 31, 31, 0.15), 0 1px 3px rgba(31, 31, 31, 0.12);
+  box-shadow: var(--uds-elevation-2-shadow);
 }
 
 .supertop-rail-btn svg {
@@ -323,7 +323,7 @@
 
 .supertop-legal-text {
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   font-weight: 400;
   line-height: var(--uds-text-caption1-line-height);
   color: var(--uds-foreground-tertiary);
@@ -479,9 +479,9 @@
   border-radius: var(--uds-radius-sm);
   background: rgba(31, 31, 31, 0.6);
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   font-weight: var(--uds-text-ui2-weight);
-  line-height: 13px;
+  line-height: var(--uds-text-caption1-line-height);
   color: var(--uds-foreground-on-color);
   text-align: center;
   white-space: nowrap;
@@ -590,9 +590,9 @@
   border: var(--uds-border-thin) solid var(--uds-line-primary);
   border-radius: var(--uds-radius-xs);
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   font-weight: 400;
-  line-height: 13px;
+  line-height: var(--uds-text-caption1-line-height);
   color: var(--uds-foreground-secondary);
   background: var(--uds-background-primary);
   min-width: 24px;
@@ -650,7 +650,7 @@
   font-family: var(--uds-font-sans);
   font-size: var(--uds-text-body2-size);
   font-weight: var(--uds-text-body2-weight);
-  line-height: 21px;
+  line-height: var(--uds-text-body2-line-height);
   color: var(--uds-foreground-primary);
   overflow: hidden;
   display: -webkit-box;
@@ -671,7 +671,7 @@
   font-family: var(--uds-font-sans);
   font-size: var(--uds-text-body2-size);
   font-weight: var(--uds-text-ui2-weight);
-  line-height: 15.4px;
+  line-height: 16px;
   color: var(--uds-foreground-primary);
   cursor: pointer;
   white-space: nowrap;
@@ -953,7 +953,7 @@
   /* Description */
   .supertop-hover-card.is-mobile .hover-card-desc {
     font-size: var(--uds-text-body2-size);
-    line-height: 21px;
+    line-height: var(--uds-text-body2-line-height);
     -webkit-line-clamp: 2;
   }
 

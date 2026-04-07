@@ -78,7 +78,7 @@
   height: 50px;
   padding: 2px 8px 2px 20px;
   gap: var(--uds-space-xs);
-  border-radius: 99px;
+    border-radius: var(--uds-radius-full);
 }
 
 .nav-search-text {
@@ -183,7 +183,7 @@
   display: block;
   width: var(--uds-border-thin);
   height: var(--uds-space-md);
-  background: #d7d7d7;
+  background: var(--uds-line-primary);
 }
 
 /* Scout icon in search box */
@@ -330,7 +330,7 @@
 @media (max-width: 767px) {
   .nav-header {
     border-bottom: none;
-    box-shadow: 0 1px 0 0 #e0e4e9;
+    box-shadow: 0 1px 0 0 var(--uds-line-secondary);
   }
 
   .nav-inner {
@@ -363,7 +363,7 @@
     border: none;
     border-radius: var(--uds-radius-md);
     padding: 0;
-    box-shadow: 0 0 1px 0 rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.08);
+    box-shadow: var(--uds-elevation-1-shadow);
   }
 
   .nav-search-inner {
@@ -373,7 +373,7 @@
   }
 
   .nav-search-inner input {
-    font-size: 16px;
+    font-size: var(--uds-text-body1-size);
     font-weight: 400;
     line-height: 22px;
   }
@@ -404,7 +404,7 @@
     width: 20px;
     height: 20px;
     padding: 2px;
-    color: #979EA8;
+    color: var(--uds-foreground-tertiary);
   }
 
   /* Tab bar – flat text with underline */
@@ -426,11 +426,11 @@
 
   .nav-tab {
     font-family: var(--uds-font-sans);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--uds-text-body2-size);
+    font-weight: var(--uds-text-ui2-weight);
     line-height: 20px;
     letter-spacing: 0;
-    color: #6E7780;
+    color: var(--uds-foreground-secondary);
     background: none;
     border-radius: 0;
     height: 40px;
@@ -440,12 +440,12 @@
 
   .nav-tab:hover {
     background: none;
-    color: #101518;
+    color: var(--uds-foreground-primary);
   }
 
   .nav-tab.is-selected {
     background: none;
-    color: #101518;
+    color: var(--uds-foreground-primary);
   }
 
   .nav-tab.is-selected::after {
@@ -455,7 +455,7 @@
     left: var(--uds-space-md);
     right: var(--uds-space-md);
     height: 2px;
-    background: #101518;
+    background: var(--uds-foreground-primary);
     border-radius: 2px 2px 0 0;
   }
 

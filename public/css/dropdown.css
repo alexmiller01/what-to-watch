@@ -51,9 +51,9 @@
   background: var(--uds-background-primary);
   cursor: pointer;
   font-family: var(--uds-font-sans);
-  font-size: 16px;
+  font-size: var(--uds-text-body1-size);
   font-weight: 400;
-  line-height: 17.6px;
+  line-height: var(--uds-text-body1-line-height);
   color: var(--uds-foreground-primary);
 }
 
@@ -68,11 +68,11 @@
   border-radius: var(--uds-radius-sm);
   box-sizing: border-box;
   background: var(--uds-background-secondary);
-  border: var(--uds-border-thin) solid #e0e4e9;
+  border: var(--uds-border-thin) solid var(--uds-line-secondary);
 }
 
 .dropdown-checkbox.is-checked {
-  background-color: #7d2eff;
+  background-color: var(--uds-foreground-brand);
   border: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6l2.5 2.5L9.5 3.5' stroke='%23ffffff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -107,10 +107,10 @@
 
 .dropdown-service-price {
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   font-weight: 400;
   line-height: 14px;
-  color: #5a5a5a;
+  color: var(--uds-foreground-tertiary);
 }
 
 .dropdown-divider {

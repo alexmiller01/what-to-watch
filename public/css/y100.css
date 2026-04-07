@@ -113,9 +113,9 @@
   border: var(--uds-border-thin) solid var(--uds-line-primary);
   border-radius: var(--uds-radius-xs);
   font-family: var(--uds-font-sans);
-  font-size: 11px;
+  font-size: var(--uds-text-caption1-size);
   font-weight: 400;
-  line-height: 13px;
+  line-height: var(--uds-text-caption1-line-height);
   color: var(--uds-foreground-secondary);
   background: var(--uds-background-primary);
   min-width: 24px;
@@ -136,7 +136,7 @@
 /* display2/base: 24px, medium, 32px line-height, -0.36px tracking */
 .y100-score {
   font-family: var(--uds-font-sans);
-  font-size: 24px;
+  font-size: var(--uds-text-title2-size);
   font-weight: 500;
   line-height: 32px;
   letter-spacing: -0.36px;
@@ -184,13 +184,13 @@
 
 @media (max-width: 767px) {
   .y100-name {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: var(--uds-text-body1-size);
+    line-height: var(--uds-text-body1-line-height);
   }
 
   .y100-score {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: var(--uds-text-title3-size);
+    line-height: var(--uds-text-title3-line-height);
   }
 
   .y100-poster {
