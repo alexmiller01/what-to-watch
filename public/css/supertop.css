@@ -658,8 +658,14 @@
   color: var(--uds-foreground-primary);
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  cursor: default;
+  transition: -webkit-line-clamp 0.2s ease;
+}
+
+.hover-card-desc:hover {
+  -webkit-line-clamp: 5;
   height: 45px;
 }
 
@@ -959,7 +965,7 @@
   .supertop-hover-card.is-mobile .hover-card-desc {
     font-size: var(--uds-text-body2-size);
     line-height: var(--uds-text-body2-line-height);
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
   }
 
   /* See full details – full width filled pill */
