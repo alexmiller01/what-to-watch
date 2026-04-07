@@ -225,12 +225,12 @@
   display: flex;
   gap: var(--uds-space-sm);
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scrollbar-width: none;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   height: 207px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .supertop-rail-track::-webkit-scrollbar {
