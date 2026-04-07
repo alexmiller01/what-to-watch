@@ -49,7 +49,7 @@
   border-radius: var(--uds-radius-md);
   overflow: hidden;
   flex-shrink: 0;
-  background: var(--uds-foreground-brand);
+  background: var(--uds-spectrum-carbon-2);
 }
 
 .y100-poster img {

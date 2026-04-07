@@ -245,7 +245,7 @@
   overflow: visible;
   position: relative;
   cursor: pointer;
-  background: var(--uds-foreground-brand);
+  background: var(--uds-spectrum-carbon-2);
   flex-shrink: 0;
   transition: flex-basis 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -960,7 +960,7 @@
     flex-basis: 110px;
     width: 110px;
     height: 178px;
-    background: var(--uds-foreground-brand);
+    background: var(--uds-spectrum-carbon-2);
   }
 
   .supertop-poster.is-active .supertop-poster-art-wrap {
