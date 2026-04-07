@@ -344,10 +344,15 @@
   position: relative;
 }
 
-.supertop-poster.is-active {
+.supertop-poster.is-active.has-trailer {
   flex-basis: 369px;
   width: 369px;
   background: var(--uds-always-black);
+}
+
+.supertop-poster.is-active:not(.has-trailer) {
+  outline: var(--uds-border-medium) solid var(--uds-foreground-brand);
+  outline-offset: -2px;
 }
 
 .supertop-poster.is-active.has-trailer .supertop-poster-art {
