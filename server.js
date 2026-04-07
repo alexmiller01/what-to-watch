@@ -175,7 +175,7 @@ const TITLES = [
   // ── Thriller movies ──
   m(1,'Sinners',2025,'R','Thriller','2h 17m','/705nQHqe4JGdEisrQmVYmXyjs1U.jpg',97,7.5,94,'7joulECTx_U','sinners_2025','tt31193180'),
   m(7,'Conclave',2024,'PG','Thriller','2h 0m','/jf3YO8hOqGHCupsREf5qymYq1n.jpg',93,7.6,89,'JX9jasdi3ic','conclave','tt20215234'),
-  m(25,'The Substance',2024,'R','Thriller','2h 20m','/lqoMzCcZYEFK729d6qzt349fB4o.jpg',89,7.3,87,'LNlrGo--gZQ','the_substance','tt17526714'),
+  m(25,'The Substance',2024,'R','Thriller','2h 20m','/lqoMzCcZYEFK729d6qzt349fB4o.jpg',89,7.3,87,'','the_substance','tt17526714'),
   m(16,'Midsommar',2019,'R','Thriller','2h 28m','/9bXHaLlsFYpJUutg4E6WXAjaxDi.jpg',83,7.1,80,'1Vnghdsjmd0','midsommar','tt8772262'),
   m(28,'Five Nights at Freddy\'s',2023,'PG-13','Thriller','1h 50m','/7BpNtNfxuocYEVREzVMO75hso1l.jpg',32,5.4,45,'0VH9WCFV6XQ','five_nights_at_freddys','tt3513498'),
   m(20,'Killers of the Flower Moon',2023,'R','Thriller','3h 26m','/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg',93,7.7,91,'EP34Yoxs3FQ','killers_of_the_flower_moon','tt5906664'),
