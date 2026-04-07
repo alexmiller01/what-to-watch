@@ -928,6 +928,11 @@
     width: 110px;
   }
 
+  .supertop-poster-wrap:has(.supertop-poster.is-active.has-trailer) {
+    flex: 0 0 110px;
+    width: 110px;
+  }
+
   .supertop-poster {
     width: 110px;
     height: 178px;
@@ -978,7 +983,7 @@
     max-width: none !important;
     width: 100%;
     gap: var(--uds-space-sm);
-    margin-top: var(--uds-space-xs);
+    margin-top: var(--uds-space-md);
     padding: 0;
     overflow: visible;
     opacity: 0;

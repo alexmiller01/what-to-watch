@@ -385,12 +385,14 @@
     tempDiv.innerHTML = cardHTML;
     const cardEl = tempDiv.firstElementChild;
 
+    const mobileCheck = window.matchMedia('(max-width: 767px)').matches;
+
     const trailerLayer = posterEl.querySelector('.supertop-poster-trailer');
     const backdrop = posterEl.dataset.backdrop;
     const duration = posterEl.dataset.duration;
     const trailerId = posterEl.dataset.trailer;
 
-    if (trailerLayer && trailerId && !trailerLayer.classList.contains('is-playing')) {
+    if (!mobileCheck && trailerLayer && trailerId && !trailerLayer.classList.contains('is-playing')) {
       posterEl.classList.add('has-trailer');
       trailerLayer.innerHTML = `
         <img src="${backdrop}" alt="">
