@@ -675,7 +675,7 @@
   cursor: pointer;
 }
 
-.hover-card-desc:hover {
+.hover-card-desc.is-expanded {
   -webkit-line-clamp: 6;
 }
 
