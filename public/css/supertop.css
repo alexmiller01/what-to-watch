@@ -807,15 +807,14 @@
   .supertop-genre-group {
     display: flex;
     flex-wrap: nowrap;
-    flex-basis: 100%;
     gap: var(--uds-space-xs);
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    padding-right: var(--uds-space-md);
+    width: 100vw;
     margin-left: calc(-1 * var(--uds-space-md));
-    margin-right: calc(-1 * var(--uds-space-md));
     padding-left: var(--uds-space-md);
+    padding-right: var(--uds-space-md);
   }
 
   .supertop-genre-group::-webkit-scrollbar {
@@ -1103,8 +1102,8 @@
 
   /* Bleed carousels to viewport edges */
   .supertop-rail-track {
+    width: 100vw;
     margin-left: calc(-1 * var(--uds-space-md));
-    margin-right: calc(-1 * var(--uds-space-md));
     padding-left: var(--uds-space-md);
     padding-right: var(--uds-space-md);
   }
