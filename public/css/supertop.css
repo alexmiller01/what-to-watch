@@ -838,7 +838,7 @@
 
   .supertop-rail-track-wrapper {
     min-height: 178px;
-    margin-bottom: 0;
+    margin-bottom: var(--uds-space-3xl);
   }
 
   .supertop-rail-track {
@@ -898,7 +898,7 @@
 
   /* Mobile poster label */
   .supertop-poster-label {
-    display: block;
+    display: -webkit-box;
     font-family: var(--uds-font-sans);
     font-size: var(--uds-text-body2-size);
     font-weight: 500;
@@ -908,11 +908,14 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: normal;
-    margin-top: var(--uds-space-xs);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: var(--uds-space-xs);
+    z-index: 3;
   }
 
 
