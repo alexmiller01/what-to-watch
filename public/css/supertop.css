@@ -686,8 +686,6 @@
   z-index: 20;
   background: var(--uds-background-primary);
   padding-bottom: var(--uds-space-sm);
-  border-radius: 0 0 var(--uds-radius-md) var(--uds-radius-md);
-  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.12);
 }
 
 .hover-card-desc {
