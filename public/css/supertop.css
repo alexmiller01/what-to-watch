@@ -676,8 +676,7 @@
 }
 
 .hover-card-desc:hover {
-  -webkit-line-clamp: 5;
-  height: 45px;
+  -webkit-line-clamp: 6;
 }
 
 /* "See full details" button */
