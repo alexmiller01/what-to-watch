@@ -469,11 +469,17 @@
 
         setTimeout(() => {
           if (!cardEl.parentNode || activeHoverId === null) return;
+          const posterR = posterEl.getBoundingClientRect();
           const cardR = cardEl.getBoundingClientRect();
           const trackR = track.getBoundingClientRect();
 
-          if (cardR.right > trackR.right) {
-            track.scrollBy({ left: cardR.right - trackR.right + 16, behavior: 'smooth' });
+          const leftEdge = Math.min(posterR.left, cardR.left);
+          const rightEdge = Math.max(posterR.right, cardR.right);
+
+          if (leftEdge < trackR.left) {
+            track.scrollBy({ left: leftEdge - trackR.left - 16, behavior: 'smooth' });
+          } else if (rightEdge > trackR.right) {
+            track.scrollBy({ left: rightEdge - trackR.right + 16, behavior: 'smooth' });
           }
         }, 500);
       } else {
