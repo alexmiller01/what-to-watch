@@ -836,9 +836,14 @@
     height: 178px;
   }
 
-  .supertop-rail-track-wrapper,
+  .supertop-rail-track-wrapper {
+    min-height: 178px;
+    margin-bottom: 0;
+  }
+
   .supertop-rail-track {
     min-height: 178px;
+    padding-bottom: 0;
   }
 
   .supertop-rail-title {
