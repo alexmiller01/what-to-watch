@@ -218,7 +218,7 @@
   position: relative;
   overflow: visible;
   min-height: 207px;
-  margin-bottom: var(--uds-space-md);
+  margin-bottom: var(--uds-space-xs);
 }
 
 .supertop-rail-track {
@@ -230,7 +230,7 @@
   -webkit-overflow-scrolling: touch;
   min-height: 207px;
   align-items: flex-start;
-  padding-bottom: var(--uds-space-3xl);
+  padding-bottom: var(--uds-space-lg);
 }
 
 .supertop-rail-track::-webkit-scrollbar {
