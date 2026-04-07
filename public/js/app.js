@@ -139,7 +139,7 @@
           <p class="y100-name">${t.rank}. ${t.title}</p>
           <div class="y100-ratings">
             <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.png" alt="RT">
+              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.svg" alt="RT">
               <span class="y100-rating-value">${t.rt}%</span>
             </div>
             <div class="y100-rating-item">
@@ -305,7 +305,7 @@
         </div>
         <div class="mobile-hover-ratings">
           <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
-            <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
+            <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.svg" alt="Rotten Tomatoes">
             <span class="hover-card-rating-value">${t.rt}%</span>
           </a>
           <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
@@ -344,7 +344,7 @@
           </div>
           <div class="hover-card-ratings">
             <a class="hover-card-rating-link" href="${t.rtUrl}" target="_blank" rel="noopener">
-              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.png" alt="Rotten Tomatoes">
+              <img class="hover-card-rating-icon" src="/assets/rotten-tomatoes.svg" alt="Rotten Tomatoes">
               <span class="hover-card-rating-value">${t.rt}%</span>
             </a>
             <a class="hover-card-rating-link" href="${t.imdbUrl}" target="_blank" rel="noopener">
@@ -790,7 +790,7 @@
         <p class="supertop-poster-tooltip-title">${item.title}</p>
         <div class="supertop-poster-tooltip-ratings">
           <div class="supertop-poster-tooltip-rating">
-            <img src="/assets/rotten-tomatoes.png" alt="RT">
+            <img src="/assets/rotten-tomatoes.svg" alt="RT">
             <span>${item.rt}%</span>
           </div>
           <div class="supertop-poster-tooltip-rating">
