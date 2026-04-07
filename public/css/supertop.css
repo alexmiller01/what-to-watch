@@ -356,24 +356,16 @@
 
 /* Hover tooltip — title + ratings below poster */
 .supertop-poster-tooltip {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transform: translateY(100%);
-  padding: var(--uds-space-xs) 0 0;
+  position: fixed;
   opacity: 0;
-  transition: opacity 0.2s ease;
   pointer-events: none;
-  z-index: 10;
+  z-index: 100;
+  transition: opacity 0.2s ease;
+  width: 128px;
 }
 
-.supertop-poster:hover .supertop-poster-tooltip {
+.supertop-poster-tooltip.is-showing {
   opacity: 1;
-}
-
-.supertop-poster.is-active .supertop-poster-tooltip {
-  opacity: 0;
 }
 
 .supertop-poster-tooltip-title {

@@ -713,11 +713,43 @@
       if (!poster) return;
 
       const id = parseInt(poster.dataset.id, 10);
+      if (activeTooltip) { activeTooltip.classList.remove('is-showing'); activeTooltip = null; }
       if (activeHoverId === id) {
         removeHoverCard();
       } else {
         clearTimeout(hoverTimeout);
         showHoverCard(poster);
+      }
+    });
+
+    // Poster hover tooltip
+    let activeTooltip = null;
+    document.addEventListener('mouseover', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (!poster || poster.classList.contains('is-active')) {
+        if (activeTooltip) { activeTooltip.classList.remove('is-showing'); activeTooltip = null; }
+        return;
+      }
+      const tooltip = poster.querySelector('.supertop-poster-tooltip');
+      if (!tooltip) return;
+      if (activeTooltip && activeTooltip !== tooltip) activeTooltip.classList.remove('is-showing');
+
+      const rect = poster.getBoundingClientRect();
+      tooltip.style.left = rect.left + 'px';
+      tooltip.style.top = (rect.bottom + 4) + 'px';
+      tooltip.style.width = rect.width + 'px';
+      document.body.appendChild(tooltip);
+      tooltip.classList.add('is-showing');
+      activeTooltip = tooltip;
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const poster = e.target.closest('.supertop-poster');
+      if (poster && activeTooltip) {
+        const related = e.relatedTarget;
+        if (related && (related.closest('.supertop-poster') === poster || related.closest('.supertop-poster-tooltip'))) return;
+        activeTooltip.classList.remove('is-showing');
+        activeTooltip = null;
       }
     });
 
