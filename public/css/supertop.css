@@ -780,7 +780,7 @@
 @media (max-width: 767px) {
   .supertop {
     gap: var(--uds-space-sm);
-    padding-top: var(--uds-space-md);
+    padding-top: var(--uds-space-xs);
     padding-bottom: 0;
   }
 
