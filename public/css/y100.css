@@ -20,7 +20,6 @@
 .y100-list {
   display: flex;
   flex-direction: column;
-  gap: var(--uds-space-sm);
   width: 100%;
 }
 
@@ -30,12 +29,12 @@
   display: flex;
   align-items: center;
   gap: var(--uds-space-sm);
-  width: 100%;
+  width: calc(100% + var(--uds-space-sm) * 2);
+  margin-left: calc(-1 * var(--uds-space-sm));
   text-decoration: none;
   color: inherit;
-  padding: var(--uds-space-xs);
-  margin: 0 calc(-1 * var(--uds-space-xs));
-  border-radius: var(--uds-radius-md);
+  padding: var(--uds-space-sm);
+  border-radius: 0;
   transition: background-color 0.15s ease;
   cursor: pointer;
 }
