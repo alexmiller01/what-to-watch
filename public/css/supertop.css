@@ -68,7 +68,6 @@
 .supertop-service-dropdown svg {
   width: var(--uds-space-md);
   height: var(--uds-space-md);
-  transform: rotate(90deg);
   flex-shrink: 0;
 }
 
