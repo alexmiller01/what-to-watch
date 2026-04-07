@@ -254,7 +254,7 @@
 }
 
 .supertop-poster:hover:not(.is-active) .supertop-poster-art {
-  transform: scale(1.0625);
+  transform: scale(1.015);
   box-shadow: var(--uds-elevation-3-shadow);
 }
 
