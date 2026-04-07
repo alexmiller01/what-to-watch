@@ -816,15 +816,6 @@
     const closeBtn = document.getElementById('pickerClose');
     const submitBtn = document.getElementById('pickerSubmit');
     const chipsContainer = document.getElementById('pickerChips');
-    const triggerIcon = document.querySelector('.supertop-title-icon');
-
-    if (triggerIcon) {
-      triggerIcon.style.cursor = 'pointer';
-      triggerIcon.addEventListener('click', () => {
-        overlay.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-      });
-    }
 
     closeBtn.addEventListener('click', closePicker);
 
