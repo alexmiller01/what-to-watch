@@ -887,13 +887,22 @@
   }
 
   /* Mobile: poster stays normal size, no inline expand */
-  .supertop-poster.is-active {
+  .supertop-poster.is-active,
+  .supertop-poster.is-active.has-trailer {
     flex-basis: 110px;
     width: 110px;
     height: 178px;
     background: var(--uds-foreground-brand);
     outline: var(--uds-border-medium) solid var(--uds-foreground-brand);
     outline-offset: -2px;
+  }
+
+  .supertop-poster.is-active.has-trailer .supertop-poster-art {
+    opacity: 1;
+  }
+
+  .supertop-poster.is-active .supertop-poster-trailer {
+    opacity: 0;
   }
 
   /* Mobile hover card: below the rail, full width, stacked */
