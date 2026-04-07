@@ -679,6 +679,7 @@
   color: var(--uds-foreground-primary);
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
   transition: background-color 0.15s ease;
   align-self: flex-start;
 }
