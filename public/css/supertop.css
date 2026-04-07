@@ -964,8 +964,9 @@
   }
 
   .supertop-poster.is-active .supertop-poster-art-wrap {
+    border: 2px solid var(--uds-always-black);
     border-radius: var(--uds-radius-xl);
-    box-shadow: inset 0 0 12px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 0 4px var(--uds-always-white);
   }
 
   .supertop-poster.is-active.has-trailer .supertop-poster-art {
