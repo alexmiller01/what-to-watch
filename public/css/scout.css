@@ -105,9 +105,16 @@
 
 /* Divider below scout section */
 .scout-divider {
-  width: 100%;
-  height: var(--uds-border-thin);
-  background: var(--uds-line-secondary);
-  border: none;
-  margin: var(--uds-space-md) 0;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .scout-divider {
+    display: block;
+    width: 100%;
+    height: var(--uds-border-thin);
+    background: var(--uds-line-secondary);
+    border: none;
+    margin: var(--uds-space-md) 0;
+  }
 }
