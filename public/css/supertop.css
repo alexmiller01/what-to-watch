@@ -250,7 +250,15 @@
   flex-shrink: 0;
   transition: flex-basis 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.3s ease;
+              background 0.3s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.supertop-poster:hover:not(.is-active) {
+  transform: scale(1.0625);
+  box-shadow: var(--uds-elevation-3-shadow);
+  z-index: 5;
 }
 
 .supertop-poster-art {
