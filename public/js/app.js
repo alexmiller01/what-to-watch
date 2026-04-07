@@ -162,7 +162,7 @@
         <div class="scout-icon"><img src="/assets/scoutmagic.svg" alt="Yahoo Scout"></div>
         <h2 class="scout-title">What do you want to watch?</h2>
         <div class="scout-prompts">
-          <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69d8-2441-7660-a66e-448c6585b330-a?fr=sct" target="_blank" rel="noopener">
+          <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69eb-9fa4-7772-9a5d-73927d29e197-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">I want a 90's to 00s movie</span>
           </a>
