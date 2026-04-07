@@ -781,6 +781,17 @@
   .supertop {
     gap: var(--uds-space-sm);
     padding-top: var(--uds-space-md);
+    padding-bottom: var(--uds-space-lg);
+  }
+
+  .supertop::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 6px;
+    background: var(--uds-spectrum-carbon-2);
+    margin-left: calc(-1 * var(--uds-space-md));
+    margin-top: var(--uds-space-sm);
   }
 
   .supertop-title {
@@ -919,12 +930,33 @@
 
 @media (max-width: 767px) {
   .main-layout {
-    gap: var(--uds-space-lg);
+    gap: 0;
     padding-top: var(--uds-space-md);
   }
 
   .right-rail {
     order: -1;
+  }
+
+  .center-rail,
+  .right-rail {
+    padding-bottom: var(--uds-space-lg);
+    position: relative;
+  }
+
+  .center-rail::after,
+  .right-rail::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 6px;
+    background: var(--uds-spectrum-carbon-2);
+    margin-left: calc(-1 * var(--uds-space-md));
+    margin-top: var(--uds-space-lg);
+  }
+
+  .center-rail:last-child::after {
+    display: none;
   }
 
   /* Mobile poster label */
