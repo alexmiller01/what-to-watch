@@ -166,7 +166,7 @@
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">I want a 90's to 00s movie</span>
           </a>
-          <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69d9-aca7-70e3-b8ff-3059f482a631-a?fr=sct" target="_blank" rel="noopener">
+          <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69ec-dd11-76de-9d47-e0c4273d5586-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">Something light-hearted and feel good vibes</span>
           </a>
