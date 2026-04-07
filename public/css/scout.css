@@ -110,12 +110,16 @@
 }
 
 @media (max-width: 767px) {
+  .scout {
+    margin-bottom: 0;
+  }
+
   .scout-divider {
     display: block;
     width: 100vw;
     height: 6px;
     background: var(--uds-spectrum-carbon-2);
     border: none;
-    margin: var(--uds-space-md) 0 var(--uds-space-md) calc(-1 * var(--uds-space-md));
+    margin: var(--uds-space-md) 0 0 calc(-1 * var(--uds-space-md));
   }
 }
