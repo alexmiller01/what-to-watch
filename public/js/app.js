@@ -244,6 +244,7 @@
       <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
         <div class="supertop-poster-art-wrap"><img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy"></div>
         <div class="supertop-poster-trailer"></div>
+        <span class="supertop-poster-label">${t.title}</span>
       </div>
     `).join('');
     const posters = posterHTML;

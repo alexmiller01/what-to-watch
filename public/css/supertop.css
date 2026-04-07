@@ -433,6 +433,11 @@
   white-space: nowrap;
 }
 
+/* Poster title label — mobile only */
+.supertop-poster-label {
+  display: none;
+}
+
 /* Trailer preview layer (backdrop + custom play UI) */
 .supertop-poster-trailer {
   position: absolute;
@@ -884,6 +889,25 @@
   .main-layout {
     gap: var(--uds-space-lg);
     padding-top: var(--uds-space-md);
+  }
+
+  /* Mobile poster label */
+  .supertop-poster-label {
+    display: block;
+    font-family: var(--uds-font-sans);
+    font-size: var(--uds-text-body2-size);
+    font-weight: var(--uds-text-ui2-weight);
+    line-height: var(--uds-text-body2-line-height);
+    color: var(--uds-foreground-primary);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: var(--uds-space-xs);
+  }
+
+  .supertop-poster.is-active .supertop-poster-label {
+    display: none;
   }
 
   /* Mobile: poster stays normal size, no inline expand */
