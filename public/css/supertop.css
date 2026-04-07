@@ -260,15 +260,11 @@
   object-fit: cover;
   border-radius: var(--uds-radius-xl);
   display: block;
-  transition: opacity 0.3s ease, transform 0.2s ease;
+  transition: opacity 0.3s ease;
   position: relative;
   z-index: 1;
-  clip-path: inset(0 round var(--uds-radius-xl));
 }
 
-.supertop-poster:hover:not(.is-active) .supertop-poster-art {
-  transform: scale(1.05);
-}
 
 /* Rail scroll button – chevron right, positioned at right edge */
 .supertop-rail-btn {
