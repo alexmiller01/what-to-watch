@@ -724,6 +724,19 @@
         return;
       }
       if (poster === tooltipPoster) return;
+
+      const track = poster.closest('.supertop-rail-track');
+      if (track) {
+        const trackRect = track.getBoundingClientRect();
+        const posterRect = poster.getBoundingClientRect();
+        const visibleWidth = Math.min(posterRect.right, trackRect.right) - Math.max(posterRect.left, trackRect.left);
+        if (visibleWidth < posterRect.width * 0.75) {
+          floatingTooltip.classList.remove('is-showing');
+          tooltipPoster = null;
+          return;
+        }
+      }
+
       tooltipPoster = poster;
 
       const id = parseInt(poster.dataset.id, 10);
