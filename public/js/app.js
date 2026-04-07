@@ -554,6 +554,8 @@
       track.addEventListener('scroll', () => {
         hoverLocked = true;
         clearTimeout(hoverTimeout);
+        floatingTooltip.classList.remove('is-showing');
+        tooltipPoster = null;
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
           hoverLocked = false;
