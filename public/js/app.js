@@ -175,7 +175,7 @@
             <span class="scout-prompt-text">80's Action with a little Romance</span>
           </a>
         </div>
-        <a class="scout-btn" href="https://www.yahoo.com/scout" target="_blank" rel="noopener">
+        <a class="scout-btn" href="https://scout.yahoo.com/" target="_blank" rel="noopener">
           Go to Yahoo Scout
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
         </a>
