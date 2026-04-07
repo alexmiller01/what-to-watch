@@ -246,19 +246,6 @@
       <div class="supertop-poster" data-id="${t.id}" data-trailer="${t.trailer || ''}" data-backdrop="${t.backdrop || t.image}" data-duration="${t.duration}">
         <img class="supertop-poster-art" src="${t.image}" alt="${t.title}" loading="lazy">
         <div class="supertop-poster-trailer"></div>
-        <div class="supertop-poster-tooltip">
-          <p class="supertop-poster-tooltip-title">${t.title}</p>
-          <div class="supertop-poster-tooltip-ratings">
-            <div class="supertop-poster-tooltip-rating">
-              <img src="/assets/rotten-tomatoes.png" alt="RT">
-              <span>${t.rt}%</span>
-            </div>
-            <div class="supertop-poster-tooltip-rating">
-              <img src="/assets/imdb.svg" alt="IMDb">
-              <span>${t.imdb}/10</span>
-            </div>
-          </div>
-        </div>
       </div>
     `).join('');
     const posters = posterHTML;
@@ -584,6 +571,12 @@
   // ── Events ──
 
   function bindEvents() {
+    // Floating tooltip element (created once)
+    const floatingTooltip = document.createElement('div');
+    floatingTooltip.className = 'supertop-poster-tooltip';
+    document.body.appendChild(floatingTooltip);
+    let tooltipPoster = null;
+
     const servicesDropdownBtn = document.getElementById('servicesDropdownBtn');
     const servicesDropdown = document.getElementById('servicesDropdown');
     const typeDropdownBtn = document.getElementById('typeDropdownBtn');
@@ -713,7 +706,7 @@
       if (!poster) return;
 
       const id = parseInt(poster.dataset.id, 10);
-      if (activeTooltip) { activeTooltip.classList.remove('is-showing'); activeTooltip = null; }
+      floatingTooltip.classList.remove('is-showing'); tooltipPoster = null;
       if (activeHoverId === id) {
         removeHoverCard();
       } else {
@@ -723,33 +716,48 @@
     });
 
     // Poster hover tooltip
-    let activeTooltip = null;
     document.addEventListener('mouseover', (e) => {
       const poster = e.target.closest('.supertop-poster');
       if (!poster || poster.classList.contains('is-active')) {
-        if (activeTooltip) { activeTooltip.classList.remove('is-showing'); activeTooltip = null; }
+        floatingTooltip.classList.remove('is-showing');
+        tooltipPoster = null;
         return;
       }
-      const tooltip = poster.querySelector('.supertop-poster-tooltip');
-      if (!tooltip) return;
-      if (activeTooltip && activeTooltip !== tooltip) activeTooltip.classList.remove('is-showing');
+      if (poster === tooltipPoster) return;
+      tooltipPoster = poster;
+
+      const id = parseInt(poster.dataset.id, 10);
+      const item = allTitles.find(t => t.id === id);
+      if (!item) return;
+
+      floatingTooltip.innerHTML = `
+        <p class="supertop-poster-tooltip-title">${item.title}</p>
+        <div class="supertop-poster-tooltip-ratings">
+          <div class="supertop-poster-tooltip-rating">
+            <img src="/assets/rotten-tomatoes.png" alt="RT">
+            <span>${item.rt}%</span>
+          </div>
+          <div class="supertop-poster-tooltip-rating">
+            <img src="/assets/imdb.svg" alt="IMDb">
+            <span>${item.imdb}/10</span>
+          </div>
+        </div>
+      `;
 
       const rect = poster.getBoundingClientRect();
-      tooltip.style.left = rect.left + 'px';
-      tooltip.style.top = (rect.bottom + 4) + 'px';
-      tooltip.style.width = rect.width + 'px';
-      document.body.appendChild(tooltip);
-      tooltip.classList.add('is-showing');
-      activeTooltip = tooltip;
+      floatingTooltip.style.left = rect.left + 'px';
+      floatingTooltip.style.top = (rect.bottom + 4) + 'px';
+      floatingTooltip.style.width = rect.width + 'px';
+      floatingTooltip.classList.add('is-showing');
     });
 
     document.addEventListener('mouseout', (e) => {
       const poster = e.target.closest('.supertop-poster');
-      if (poster && activeTooltip) {
+      if (poster && poster === tooltipPoster) {
         const related = e.relatedTarget;
-        if (related && (related.closest('.supertop-poster') === poster || related.closest('.supertop-poster-tooltip'))) return;
-        activeTooltip.classList.remove('is-showing');
-        activeTooltip = null;
+        if (related && related.closest('.supertop-poster') === poster) return;
+        floatingTooltip.classList.remove('is-showing');
+        tooltipPoster = null;
       }
     });
 
