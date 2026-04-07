@@ -170,10 +170,10 @@
             <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
             <span class="scout-prompt-text">Something light-hearted and feel good vibes</span>
           </a>
-          <button class="scout-prompt">
+          <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69db-21f3-789d-be17-2fa1d61d9df0-a?fr=sct" target="_blank" rel="noopener">
             <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
             <span class="scout-prompt-text">80's Action with a little Romance</span>
-          </button>
+          </a>
         </div>
         <a class="scout-btn" href="https://www.yahoo.com/scout" target="_blank" rel="noopener">
           Go to Yahoo Scout
