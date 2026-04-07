@@ -931,7 +931,7 @@
 @media (max-width: 767px) {
   .main-layout {
     gap: 0;
-    padding-top: var(--uds-space-md);
+    padding-top: 0;
   }
 
   .right-rail {
@@ -941,7 +941,7 @@
   .center-rail,
   .right-rail {
     padding-top: var(--uds-space-md);
-    padding-bottom: var(--uds-space-md);
+    padding-bottom: 0;
     position: relative;
   }
 
