@@ -217,20 +217,20 @@
 .supertop-rail-track-wrapper {
   position: relative;
   overflow: visible;
-  height: 207px;
-  margin-bottom: var(--uds-space-3xl);
+  min-height: 207px;
+  margin-bottom: var(--uds-space-md);
 }
 
 .supertop-rail-track {
   display: flex;
   gap: var(--uds-space-sm);
   overflow-x: auto;
-  overflow-y: visible;
   scrollbar-width: none;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  height: 207px;
+  min-height: 207px;
   align-items: flex-start;
+  padding-bottom: var(--uds-space-3xl);
 }
 
 .supertop-rail-track::-webkit-scrollbar {
@@ -721,7 +721,7 @@
 
   .supertop-rail-track-wrapper,
   .supertop-rail-track {
-    height: 194px;
+    min-height: 194px;
   }
 }
 
@@ -802,7 +802,7 @@
 
   .supertop-rail-track-wrapper,
   .supertop-rail-track {
-    height: 178px;
+    min-height: 178px;
   }
 
   .supertop-rail-title {
