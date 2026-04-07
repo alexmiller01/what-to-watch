@@ -832,7 +832,7 @@
     width: 100vw;
     margin-left: calc(-1 * var(--uds-space-md));
     padding-left: var(--uds-space-md);
-    padding-right: var(--uds-space-md);
+    padding-right: 0;
   }
 
   .supertop-genre-group::-webkit-scrollbar {
