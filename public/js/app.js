@@ -163,15 +163,15 @@
         <h2 class="scout-title">What do you want to watch?</h2>
         <div class="scout-prompts">
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69d8-2441-7660-a66e-448c6585b330-a?fr=sct" target="_blank" rel="noopener">
-            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">I want a 90's to 00s movie</span>
           </a>
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69d9-aca7-70e3-b8ff-3059f482a631-a?fr=sct" target="_blank" rel="noopener">
-            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">Something light-hearted and feel good vibes</span>
           </a>
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69db-21f3-789d-be17-2fa1d61d9df0-a?fr=sct" target="_blank" rel="noopener">
-            <svg class="scout-prompt-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-4-4M6 10C6 6 2 6 2 2"/></svg>
+            <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
             <span class="scout-prompt-text">80's Action with a little Romance</span>
           </a>
         </div>
