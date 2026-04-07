@@ -912,9 +912,6 @@
     margin-top: var(--uds-space-xs);
   }
 
-  .supertop-poster.is-active .supertop-poster-label {
-    display: none;
-  }
 
   /* Mobile: poster stays normal size, no inline expand */
   .supertop-poster.is-active,
