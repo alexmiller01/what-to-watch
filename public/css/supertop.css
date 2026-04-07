@@ -923,6 +923,10 @@
     padding-top: var(--uds-space-md);
   }
 
+  .right-rail {
+    order: -1;
+  }
+
   /* Mobile poster label */
   .supertop-poster-wrap {
     flex: 0 0 110px;
