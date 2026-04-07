@@ -112,10 +112,10 @@
 @media (max-width: 767px) {
   .scout-divider {
     display: block;
-    width: 100%;
-    height: var(--uds-border-thin);
-    background: var(--uds-line-secondary);
+    width: 100vw;
+    height: 6px;
+    background: var(--uds-spectrum-carbon-2);
     border: none;
-    margin: var(--uds-space-md) 0;
+    margin: var(--uds-space-md) 0 var(--uds-space-md) calc(-1 * var(--uds-space-md));
   }
 }
