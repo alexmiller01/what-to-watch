@@ -837,13 +837,14 @@
   }
 
   .supertop-rail-track-wrapper {
-    min-height: 178px;
-    margin-bottom: var(--uds-space-3xl);
+    min-height: 230px;
+    margin-bottom: 0;
   }
 
   .supertop-rail-track {
-    min-height: 178px;
+    min-height: 230px;
     padding-bottom: 0;
+    align-items: flex-start;
   }
 
   .supertop-rail-title {
@@ -897,6 +898,17 @@
   }
 
   /* Mobile poster label */
+  .supertop-poster {
+    height: auto;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .supertop-poster-art-wrap {
+    height: 178px;
+    flex-shrink: 0;
+  }
+
   .supertop-poster-label {
     display: block !important;
     font-family: var(--uds-font-sans);
@@ -909,11 +921,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 40px;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding-top: var(--uds-space-xs);
-    z-index: 3;
+    margin-top: var(--uds-space-xs);
   }
 
 
