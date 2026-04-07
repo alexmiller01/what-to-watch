@@ -173,7 +173,7 @@
 .supertop-rails {
   display: flex;
   flex-direction: column;
-  gap: var(--uds-space-xl);
+  gap: var(--uds-space-lg);
 }
 
 .supertop-rail {
