@@ -375,7 +375,8 @@
     const duration = posterEl.dataset.duration;
     const trailerId = posterEl.dataset.trailer;
 
-    if (trailerLayer && !trailerLayer.classList.contains('is-playing')) {
+    if (trailerLayer && trailerId && !trailerLayer.classList.contains('is-playing')) {
+      posterEl.classList.add('has-trailer');
       trailerLayer.innerHTML = `
         <img src="${backdrop}" alt="">
         <button class="supertop-trailer-play" aria-label="Play trailer">
@@ -385,16 +386,17 @@
       `;
 
       const playBtn = trailerLayer.querySelector('.supertop-trailer-play');
-      if (playBtn && trailerId) {
-        playBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          trailerLayer.classList.add('is-playing');
-          trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?autoplay=1&modestbranding=1&rel=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        });
-      }
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        trailerLayer.classList.add('is-playing');
+        trailerLayer.innerHTML = `<iframe src="https://www.youtube.com/embed/${trailerId}?autoplay=1&modestbranding=1&rel=0&showinfo=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      });
     }
 
-    document.querySelectorAll('.supertop-poster.is-active').forEach(p => p.classList.remove('is-active'));
+    document.querySelectorAll('.supertop-poster.is-active').forEach(p => {
+      p.classList.remove('is-active');
+      p.classList.remove('has-trailer');
+    });
     posterEl.classList.add('is-active');
 
     const closeBtn = cardEl.querySelector('.hover-card-close');
@@ -489,6 +491,7 @@
     const existing = document.querySelector('.supertop-hover-card');
     document.querySelectorAll('.supertop-poster.is-active').forEach(p => {
       p.classList.remove('is-active');
+      p.classList.remove('has-trailer');
       const trailerLayer = p.querySelector('.supertop-poster-trailer');
       if (trailerLayer) {
         setTimeout(() => {

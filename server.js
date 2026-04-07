@@ -195,11 +195,11 @@ const TITLES = [
   m(17,'Spider-Man: No Way Home',2021,'PG-13','Action','2h 28m','/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',93,8.2,92,'JfVOs4VSpmA','spider_man_no_way_home','tt10872600'),
   m(18,'John Wick: Chapter 4',2023,'R','Action','2h 49m','/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg',94,7.7,91,'qEVUtrk8_B4','john_wick_chapter_4','tt10366206'),
   m(26,'Godzilla x Kong',2024,'PG-13','Action','1h 55m','/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg',55,6.3,62,'odM92ap8_c0','godzilla_x_kong_the_new_empire','tt14539740'),
-  m(32,'Red One',2024,'PG-13','Action','2h 3m','/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg',31,6.2,48,'6X0MJhcpHUE','red_one','tt14948432'),
+  m(32,'Red One',2024,'PG-13','Action','2h 3m','/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg',31,6.2,48,'','red_one','tt14948432'),
 
   // ── Comedy movies ──
   m(5,'Beetlejuice Beetlejuice',2024,'PG-13','Comedy','1h 44m','/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg',77,6.6,78,'CoZqL9N6Rx4','beetlejuice_beetlejuice','tt2049403'),
-  m(29,'The Garfield Movie',2024,'PG','Comedy','1h 41m','/xYduFGuch9OwbCOEUiamml18ZoB.jpg',36,5.7,45,'fqmsvWHEq78','the_garfield_movie','tt5779228'),
+  m(29,'The Garfield Movie',2024,'PG','Comedy','1h 41m','/xYduFGuch9OwbCOEUiamml18ZoB.jpg',36,5.7,45,'','the_garfield_movie','tt5779228'),
 
   // ── Sci-Fi movies ──
   m(3,'Dune: Part Two',2024,'PG-13','Sci-Fi','2h 46m','/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg',92,8.4,90,'Way9Dexny3w','dune_part_two','tt15239678'),
@@ -214,7 +214,7 @@ const TITLES = [
   m(11,'Flow',2024,'PG','Animation','1h 25m','/zME0Ul0w48MKkYBnFRn40M5qgLh.jpg',95,8.3,93,'ZgZccxuj2RY','flow_2024','tt4539740'),
   m(13,'Kung Fu Panda 4',2024,'PG','Animation','1h 34m','/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',71,6.4,74,'_inKs4eeHiI','kung_fu_panda_4','tt21692408'),
   m(21,'Inside Out 2',2024,'PG','Animation','1h 40m','/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg',91,7.6,89,'LEjhY15eCx0','inside_out_2','tt22022452'),
-  m(22,'Elemental',2023,'PG','Animation','1h 41m','/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg',74,7.0,75,'hXzcyx9V0xw','elemental_2023','tt15789038'),
+  m(22,'Elemental',2023,'PG','Animation','1h 41m','/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg',74,7.0,75,'','elemental_2023','tt15789038'),
   m(23,'Migration',2023,'PG','Animation','1h 23m','/ldfCF9RhR40mppkzmftxapaHeTo.jpg',56,6.6,62,'SqmMCVYjfns','migration_2023','tt6495056'),
   m(30,'Moana 2',2024,'PG','Animation','1h 40m','/gUREuXCnJLVHsvKXDH9fgIcfM6e.jpg',63,5.8,65,'hDZ7y8RP5HE','moana_2','tt13622970'),
 
@@ -299,7 +299,7 @@ const TITLES = [
   m(59,'Marriage Story',2019,'R','Drama','2h 17m','/kDEjffiKgjuGo2DRzsqfjvW0CQh.jpg',95,7.9,91,'BHi-a1n8t7M','marriage_story','tt7653254'),
   m(60,'Past Lives',2023,'PG-13','Drama','1h 46m','/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',96,7.8,93,'kA244xewjcI','past_lives','tt13238346'),
   m(61,'Tár',2022,'R','Drama','2h 38m','/dRVAlaU0vbG6hMf2K45NSiIyoUe.jpg',91,7.4,88,'4Yq4M4bqFbU','tar_2022','tt14444726'),
-  m(62,'Yellowstone (film)',2023,'R','Drama','2h 5m','/vOYfRZ0NpUK5hG2CB2dJFnYJlGe.jpg',75,6.8,73,'HLxIaEhJEpY','yellowstone','tt0120815'),
+  m(62,'Yellowstone (film)',2023,'R','Drama','2h 5m','/vOYfRZ0NpUK5hG2CB2dJFnYJlGe.jpg',75,6.8,73,'','yellowstone','tt0120815'),
 
   // ── Additional Animation movies ──
   m(63,'Spider-Verse',2018,'PG','Animation','1h 57m','/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg',97,8.4,95,'g4Hbz2jLxvQ','spider_man_into_the_spider_verse','tt4633694'),

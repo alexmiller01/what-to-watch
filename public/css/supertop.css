@@ -350,7 +350,7 @@
   background: var(--uds-always-black);
 }
 
-.supertop-poster.is-active .supertop-poster-art {
+.supertop-poster.is-active.has-trailer .supertop-poster-art {
   opacity: 0;
 }
 
