@@ -781,7 +781,7 @@
   .supertop {
     gap: var(--uds-space-sm);
     padding-top: var(--uds-space-md);
-    padding-bottom: var(--uds-space-lg);
+    padding-bottom: 0;
   }
 
   .supertop::after {
@@ -791,7 +791,7 @@
     height: 6px;
     background: var(--uds-spectrum-carbon-2);
     margin-left: calc(-1 * var(--uds-space-md));
-    margin-top: var(--uds-space-sm);
+    margin-top: var(--uds-space-md);
   }
 
   .supertop-title {
@@ -940,7 +940,8 @@
 
   .center-rail,
   .right-rail {
-    padding-bottom: var(--uds-space-lg);
+    padding-top: var(--uds-space-md);
+    padding-bottom: var(--uds-space-md);
     position: relative;
   }
 
@@ -952,7 +953,7 @@
     height: 6px;
     background: var(--uds-spectrum-carbon-2);
     margin-left: calc(-1 * var(--uds-space-md));
-    margin-top: var(--uds-space-lg);
+    margin-top: var(--uds-space-md);
   }
 
   .center-rail:last-child::after {
