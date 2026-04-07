@@ -465,7 +465,13 @@
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           mobileCardEl.classList.add('is-visible');
-          mobileCardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => {
+            const rect = mobileCardEl.getBoundingClientRect();
+            const bottom = rect.bottom + 12;
+            if (bottom > window.innerHeight) {
+              window.scrollBy({ top: bottom - window.innerHeight, behavior: 'smooth' });
+            }
+          }, 100);
         });
       });
     } else {
