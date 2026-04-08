@@ -3,11 +3,11 @@
 
   const GENRES_ROW1 = [
     'Thriller', 'Drama', 'Action', 'Comedy',
-    'Horror', 'Animation', 'Sci-Fi', 'Romance'
+    'Horror', 'Animation', 'Sci-Fi', 'Romance', 'Mystery'
   ];
 
   const GENRES_ROW2 = [
-    'Documentary', 'Fantasy', 'Mystery', 'Musical', 'Western', 'Family'
+    'Documentary', 'Fantasy', 'Musical', 'Western', 'Family'
   ];
 
   let genresExpanded = false;
