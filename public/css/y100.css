@@ -94,8 +94,8 @@
 }
 
 .y100-rating-icon {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -209,8 +209,8 @@
   }
 
   .y100-rating-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   .y100-rating-value {
