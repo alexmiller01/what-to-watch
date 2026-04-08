@@ -3,10 +3,12 @@
 
   const GENRES_ROW1 = [
     'Thriller', 'Drama', 'Action', 'Comedy',
-    'Horror', 'Animation', 'Sci-Fi'
+    'Horror', 'Animation', 'Sci-Fi', 'Romance'
   ];
 
-  const GENRES_ROW2 = [];
+  const GENRES_ROW2 = [
+    'Documentary', 'Fantasy', 'Mystery', 'Musical', 'Western', 'Family'
+  ];
 
   let genresExpanded = false;
   let allTitles = [];
@@ -196,23 +198,21 @@
 
   function renderGenreChips() {
     const container = document.getElementById('supertopGenres');
-    const label = '<span class="supertop-genre-label">Genres:</span>';
-
     function chipHTML(g) {
       const isActive = activeGenres.includes(g);
       return `<button class="supertop-genre-chip${isActive ? ' active' : ''}" data-genre="${g}">${g}</button>`;
     }
 
     const row1 = GENRES_ROW1.map(chipHTML).join('');
-    const expandBtn = `<button class="supertop-genre-expand${genresExpanded ? ' is-expanded' : ''}" id="genreExpandBtn" aria-label="Show more genres">
+    const expandBtn = GENRES_ROW2.length > 0 ? `<button class="supertop-genre-expand${genresExpanded ? ' is-expanded' : ''}" id="genreExpandBtn" aria-label="Show more genres">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg>
-    </button>`;
+    </button>` : '';
 
-    const row2 = `<div class="supertop-genre-row2${genresExpanded ? ' is-visible' : ''}" id="genreRow2">
+    const row2 = GENRES_ROW2.length > 0 ? `<div class="supertop-genre-row2${genresExpanded ? ' is-visible' : ''}" id="genreRow2">
       ${GENRES_ROW2.map(chipHTML).join('')}
-    </div>`;
+    </div>` : '';
 
-    container.innerHTML = label + row1 + expandBtn + row2;
+    container.innerHTML = row1 + expandBtn + row2;
   }
 
   // ── Dynamic rail rendering ──

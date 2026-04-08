@@ -79,18 +79,7 @@
 }
 
 .supertop-genre-label {
-  font-family: var(--uds-font-sans);
-  font-size: var(--uds-text-label4-size);
-  font-weight: var(--uds-text-label4-weight);
-  line-height: var(--uds-text-label4-line-height);
-  color: var(--uds-foreground-primary);
-  white-space: nowrap;
-  width: 54px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
 }
 
 .supertop-genre-chip {
