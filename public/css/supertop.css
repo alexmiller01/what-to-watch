@@ -433,6 +433,10 @@
   width: 369px;
 }
 
+.supertop-poster-wrap:has(.supertop-poster.is-active) .supertop-poster-label {
+  display: none;
+}
+
 .supertop-poster-label {
   display: block;
   font-family: var(--uds-font-sans);
