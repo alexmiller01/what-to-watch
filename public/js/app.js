@@ -152,8 +152,10 @@
 
     container.innerHTML = `
       <div class="scout">
-        <div class="scout-icon"><img src="/assets/scoutmagic.svg" alt="Yahoo Scout"></div>
-        <h2 class="scout-title">What do you want to watch?</h2>
+        <div class="scout-header">
+          <div class="scout-icon"><img src="/assets/scoutmagic.svg" alt="Yahoo Scout"></div>
+          <h2 class="scout-title">What do you want to watch? Ask Yahoo Scout</h2>
+        </div>
         <div class="scout-prompts">
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69eb-9fa4-7772-9a5d-73927d29e197-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
@@ -161,19 +163,14 @@
           </a>
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69ec-dd11-76de-9d47-e0c4273d5586-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
-            <span class="scout-prompt-text">Something light-hearted and feel good vibes</span>
+            <span class="scout-prompt-text">Something light-hearted and feel good</span>
           </a>
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69db-21f3-789d-be17-2fa1d61d9df0-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
-            <span class="scout-prompt-text">80's Action with a little Romance</span>
+            <span class="scout-prompt-text">Give me some more options</span>
           </a>
         </div>
-        <a class="scout-btn" href="https://scout.yahoo.com/" target="_blank" rel="noopener">
-          Go to Yahoo Scout
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
-        </a>
       </div>
-      <hr class="scout-divider">
       <div class="y100">
         <h2 class="y100-title">Yahoo top 100: Movies</h2>
         <div class="y100-list">${rows}</div>
