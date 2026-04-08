@@ -223,7 +223,7 @@
 
 .supertop-rail-track {
   display: flex;
-  gap: var(--uds-space-sm);
+  gap: var(--uds-space-md);
   overflow-x: auto;
   scrollbar-width: none;
   scroll-behavior: smooth;
