@@ -40,7 +40,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--uds-space-md);
+  gap: var(--uds-space-xs);
 }
 
 .supertop-service-dropdown {
@@ -72,10 +72,7 @@
 }
 
 .supertop-genre-group {
-  display: flex;
-  align-items: center;
-  gap: var(--uds-space-xs);
-  flex-wrap: wrap;
+  display: contents;
 }
 
 .supertop-genre-label {
