@@ -43,6 +43,18 @@
   background: var(--uds-spectrum-carbon-2);
 }
 
+.y100-rank {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title2-size);
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.36px;
+  color: var(--uds-foreground-primary);
+  flex-shrink: 0;
+  width: 22px;
+  text-align: left;
+}
+
 .y100-poster {
   width: 54px;
   height: 87px;

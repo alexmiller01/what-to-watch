@@ -134,21 +134,12 @@
     const container = document.getElementById('rightRail');
     const rows = y100.map((t, i) => `
       <a class="y100-item" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
+        <span class="y100-rank">${t.rank}.</span>
         <div class="y100-poster">
           <img src="${t.image}" alt="${t.title}" loading="lazy">
         </div>
         <div class="y100-info">
-          <p class="y100-name">${t.rank}. ${t.title}</p>
-          <div class="y100-ratings">
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/rotten-tomatoes.svg" alt="RT">
-              <span class="y100-rating-value">${t.rt}%</span>
-            </div>
-            <div class="y100-rating-item">
-              <img class="y100-rating-icon" src="/assets/imdb.svg" alt="IMDb">
-              <span class="y100-rating-value">${t.imdb}/10</span>
-            </div>
-          </div>
+          <p class="y100-name">${t.title}</p>
           <div class="y100-meta">
             <span class="y100-rating-badge">${t.rating}</span>
             <span class="y100-meta-text">${t.year} · ${t.genre} · ${t.duration}</span>
