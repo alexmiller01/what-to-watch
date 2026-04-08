@@ -84,6 +84,35 @@
   white-space: nowrap;
 }
 
+.scout-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--uds-space-sm) var(--uds-space-md);
+  border: var(--uds-border-thin) solid var(--uds-line-primary);
+  border-radius: var(--uds-radius-full);
+  background: var(--uds-background-primary);
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-body2-size);
+  font-weight: var(--uds-text-ui2-weight);
+  line-height: 15.4px;
+  color: var(--uds-foreground-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.scout-btn:hover {
+  background: var(--uds-line-tertiary);
+}
+
+.scout-btn svg {
+  width: var(--uds-space-md);
+  height: var(--uds-space-md);
+}
+
 /* Divider below scout section */
 .scout-divider {
   display: none;
@@ -113,6 +142,11 @@
 
   .scout-prompt:hover {
     background: var(--uds-line-secondary);
+  }
+
+  .scout-btn {
+    display: flex;
+    width: 100%;
   }
 
   .scout-divider {

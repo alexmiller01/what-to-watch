@@ -228,4 +228,9 @@
   .y100-rating-value {
     font-size: 14px;
   }
+
+  .y100-more-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

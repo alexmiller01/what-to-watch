@@ -170,6 +170,10 @@
             <span class="scout-prompt-text">Give me some more options</span>
           </a>
         </div>
+        <a class="scout-btn" href="https://scout.yahoo.com/" target="_blank" rel="noopener">
+          Go to Yahoo Scout
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+        </a>
       </div>
       <div class="y100">
         <h2 class="y100-title">Yahoo top 100: Movies</h2>
