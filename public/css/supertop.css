@@ -372,6 +372,7 @@
 
 /* Hover tooltip — title + ratings below poster */
 .supertop-poster-tooltip {
+  display: none;
   position: fixed;
   opacity: 0;
   pointer-events: none;
