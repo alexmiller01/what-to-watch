@@ -184,7 +184,7 @@
       </div>
       <hr class="scout-divider">
       <div class="y100">
-        <h2 class="y100-title">Yahoo top 100</h2>
+        <h2 class="y100-title">Yahoo top 100: Movies</h2>
         <div class="y100-list">${rows}</div>
         <a class="y100-more-btn" href="https://www.yahoo.com/films/best-movies/" target="_blank" rel="noopener">
           More on Yahoo Entertainment
