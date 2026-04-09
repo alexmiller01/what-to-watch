@@ -3,7 +3,7 @@
 .scout {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--uds-space-xs);
   align-items: flex-start;
   padding: var(--uds-space-md);
   border-radius: var(--uds-radius-xl);
@@ -15,7 +15,7 @@
 .scout-header {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: var(--uds-space-xs);
   align-items: center;
   width: 100%;
 }
