@@ -154,7 +154,7 @@
       <div class="scout">
         <div class="scout-header">
           <div class="scout-icon"><img src="/assets/scoutmagic.svg" alt="Yahoo Scout"></div>
-          <h2 class="scout-title">What do you want to watch? Ask Yahoo Scout</h2>
+          <h2 class="scout-title">Find your next watch with Yahoo Scout</h2>
         </div>
         <div class="scout-prompts">
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69eb-9fa4-7772-9a5d-73927d29e197-a?fr=sct" target="_blank" rel="noopener">
@@ -167,7 +167,11 @@
           </a>
           <a class="scout-prompt" href="https://scout.yahoo.com/chat/019d69db-21f3-789d-be17-2fa1d61d9df0-a?fr=sct" target="_blank" rel="noopener">
             <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
-            <span class="scout-prompt-text">Give me some more options</span>
+            <span class="scout-prompt-text">80's action with some romance</span>
+          </a>
+          <a class="scout-prompt" href="https://scout.yahoo.com/" target="_blank" rel="noopener">
+            <img class="scout-prompt-icon" src="/assets/LeftCurveArrow.svg" alt="">
+            <span class="scout-prompt-text">Ask anything</span>
           </a>
         </div>
         <a class="scout-btn" href="https://scout.yahoo.com/" target="_blank" rel="noopener">
