@@ -15,7 +15,7 @@
 .scout-header {
   display: flex;
   flex-direction: row;
-  gap: var(--uds-space-md);
+  gap: var(--uds-space-xs);
   align-items: center;
   width: 100%;
 }
