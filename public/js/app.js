@@ -773,19 +773,22 @@
       }
     });
 
-    // Description text expand on hover
-    document.addEventListener('mouseover', (e) => {
-      const bottom = e.target.closest('.hover-card-bottom');
-      if (bottom) bottom.classList.add('is-expanded');
-    });
-    document.addEventListener('mouseout', (e) => {
-      const bottom = e.target.closest('.hover-card-bottom');
-      if (bottom) {
-        const related = e.relatedTarget;
-        if (related && related.closest('.hover-card-bottom') === bottom) return;
-        bottom.classList.remove('is-expanded');
-      }
-    });
+    // Description text expand on hover (disabled – set to true to re-enable)
+    const enableDescExpand = false;
+    if (enableDescExpand) {
+      document.addEventListener('mouseover', (e) => {
+        const bottom = e.target.closest('.hover-card-bottom');
+        if (bottom) bottom.classList.add('is-expanded');
+      });
+      document.addEventListener('mouseout', (e) => {
+        const bottom = e.target.closest('.hover-card-bottom');
+        if (bottom) {
+          const related = e.relatedTarget;
+          if (related && related.closest('.hover-card-bottom') === bottom) return;
+          bottom.classList.remove('is-expanded');
+        }
+      });
+    }
 
     // Poster hover tooltip
     document.addEventListener('mouseover', (e) => {
