@@ -76,9 +76,9 @@
 
 .scout-prompt-text {
   font-family: var(--uds-font-sans);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
+  font-size: var(--uds-text-label2-emph-size);
+  font-weight: var(--uds-text-label2-emph-weight);
+  line-height: var(--uds-text-label2-emph-line-height);
   color: var(--uds-foreground-primary);
   white-space: nowrap;
 }
