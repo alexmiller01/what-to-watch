@@ -63,7 +63,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  if (req.path === '/assets/ryuken.png') return next();
+  if (req.path === '/assets/ryuken.png' || req.path === '/assets/Y!Logos Main.svg') return next();
   if (isValidSession(req.cookies.wtw_session)) return next();
   res.redirect('/login');
 });
@@ -151,7 +151,7 @@ function getLoginPage(error) {
 <body>
   <div class="login-card">
     <div class="login-logo">
-      <svg width="86" height="24" viewBox="0 0 86 24" fill="none"><text x="0" y="20" font-family="Arial" font-weight="bold" font-size="22" fill="#7d2eff">Yahoo</text></svg>
+      <img src="/assets/Y!Logos Main.svg" alt="Yahoo">
     </div>
     <h1 class="login-title">What to Watch</h1>
     <p class="login-subtitle">Enter the password to continue</p>
