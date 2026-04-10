@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 // ── Authentication ──
 const AUTH_SALT = 'wtw_2026_salt_k9x';
-const PASSWORD_HASH = crypto.createHash('sha256').update('Self Boyz 4 Lyfe' + AUTH_SALT).digest('hex');
+const PASSWORD_HASH = crypto.createHash('sha256').update('selfboyz4lyfe' + AUTH_SALT).digest('hex');
 const sessions = new Map();
 const SESSION_MAX_AGE = 24 * 60 * 60 * 1000;
 
