@@ -148,7 +148,18 @@ function getLoginPage(error) {
     .login-input.has-error { border-color: #d32f2f; }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false">
+  <script>
+    document.addEventListener('keydown',function(e){
+      if(e.key==='F12')e.preventDefault();
+      if(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))e.preventDefault();
+      if(e.metaKey&&e.altKey&&(e.key==='i'||e.key==='j'||e.key==='c'||e.key==='I'||e.key==='J'||e.key==='C'))e.preventDefault();
+      if(e.ctrlKey&&e.key==='u')e.preventDefault();
+      if(e.metaKey&&e.key==='u')e.preventDefault();
+      if(e.metaKey&&e.altKey&&e.key==='u')e.preventDefault();
+    });
+    document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  </script>
   <div class="login-card">
     <div class="login-logo">
       <img src="/assets/Y!Logos Main.svg" alt="Yahoo">
