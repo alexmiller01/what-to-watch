@@ -63,6 +63,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use((req, res, next) => {
+  if (req.path === '/assets/ryuken.png') return next();
   if (isValidSession(req.cookies.wtw_session)) return next();
   res.redirect('/login');
 });
@@ -80,7 +81,7 @@ function getLoginPage(error) {
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Yahoo Product Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #fff;
+      background: #000 url('/assets/ryuken.png') center center / cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -92,6 +93,10 @@ function getLoginPage(error) {
       max-width: 380px;
       padding: 40px 32px;
       text-align: center;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .login-logo { margin-bottom: 32px; }
     .login-logo img { height: 28px; }
