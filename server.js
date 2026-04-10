@@ -1,10 +1,164 @@
 const express = require('express');
 const path = require('path');
+const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// ── Authentication ──
+const AUTH_SALT = 'wtw_2026_salt_k9x';
+const PASSWORD_HASH = crypto.createHash('sha256').update('whattowatch' + AUTH_SALT).digest('hex');
+const sessions = new Map();
+const SESSION_MAX_AGE = 24 * 60 * 60 * 1000;
+
+function verifyPassword(input) {
+  const hash = crypto.createHash('sha256').update(input + AUTH_SALT).digest('hex');
+  return crypto.timingSafeEqual(Buffer.from(hash), Buffer.from(PASSWORD_HASH));
+}
+
+function createSession() {
+  const token = crypto.randomBytes(48).toString('hex');
+  sessions.set(token, { created: Date.now() });
+  return token;
+}
+
+function isValidSession(token) {
+  if (!token || !sessions.has(token)) return false;
+  const session = sessions.get(token);
+  if (Date.now() - session.created > SESSION_MAX_AGE) {
+    sessions.delete(token);
+    return false;
+  }
+  return true;
+}
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+
+app.get('/login', (req, res) => {
+  if (isValidSession(req.cookies.wtw_session)) return res.redirect('/');
+  res.send(getLoginPage());
+});
+
+app.post('/login', (req, res) => {
+  const { password } = req.body;
+  if (!password || !verifyPassword(password)) {
+    return res.send(getLoginPage('Incorrect password'));
+  }
+  const token = createSession();
+  res.cookie('wtw_session', token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    maxAge: SESSION_MAX_AGE
+  });
+  res.redirect('/');
+});
+
+app.get('/logout', (req, res) => {
+  if (req.cookies.wtw_session) sessions.delete(req.cookies.wtw_session);
+  res.clearCookie('wtw_session');
+  res.redirect('/login');
+});
+
+app.use((req, res, next) => {
+  if (isValidSession(req.cookies.wtw_session)) return next();
+  res.redirect('/login');
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+function getLoginPage(error) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What to Watch – Login</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Yahoo Product Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #141414;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .login-logo { margin-bottom: 32px; }
+    .login-logo img { height: 28px; }
+    .login-title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 29px;
+      margin-bottom: 8px;
+    }
+    .login-subtitle {
+      font-size: 14px;
+      color: #666;
+      line-height: 20px;
+      margin-bottom: 32px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #cdcdcd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.15s ease;
+      -webkit-text-security: disc;
+    }
+    .login-input:focus { border-color: #7d2eff; }
+    .login-input::placeholder { color: #999; }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 16px;
+      background: #141414;
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .login-btn:hover { background: #333; }
+    .login-error {
+      color: #d32f2f;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    .login-input.has-error { border-color: #d32f2f; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="login-logo">
+      <svg width="86" height="24" viewBox="0 0 86 24" fill="none"><text x="0" y="20" font-family="Arial" font-weight="bold" font-size="22" fill="#7d2eff">Yahoo</text></svg>
+    </div>
+    <h1 class="login-title">What to Watch</h1>
+    <p class="login-subtitle">Enter the password to continue</p>
+    <form method="POST" action="/login" autocomplete="off">
+      <input class="login-input${error ? ' has-error' : ''}" type="password" name="password" placeholder="Password" autofocus autocomplete="off">
+      <button class="login-btn" type="submit">Continue</button>
+      ${error ? '<p class="login-error">' + error + '</p>' : ''}
+    </form>
+  </div>
+</body>
+</html>`;
+}
 
 const T = 'https://media.themoviedb.org/t/p';
 
