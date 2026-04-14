@@ -154,6 +154,32 @@
   margin-top: var(--uds-space-xs);
 }
 
+/* ── Empty state ── */
+
+.supertop-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: var(--uds-space-3xl) 0;
+}
+
+.supertop-empty-icon {
+  width: 137px;
+  height: 143px;
+  object-fit: contain;
+}
+
+.supertop-empty-text {
+  font-family: var(--uds-font-sans);
+  font-size: var(--uds-text-title2-size);
+  font-weight: var(--uds-text-title2-weight);
+  line-height: var(--uds-text-title2-line-height);
+  color: var(--uds-always-black);
+  text-align: center;
+  margin: 0;
+}
+
 /* ── Content rails (Movies / Shows) ── */
 
 .supertop-rails {

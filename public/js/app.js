@@ -16,6 +16,7 @@
   let searchQuery = '';
   let showMovies = true;
   let showTV = true;
+  let showRentals = true;
   let activeHoverId = null;
   let hoverTimeout = null;
   let hoverLocked = false;
@@ -227,6 +228,15 @@
     removeHoverCard(true);
     const container = document.getElementById('supertopRails');
     const pool = getSearchFiltered();
+
+    if (!showMovies && !showTV && !showRentals) {
+      container.innerHTML = `
+        <div class="supertop-empty">
+          <img class="supertop-empty-icon" src="/assets/traffic-cone.png" alt="">
+          <p class="supertop-empty-text">You do not have any media selected.</p>
+        </div>`;
+      return;
+    }
 
     if (activeGenres.length === 0) {
       let html = '';
@@ -667,6 +677,9 @@
           renderAllRails();
         } else if (filter === 'tv') {
           showTV = checkbox.classList.contains('is-checked');
+          renderAllRails();
+        } else if (filter === 'rentals') {
+          showRentals = checkbox.classList.contains('is-checked');
           renderAllRails();
         }
         return;
