@@ -232,7 +232,7 @@
     if (!showMovies && !showTV && !showRentals) {
       container.innerHTML = `
         <div class="supertop-empty">
-          <img class="supertop-empty-icon" src="/assets/traffic-cone.png" alt="">
+          <img class="supertop-empty-icon" src="/assets/cone.svg" alt="">
           <p class="supertop-empty-text">You do not have any media selected.</p>
         </div>`;
       return;
